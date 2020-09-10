@@ -1,6 +1,7 @@
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
         @font-face {
@@ -38,16 +39,25 @@
 </head>
 
 <body>
+@php
+    $image = empty($image_user[0]->image) ? '' : $image_user[0]->image;
+    @endphp
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+            </div>
+            <div class="col-md" align='center'>
+            <img class="avatar border-gray" src="img/profile/{{$image}}" width="60"  height="60" alt="...">
+                <p>ประวัติการลา</p>
+            </div>
+            <div class="col-md">
+            
+            </div>
+        </div>
+    </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class="container-fluid">
-                <p>ประวัติการลา</p>
-                </div>
-            </nav>
-            <br>
-            <br>
-            <br>
+
     <div class="content">
         <div class="container-fluid">
            <div class="row">

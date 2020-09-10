@@ -53,8 +53,13 @@ class LeaveController extends Controller
       ->where('idname',Auth::user()->id)
       
        ->get();
+
+       $image_user = DB::table('users')
+       ->join('newcompanies', 'users.id', '=','newcompanies.idname')
+       ->where('idname',Auth::user()->id)
+       ->get();
        //dd($user_aaa);
-      $pdf = PDF::loadview('hr.pdf_leave',['user_aaa'=> $user_aaa]);
+      $pdf = PDF::loadview('hr.pdf_leave',['image_user'=> $image_user ,'user_aaa'=> $user_aaa]);
      return @$pdf->stream();
     }
 

@@ -76,7 +76,14 @@ class TimesController extends Controller
             ->where('firstnamebem','like', '%'.$name.'%')
             ->where('idname',Auth::user()->id)
             ->get();
-        $pdf = PDF::loadview('hr.pdf_time',['user_aaa'=> $user_aaa]);
+
+            $image_user = DB::table('users')
+            ->join('newcompanies', 'users.id', '=','newcompanies.idname')
+            ->where('idname',Auth::user()->id)
+            ->get();
+
+            //dd($img_user);
+        $pdf = PDF::loadview('hr.pdf_time',['image_user'=> $image_user ,'user_aaa'=> $user_aaa]);
        return @$pdf->stream();
         //dd($user_aaa);
   

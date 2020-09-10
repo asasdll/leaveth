@@ -1,8 +1,10 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>leave</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('/') }}/assets/img/icon_i2.png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
     @font-face {
@@ -40,26 +42,40 @@
     p {
         font-size: 30px;
     }
+
+    bood {
+        font-size: 25px;
+        position: absolute;
+        right  : -55px;
+        top: -25px;
+        z-index: -1;
+
+    }
     </style>
 </head>
 
 <body>
+    @php
+    $p_acc = empty($user_aaa[0]->created_at) ? '' : $user_aaa[0]->created_at;
+    $image = empty($image_user[0]->image) ? '' : $image_user[0]->image;
+    $rest = substr("$p_acc", 0, 7);
+    @endphp
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+            </div>
+            <div class="col-md" align='center'>
+            <img class="avatar border-gray" src="img/profile/{{$image}}" width="60"  height="60" alt="...">
+                <p>ประวัติการบันทึกเวลา</p>
+            </div>
+            <div class="col-md">
+                <bood>{{$rest }}</bood>
+            </div>
+        </div>
+    </div>
     <div class="main-panel">
         @include('layouts.function')
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-            <div class="container-fluid">
-                <p>ประวัติการบันทึกเวลา</p>
-            </div>
-            <div>
-                @php
-                $p_acc = empty($user_aaa[0]->created_at) ? '' : $user_aaa[0]->created_at;
-                $rest = substr("$p_acc", 0, 7);
-                @endphp
-                <br />
-                <p>{{$rest }}</p>
-            </div>
-        </nav>
         <table class="table table-bordered">
             <thead>
                 <tr>
