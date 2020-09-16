@@ -1,8 +1,6 @@
 <script>
 $(function() {
-	var from = $('#from');
-	var to = $('#to');
-    var dateFormat = "mm/dd/mm/yy",
+    var dateFormat = "mm/dd/yy",
         from = $("#from")
         .datepicker({
             defaultDate: "+1w",
@@ -20,6 +18,16 @@ $(function() {
         })
         .on("change", function() {
             from.datepicker("option", "maxDate", getDate(this));
+
+            var date1 = $("#from").val();
+            var date2 = $("#to").val();
+            var dayDiff = date_diff_indays(date1, date2);
+            $("#daydiff").val(dayDiff);
+            console.log($("#to").val());
+            console.log($("#from").val());
+            console.log($("#daydiff").val());
+            
+
         });
 
     function getDate(element) {
@@ -32,9 +40,15 @@ $(function() {
 
         return date;
     }
+
+    var date_diff_indays = function(date1, date2) {
+        dt1 = new Date(date1);
+        dt2 = new Date(date2);
+        return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date
+            .UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 *
+            24));
+    }
 });
-
-
 </script>
 <div class="row">
     <div class="col-md-12 pr-1">
@@ -68,7 +82,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">มีกำหนด</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="da" id="totolDay" required>
+                <input type="text" class="form-control" name="da" id="daydiff" required>
             </div>
             <label for="text" class="col-md- pr-1 col-form-label">วัน</label>
         </div>
