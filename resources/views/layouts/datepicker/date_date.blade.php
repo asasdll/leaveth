@@ -2,7 +2,7 @@
 $(function() {
 	var from = $('#from');
 	var to = $('#to');
-    var dateFormat = "mm/dd/yy",
+    var dateFormat = "mm/dd/mm/yy",
         from = $("#from")
         .datepicker({
             defaultDate: "+1w",
@@ -32,19 +32,6 @@ $(function() {
 
         return date;
     }
-	function displayDateDiff()
-{
-	if($('#from').val() != "" && $('#to').val() != "")
-	{
-				var dateStart = new Date($("#from").val());
-				var dateEnd =  new Date($("#to").val())
-				var timeDiff = Math.abs(dateEnd.getTime() - dateStart.getTime());
-				
-				var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-				diffDays = diffDays + 1;
-				$("#totolDay").val(diffDays);
-	}
-}
 });
 
 
