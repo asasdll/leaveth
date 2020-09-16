@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{url('leave')}}">
+                        <a class="nav-link" href="{{url('leave3')}}">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>ผลการอนุมัติลา</p>
                         </a>

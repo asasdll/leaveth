@@ -179,7 +179,7 @@ class MemberuserController extends Controller
         ->leftJoin('positions', 'leaves.head', '=','positions.idchief')
         //->rightJoin('leaves', 'positions.idchief', '=','leaves.head')*/
         //->groupBy('idchief')
-        ->where('status_chief','!=' ,'Null')
+        ->whereNull('status_chief')
         ->whereNull('status_hr')
         ->orderBy('leaves.id','ASC')
         ->where('idmember',Auth::user()->id)

@@ -50,17 +50,6 @@ $(function() {
 });
 </script>
 <div class="row">
-    <div class="col-md-12 pr-1">
-        <div class="form-group row">
-            <label for="text" class="col-sm-2 col-form-label">เนื่องจาก</label>
-            <div class="col-md-8 pr-1">
-                <input type="text" class="form-control" name="since" id="text" required>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
     <div class="col-md-4 pr-1">
         <div class="form-group row">
             <label for="text" class="col-sm-3 col-form-label">นับตั้งเเต่</label>

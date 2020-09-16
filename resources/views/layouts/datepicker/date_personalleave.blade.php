@@ -51,22 +51,11 @@ $(function() {
 });
 </script>
 <div class="row">
-    <div class="col-md-12 pr-1">
-        <div class="form-group row">
-            <label for="text" class="col-sm-2 col-form-label">เนื่องจาก</label>
-            <div class="col-md-8 pr-1">
-                <input type="text" class="form-control" name="since" id="text" required>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
     <div class="col-md-4 pr-1">
         <div class="form-group row">
             <label for="text" class="col-sm-3 col-form-label">นับตั้งเเต่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="from" name="from" name="date1" required>
+                <input class="form-control" type="text" id="from"  name="date1" required>
             </div>
         </div>
     </div>
@@ -74,7 +63,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">ถึงวันที่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="to" name="to" required>
+                <input class="form-control" type="text" id="to" name="date2" required>
             </div>
         </div>
     </div>
@@ -99,12 +88,12 @@ $(function() {
     </div>
     <div class="col-md-6 pr-1">
         <div class="form-group row">
-            @foreach($status as $ticket)
+          
             <label for="text" class="col-md-2 pr-1 col-form-label">เบอร์ติดต่อ</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="tel" value="{{$ticket->tel}}" id="tel">
+                <input type="text" class="form-control" name="tel" value="" id="tel">
             </div>
-            @endforeach
+           
         </div>
     </div>
 </div>
