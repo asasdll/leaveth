@@ -2,20 +2,6 @@
 @include('layouts.manu.personnel.manu_leave2')
 @section('content')
 
-              <style>
-                        h1 {
-                            color: Black;
-                            text-align: center;
-                            font-size: 200%;
-                            
-
-                        }
-                        label {
-                            color: Black;
-                            text-align: center;
-                        }
-            </style>
-
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
@@ -132,43 +118,8 @@
                                                 </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12 pr-1">
-                                                    <div class="form-group row">
-                                                        <label for="text" class="col-sm-2 col-form-label">เนื่องจาก</label>
-                                                            <div class="col-md-8 pr-1">
-                                                            <input type="text" class="form-control"  name="since" id="text" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 pr-1">
-                                                <div class="form-group row">
-                                                    <label for="text" class="col-sm-3 col-form-label">นับตั้งเเต่</label>
-                                                    <div class="col-md-8 pr-1">
-                                                    <input class="form-control" type="date" value="วว/ดด/ปป" id="example-date-input" name="date1"  required>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col md-4 pr-1">
-                                                <div class="form-group row">
-                                                    <label for="text" class="col-md-3 pr-1 col-form-label">ถึงวันที่</label>
-                                                    <div class="col-md-8 pr-1">
-                                                    <input class="form-control" type="date" value="วว/ดด/ปป" id="example-date-input" name="date2" required>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col-md-4 pr">
-                                                <div class="form-group row">
-                                                    <label for="text" class="col-md-3 pr-1 col-form-label">มีกำหนด</label>
-                                                    <div class="col-md-6 pr-1">
-                                                        <input type="text" class="form-control" name="da" id="da" required>
-                                                    </div>
-                                                    <label for="text" class="col-md- pr-1 col-form-label">วัน</label>
-                                                  </div>
-                                                 </div>
-                                              </div>
+                           
+                                            @include('layouts.datepicker.date_date')
                                               <div class="row">
                                                 <div class="col-md-6 pr-1">
                                                 <div class="form-group row">
