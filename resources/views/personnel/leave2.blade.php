@@ -119,38 +119,8 @@
                                                 </div>
                                             </div>
                            
-                                            @include('layouts.datepicker.date_date')
-                                              <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                <div class="form-group row">
-                                                    <label for="text" class="col-md-4 pr-1 col-form-label">ในระหว่างลาสมารถติดต่อข้าพเจ้าได้ที่</label>
-                                                    <div class="col-md-8 pr-1">
-                                                    <input type="text" class="form-control" name="address" id="address" placeholder="Address">
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col-md-6 pr-1">
-                                                <div class="form-group row">
-                                                @foreach($status as $ticket)
-                                                    <label for="text" class="col-md-2 pr-1 col-form-label">เบอร์ติดต่อ</label>
-                                                    <div class="col-md-6 pr-1">
-                                                    <input type="text" class="form-control" name="tel" value="{{$ticket->tel}}" id="tel">
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                </div>
-                                                <div class="col-md- pr-1">
-                                                <div class="form-group">
-                                                <input type="file" class="form-control" id="image"  name="image">
-                                                </div>
-                                                </div>
-                                                <div class="col-md-2 pr-1">
-                                                </div>
-                                            </div>
+                                            @include('layouts.datepicker.date_leave')
+                                             
                                             <button type="submit" class="btn btn-info btn-fill pull-right">บันทึกข้อมูล</button>
                                         </form>
                                     </table>
