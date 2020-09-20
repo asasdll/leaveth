@@ -366,55 +366,107 @@ class MemberuserController extends Controller
      */
     public function update(Request $request, Memberuser $memberuser ,$id)
     {
-        $this->validate($request, [
-            //'code'=> ['required', 'string', 'max:255'],
-            'firstnamebem'=> ['required', 'string', 'max:255'],
-            'lastnamebem' => ['required', 'string', 'max:255'],
-            'tel' => ['required', 'numeric'],
-            'tel2' => ['required', 'numeric'],
-            'telname2' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'image'=>'image|mimes:jpeg,png,jpg|max:2048'
-         ]);
+      $member =  Memberuser::find($id);
+      $iduser2 =$member["iduser"]; 
+      
+      $check_id = DB::table('positions')->orderBy('idchief')->where('idchief', '=' ,$iduser2) ///เช้คว่ามี code ใน Newcompanies
 
-         $reg2 = DB::table('users') /// อนุมัติเเล้ว ส่วนของหัวหน้า
-         ->join('memberusers', 'users.id', '=','memberusers.iduser')
-         ->leftJoin('positions', 'memberusers.iduser', '=','positions.idchief')
-         ->orderBy('idchief')->where('idchief', '=' ,$id)
-         ->get();
-         dd($id,$reg2); 
-           $member =  Memberuser::find($id);
-           //dd($member);
-              //$member->iduser = Auth::user()->id;
-              $member->firstnamebem = $request->firstnamebem;
-              $member->lastnamebem = $request->lastnamebem;
-              $member->nickname = $request->nickname;
-              $member->age = $request->age;
-              $member->date = $request->date;
-              $member->tel = $request->tel;
-              $member->tel2 = $request->tel2;
-              $member->telname2 = $request->telname2;
-              $member->tel3 = $request->tel3;
-              $member->telname3 = $request->telname3;
-              $member->address = $request->address;
-              $member->city = $request->city;
-              $member->status2 = $request->status2;
-              $member->postalcode = $request->postalcode;
-    
-           if($request->hasFile('image')){
-              $image = $request->file('image');
-              $image->move(public_path().'/img/profile/',$image->getClientOriginalName());
-              $member->image=$image->getClientOriginalName();
-            //  $member = $img->getClientOriginalExtension();
-            //	$img->save();
-          }
-    
-    //dd($member);
-              $member->save();
-    
-            
-    
-                   return redirect('/home');
+      ->get();
+//dd( $check_id );
+
+      $this->validate($request, [
+        //'code'=> ['required', 'string', 'max:255'],
+        'firstnamebem'=> ['required', 'string', 'max:255'],
+        'lastnamebem' => ['required', 'string', 'max:255'],
+        'tel' => ['required', 'numeric'],
+        'tel2' => ['required', 'numeric'],
+        'telname2' => ['required', 'string', 'max:255'],
+        'address' => ['required', 'string', 'max:255'],
+        'image'=>'image|mimes:jpeg,png,jpg|max:2048'
+     ]);
+
+
+      if (Count($check_id) == "1") {
+        //dd('มีid');
+
+        $member =  Memberuser::find($id);
+        //dd($member);
+           //$member->iduser = Auth::user()->id;
+           $member->firstnamebem = $request->firstnamebem;
+           $member->lastnamebem = $request->lastnamebem;
+           $member->nickname = $request->nickname;
+           $member->age = $request->age;
+           $member->date = $request->date;
+           $member->tel = $request->tel;
+           $member->tel2 = $request->tel2;
+           $member->telname2 = $request->telname2;
+           $member->tel3 = $request->tel3;
+           $member->telname3 = $request->telname3;
+           $member->address = $request->address;
+           $member->city = $request->city;
+           $member->status2 = $request->status2;
+           $member->postalcode = $request->postalcode;
+ 
+        if($request->hasFile('image')){
+           $image = $request->file('image');
+           $image->move(public_path().'/img/profile/',$image->getClientOriginalName());
+           $member->image=$image->getClientOriginalName();
+         //  $member = $img->getClientOriginalExtension();
+         //	$img->save();
+       }
+
+       $affected = DB::table('positions')
+              ->where('idchief', "$check_id")
+             
+             ->update(['fname' => "$request->firstnamebem",'lname' => '' ,"$request->lastnamebem" => "$request->nickname"]);
+ 
+ //dd($member);
+           $member->save();
+ 
+         
+ 
+                return redirect('/home');
+
+      }else {
+          dd('ไม่มีไอดี');
+        $member =  Memberuser::find($id);
+        //dd($member);
+           //$member->iduser = Auth::user()->id;
+           $member->firstnamebem = $request->firstnamebem;
+           $member->lastnamebem = $request->lastnamebem;
+           $member->nickname = $request->nickname;
+           $member->age = $request->age;
+           $member->date = $request->date;
+           $member->tel = $request->tel;
+           $member->tel2 = $request->tel2;
+           $member->telname2 = $request->telname2;
+           $member->tel3 = $request->tel3;
+           $member->telname3 = $request->telname3;
+           $member->address = $request->address;
+           $member->city = $request->city;
+           $member->status2 = $request->status2;
+           $member->postalcode = $request->postalcode;
+ 
+        if($request->hasFile('image')){
+           $image = $request->file('image');
+           $image->move(public_path().'/img/profile/',$image->getClientOriginalName());
+           $member->image=$image->getClientOriginalName();
+         //  $member = $img->getClientOriginalExtension();
+         //	$img->save();
+       }
+ 
+ //dd($member);
+           $member->save();
+ 
+         
+ 
+                return redirect('/home');
+
+      }
+
+
+        
+         
               
     
     }

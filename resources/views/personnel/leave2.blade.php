@@ -1,6 +1,18 @@
 @extends('layouts.app')
 @include('layouts.manu.personnel.manu_leave2')
 @section('content')
+<script>
+function demo2() {
+    let valSelect = $("#demo6").val();
+    if (valSelect == 1) {
+        $("#div1").attr('style', 'display:block;');
+        $("#div2").attr('style', 'display:none;');
+    } else {
+        $("#div1").attr('style', 'display:none;');
+        $("#div2").attr('style', 'display:block;');
+    }
+}
+    </script>
 
 <div class="main-panel">
     <!-- Navbar -->
@@ -27,7 +39,7 @@
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-hover table-striped">
                                 <tbody>
-                                    <form method="POST" action="{{'letter'}}" enctype="multipart/form-data">
+                                    <form method="POST" action="/letter" enctype="multipart/form-data">
                                         @csrf
                                         <div class="container">
                                             <div class="row">
@@ -121,8 +133,7 @@
                                                     <div class="form-group row">
                                                         <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
                                                         <div class="col-md-8 pr-1">
-                                                            <select class="form-control" name="leave" id="leave"
-                                                                onchange="leave()">
+                                                            <select class="form-control" name="leave" id="demo6" onchange="demo2()">
                                                                 @foreach($leave as $ticketl)
                                                                 <option value="1">{{$ticketl->sickleave}}</option>
                                                                 <option value="2">{{$ticketl->personalleave}}</option>
@@ -147,16 +158,18 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row" id="div1" style="display: none;">
-                                                     @include('layouts.datepicker.date_personalleave')
-
+                                            <div id="div1" style="display: none;">
+                      
+                                                @include('layouts.datepicker.date_sickleave')
+                                               
                                             </div>
 
-                                            <div class="row" id="div2" style="display: none;">
-                                                     @include('layouts.datepicker.date_sickleave')
-
+                                            <div  id="div2" style="display: none;">
+                                              
+                                                @include('layouts.datepicker.date_personalleave')
+                                                
                                             </div>
-                                           
+
                                             <button type="submit"
                                                 class="btn btn-info btn-fill pull-right">บันทึกข้อมูล</button>
                                     </form>
@@ -169,16 +182,4 @@
     </div>
     @include('layouts.footer')
 </div>
-<script>
-        function leave(){
-             let valSelect = $("#leave").val();
-             if(valSelect == 1){
-                $("#div1").attr('style','display:block;');
-                $("#div2").attr('style','display:none;');
-             }else{
-                $("#div1").attr('style','display:none;');
-                $("#div2").attr('style','display:block;');
-             }
-        }
-    </script>
 @endsection
