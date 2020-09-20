@@ -82,7 +82,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-4 pr-1 col-form-label">ในระหว่างลาสมารถติดต่อข้าพเจ้าได้ที่</label>
             <div class="col-md-8 pr-1">
-                <input type="text" class="form-control" name="address" id="address" placeholder="Address">
+                <input type="text" class="form-control" name="address" id="address1"  placeholder="Address">
             </div>
         </div>
     </div>

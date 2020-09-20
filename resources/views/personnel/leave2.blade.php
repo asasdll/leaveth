@@ -12,7 +12,7 @@ function demo2() {
         $("#div2").attr('style', 'display:block;');
     }
 }
-    </script>
+</script>
 
 <div class="main-panel">
     <!-- Navbar -->
@@ -99,7 +99,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->firstnamebem}}"
-                                                                    name="lea_fname">
+                                                                    id="example-date-input" name="lea_fname">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,7 +110,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->lastnamebem}}"
-                                                                     name="lea_lname">
+                                                                    id="example-date-input" name="lea_lname">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,7 +121,7 @@ function demo2() {
                                                             <div class="col-md-6 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->nickname}}"
-                                                                   name="lea_niname">
+                                                                    id="example-date-input" name="lea_niname">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,7 +133,8 @@ function demo2() {
                                                     <div class="form-group row">
                                                         <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
                                                         <div class="col-md-8 pr-1">
-                                                            <select class="form-control" name="leave" id="demo6" onchange="demo2()">
+                                                            <select class="form-control" name="leave" id="demo6"
+                                                                onchange="demo2()">
                                                                 @foreach($leave as $ticketl)
                                                                 <option value="1">{{$ticketl->sickleave}}</option>
                                                                 <option value="2">{{$ticketl->personalleave}}</option>
@@ -159,20 +160,21 @@ function demo2() {
                                             </div>
 
                                             <div id="div1" style="display;">
-                      
+
                                                 @include('layouts.datepicker.date_sickleave')
-                                               
+
                                             </div>
 
-                                            <div  id="div2" style="display: none;">
-                                              
+                                            <div id="div2" style="display: none;">
+
                                                 @include('layouts.datepicker.date_personalleave')
-                                                
+
                                             </div>
 
                                             <button type="submit"
                                                 class="btn btn-info btn-fill pull-right">บันทึกข้อมูล</button>
                                     </form>
+                                <tbody>
                             </table>
                         </div>
                     </div>

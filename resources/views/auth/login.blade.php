@@ -8,7 +8,7 @@
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <title>{{  'leave' }}</title>
+    <title>{{  'leaveth' }}</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('/') }}/assets/img/icon_i2.png" />
 
 
