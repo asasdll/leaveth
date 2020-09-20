@@ -39,7 +39,7 @@ function demo2() {
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-hover table-striped">
                                 <tbody>
-                                    <form method="POST" action="/letter" enctype="multipart/form-data">
+                                    <form method="POST" action="letter" enctype="multipart/form-data">
                                         @csrf
                                         <div class="container">
                                             <div class="row">
@@ -99,7 +99,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->firstnamebem}}"
-                                                                    id="example-date-input" name="lea_fname">
+                                                                    name="lea_fname">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,7 +110,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->lastnamebem}}"
-                                                                    id="example-date-input" name="lea_lname">
+                                                                     name="lea_lname">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,7 +121,7 @@ function demo2() {
                                                             <div class="col-md-6 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->nickname}}"
-                                                                    id="example-date-input" name="lea_niname">
+                                                                   name="lea_niname">
                                                             </div>
                                                         </div>
                                                     </div>

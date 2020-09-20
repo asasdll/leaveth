@@ -110,7 +110,7 @@ class LeaveController extends Controller
                   //	$img->save();
                 }
                 
-                 //dd($member);
+                 dd($member);
                  $member->save();
              
              //dd($data);

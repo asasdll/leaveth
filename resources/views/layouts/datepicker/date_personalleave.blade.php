@@ -1,7 +1,7 @@
 <script>
 $(function() {
     var dateFormat = "mm/dd/yy",
-        from = $("#from")
+        from = $("#from1")
         .datepicker({
             defaultDate: "+1w",
             changeMonth: true,
@@ -11,21 +11,21 @@ $(function() {
         .on("change", function() {
             to.datepicker("option", "minDate", getDate(this));
         }),
-        to = $("#to").datepicker({
+        to = $("#to1").datepicker({
             defaultDate: "+1w",
             changeMonth: true,
-            numberOfMonths: 1
+            numberOfMonths: 1,
         })
         .on("change", function() {
             from.datepicker("option", "maxDate", getDate(this));
 
-            var date1 = $("#from").val();
-            var date2 = $("#to").val();
+            var date1 = $("#from1").val();
+            var date2 = $("#to1").val();
             var dayDiff = date_diff_indays(date1, date2);
-            $("#daydiff").val(dayDiff);
-            console.log($("#to").val());
-            console.log($("#from").val());
-            console.log($("#daydiff").val());
+            $("#daydiff1").val(dayDiff);
+            console.log($("#to1").val());
+            console.log($("#from1").val());
+            console.log($("#daydiff1").val());
 
 
         });
@@ -55,7 +55,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-sm-3 col-form-label">นับตั้งเเต่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="from"  name="date1" required>
+                <input class="form-control" type="text" id="from1"  name="date1" required>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">ถึงวันที่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="to" name="date2" required>
+                <input class="form-control" type="text" id="to1" name="date2" required>
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">มีกำหนด</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="da" id="daydiff" required>
+                <input type="text" class="form-control" name="da" id="daydiff1" required>
             </div>
             <label for="text" class="col-md- pr-1 col-form-label">วัน</label>
         </div>
@@ -91,7 +91,7 @@ $(function() {
           
             <label for="text" class="col-md-2 pr-1 col-form-label">เบอร์ติดต่อ</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="tel" value="" id="tel">
+                <input type="text" class="form-control" name="tel"  value="{{$ticket->tel}}">
             </div>
            
         </div>
