@@ -4,7 +4,7 @@
 <script>
 function demo2() {
     let valSelect = $("#demo6").val();
-    if (valSelect == 1) {
+    if (valSelect == 'ลาป่วย') {
         $("#div1").attr('style', 'display:block;');
         $("#div2").attr('style', 'display:none;');
     } else {
@@ -110,7 +110,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->lastnamebem}}"
-                                                                    id="example-date-input" name="lea_lname">
+                                                                    id="example-date-input2" name="lea_lname">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,7 +121,7 @@ function demo2() {
                                                             <div class="col-md-6 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->nickname}}"
-                                                                    id="example-date-input" name="lea_niname">
+                                                                    id="example-date-input3" name="lea_niname">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,18 +133,18 @@ function demo2() {
                                                     <div class="form-group row">
                                                         <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
                                                         <div class="col-md-8 pr-1">
-                                                            <select class="form-control" name="leave" id="demo6"
-                                                                onchange="demo2()">
+                                                            <select class="form-control" name="leave" id="demo6"  onclick="demo2()">
                                                                 @foreach($leave as $ticketl)
-                                                                <option value="1">{{$ticketl->sickleave}}</option>
-                                                                <option value="2">{{$ticketl->personalleave}}</option>
-                                                                <option value="2">{{$ticketl->vacationleave}}</option>
+                                                                <option value="{{$ticketl->sickleave}}">{{$ticketl->sickleave}}</option>
+                                                                <option value="{{$ticketl->personalleave}}">{{$ticketl->personalleave}}</option>
+                                                                <option value="{{$ticketl->vacationleave}}">{{$ticketl->vacationleave}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                    
                                             <div class="row">
                                                 <div class="col-md-12 pr-1">
                                                     <div class="form-group row">
@@ -159,7 +159,7 @@ function demo2() {
                                                 </div>
                                             </div>
 
-                                            <div id="div1" style="display;">
+                                            <div id="div1" style="display: block;">
 
                                                 @include('layouts.datepicker.date_sickleave')
 

@@ -71,7 +71,7 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-              dd('dd');
+              dd($request->all());
               $this->validate($request, [
                 'affair'=> ['required', 'string', 'max:255'],
                 'leave' => ['required', 'string', 'max:255'],

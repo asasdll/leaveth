@@ -55,7 +55,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-sm-3 col-form-label">นับตั้งเเต่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="from1"  name="date1" required>
+                <input class="form-control" type="text" id="from1"  name="date1"  value=""  required>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">ถึงวันที่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="to1" name="date2" required>
+                <input class="form-control" type="text" id="to1" name="date2" value=""  required>
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">มีกำหนด</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="da" id="daydiff1" required>
+                <input type="text" class="form-control" name="da" id="daydiff1" value=""  required>
             </div>
             <label for="text" class="col-md- pr-1 col-form-label">วัน</label>
         </div>
