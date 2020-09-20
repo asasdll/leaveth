@@ -158,7 +158,7 @@ function demo2() {
                                                 </div>
                                             </div>
 
-                                            <div id="div1" style="display: none;">
+                                            <div id="div1" style="display;">
                       
                                                 @include('layouts.datepicker.date_sickleave')
                                                

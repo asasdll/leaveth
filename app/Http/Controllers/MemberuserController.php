@@ -415,12 +415,8 @@ class MemberuserController extends Controller
          //	$img->save();
        }
 
-       $affected = DB::table('positions')
-              ->where('idchief', "$check_id")
-             
-             ->update(['fname' => "$request->firstnamebem",'lname' => '' ,"$request->lastnamebem" => "$request->nickname"]);
- 
- //dd($member);
+       $check_id = DB::table('positions')->orderBy('idchief')->where('idchief', '=' ,$iduser2)
+       ->update(['fname' => $request->firstnamebem ,'lname' => $request->lastnamebem ,'niname' => $request->nickname]);
            $member->save();
  
          
@@ -428,7 +424,7 @@ class MemberuserController extends Controller
                 return redirect('/home');
 
       }else {
-          dd('ไม่มีไอดี');
+          //dd('ไม่มีไอดี');
         $member =  Memberuser::find($id);
         //dd($member);
            //$member->iduser = Auth::user()->id;
