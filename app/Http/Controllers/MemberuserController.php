@@ -182,7 +182,7 @@ class MemberuserController extends Controller
         ->whereNull('status_chief')
         ->whereNull('status_hr')
         ->orderBy('leaves.id','ASC')
-        ->where('idmember',Auth::user()->id)
+        ->where('idchief',Auth::user()->id)
         ->groupBy('leaves.id')
         ->Paginate(50);
 
@@ -376,7 +376,13 @@ class MemberuserController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'image'=>'image|mimes:jpeg,png,jpg|max:2048'
          ]);
-    
+
+         $reg2 = DB::table('users') /// อนุมัติเเล้ว ส่วนของหัวหน้า
+         ->join('memberusers', 'users.id', '=','memberusers.iduser')
+         ->leftJoin('positions', 'memberusers.iduser', '=','positions.idchief')
+         ->orderBy('idchief')->where('idchief', '=' ,$id)
+         ->get();
+         dd($id,$reg2); 
            $member =  Memberuser::find($id);
            //dd($member);
               //$member->iduser = Auth::user()->id;

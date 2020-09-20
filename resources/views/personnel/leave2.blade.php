@@ -121,11 +121,12 @@
                                                     <div class="form-group row">
                                                         <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
                                                         <div class="col-md-8 pr-1">
-                                                            <select class="form-control" name="leave">
+                                                            <select class="form-control" name="leave" id="leave"
+                                                                onchange="leave()">
                                                                 @foreach($leave as $ticketl)
-                                                                <option>{{$ticketl->sickleave}}</option>
-                                                                <option>{{$ticketl->personalleave}}</option>
-                                                                <option>{{$ticketl->vacationleave}}</option>
+                                                                <option value="1">{{$ticketl->sickleave}}</option>
+                                                                <option value="2">{{$ticketl->personalleave}}</option>
+                                                                <option value="2">{{$ticketl->vacationleave}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -139,14 +140,23 @@
                                                             class="col-sm-2 col-form-label">เนื่องจาก</label>
                                                         <div class="col-md-8 pr-1">
                                                             <input type="text" class="form-control" name="since"
-                                                               id="text" required>
+                                                                id="text" required>
 
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @include('layouts.datepicker.date_personalleave')
 
+                                            <div class="row" id="div1" style="display: none;">
+                                                     @include('layouts.datepicker.date_personalleave')
+
+                                            </div>
+
+                                            <div class="row" id="div2" style="display: none;">
+                                                     @include('layouts.datepicker.date_sickleave')
+
+                                            </div>
+                                           
                                             <button type="submit"
                                                 class="btn btn-info btn-fill pull-right">บันทึกข้อมูล</button>
                                     </form>
@@ -159,4 +169,16 @@
     </div>
     @include('layouts.footer')
 </div>
+<script>
+        function leave(){
+             let valSelect = $("#leave").val();
+             if(valSelect == 1){
+                $("#div1").attr('style','display:block;');
+                $("#div2").attr('style','display:none;');
+             }else{
+                $("#div1").attr('style','display:none;');
+                $("#div2").attr('style','display:block;');
+             }
+        }
+    </script>
 @endsection
