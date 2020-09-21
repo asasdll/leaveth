@@ -104,15 +104,17 @@ class MemberuserController extends Controller
     public function leave2()
     {
       //dd('asda');
+      
       $check_code = DB::table('memberusers')
-      ->orderBy('code_herd')
-      ->where('code_herd', '=' ,'')
+      ->where('code_herd','=', '')
       ->where('iduser',Auth::user()->id)
       ->get();
-      dd($check_code);
-      if(Count($check_code) == '1' ) {
+      //$check_code1 = $check_code()->code_herd; 
+
+      //dd($check_code);
+      if(Count($check_code) != '1' ) {
         # code...
-        dd('555');
+        //dd('555');
         $boss = DB::table('users')  //หัวหน้า
       ->Join('newcompanies', 'users.id', '=','newcompanies.idname')
       ->Join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
