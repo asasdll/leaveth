@@ -78,3 +78,4 @@ Route::get('qr-code-g', function () {
     return view('hr.qrCode');
       
   });
+  Route::post('code_herd/{id}', 'Code_herdController@update');

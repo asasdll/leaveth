@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card">
-				<h5 class="alert alert-warning">ระบบการลา ยังไม่สามารถใช้งานได้ หากยังไม่ได้เพิ่มตำเเหน่งงาน เเละ เพิ่มพนักงานในตำเเหน่ง</h4>
+				<h5 class="alert alert-warning">กรุณาเพิ่ม หัวหน้าแผนกเพื่อใช้งานระบการลา "เพิ่มจากเมนู  ('ตำเเหน่ง')"</h4>
                                 <div class="card-header">
                                     <h4 class="card-title">ข้อมูลบริษัท</h4>
                                 </div>

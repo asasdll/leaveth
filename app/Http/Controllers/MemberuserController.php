@@ -149,8 +149,11 @@ class MemberuserController extends Controller
         return view('personnel.leave2' , ['status'=> $status ,'boss'=> $boss , 'leave'=> $leave ]);
 
       }else {
-        # code...
-        dd('ddd');
+        $code_id = DB::table('memberusers')  ///ชื่อ นามสกุลผุ้ใช้
+        ->where('iduser', '=' ,Auth::user()->id)
+         ->get();
+       
+        return view('personnel.newcode_herd',['code_id' =>$code_id]);
       }
    
     }
@@ -381,6 +384,8 @@ class MemberuserController extends Controller
      */
     public function update(Request $request, Memberuser $memberuser ,$id)
     {
+      
+
       $member =  Memberuser::find($id);
       $iduser2 =$member["iduser"]; 
       
