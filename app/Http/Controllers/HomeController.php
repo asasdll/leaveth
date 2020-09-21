@@ -63,7 +63,9 @@ class HomeController extends Controller
                  }else{
                 //
                 // dd($users);
-                  return view('chief',['users' => $users]);
+              
+
+                  return view('chief', ['users' => $users]);
                  }
               //dd($user);
             }else {

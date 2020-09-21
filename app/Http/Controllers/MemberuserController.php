@@ -104,8 +104,16 @@ class MemberuserController extends Controller
     public function leave2()
     {
       //dd('asda');
-
-      $boss = DB::table('users')  //หัวหน้า
+      $check_code = DB::table('memberusers')
+      ->orderBy('code_herd')
+      ->where('code_herd', '=' ,'')
+      ->where('iduser',Auth::user()->id)
+      ->get();
+      dd($check_code);
+      if(Count($check_code) == '1' ) {
+        # code...
+        dd('555');
+        $boss = DB::table('users')  //หัวหน้า
       ->Join('newcompanies', 'users.id', '=','newcompanies.idname')
       ->Join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
       ->Join('positions', 'memberusers.code', '=','positions.codecom')
@@ -136,10 +144,13 @@ class MemberuserController extends Controller
         $leave = DB::table('leaves_tops')///ประเภทการลา
         ->get();
 
-
-      //dd($boss);
-
         return view('personnel.leave2' , ['status'=> $status ,'boss'=> $boss , 'leave'=> $leave ]);
+
+      }else {
+        # code...
+        dd('ddd');
+      }
+   
     }
 
 
@@ -285,6 +296,7 @@ class MemberuserController extends Controller
 
           ->get();
       //dd($reg);
+      
       if (Count($reg) == '1') {
         $member = new Memberuser;
             $member->iduser = Auth::user()->id;
@@ -303,6 +315,7 @@ class MemberuserController extends Controller
             $member->city = $request->city;
             $member->status2 = $request->status2;
             $member->postalcode = $request->postalcode;
+            $member->code_herd = '';
             $image = $request->file('image');
 
          if($request->hasFile('image') == '1'){

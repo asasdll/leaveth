@@ -71,7 +71,7 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-              dd($request->all());
+              //dd($request->all());
               $this->validate($request, [
                 'affair'=> ['required', 'string', 'max:255'],
                 'leave' => ['required', 'string', 'max:255'],
@@ -110,7 +110,7 @@ class LeaveController extends Controller
                   //	$img->save();
                 }
                 
-                 dd($member);
+                // dd($member);
                  $member->save();
              
              //dd($data);

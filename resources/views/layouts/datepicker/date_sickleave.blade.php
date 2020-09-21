@@ -20,10 +20,9 @@ $(function() {
 
             var date1 = $("#from").val();
             var date2 = $("#to").val();
-            var dayDiff = date_diff_indays(date1, date2);
+          
             $("#daydiff").val(dayDiff);
-            console.log($("#to").val());
-            console.log($("#from").val());
+         
             console.log($("#daydiff").val());
 
 
@@ -40,13 +39,7 @@ $(function() {
         return date;
     }
 
-    var date_diff_indays = function(date1, date2) {
-        dt1 = new Date(date1);
-        dt2 = new Date(date2);
-        return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date
-            .UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 *
-            24));
-    }
+
 });
 </script>
 <div class="row">
@@ -54,7 +47,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-sm-3 col-form-label">นับตั้งเเต่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="from" name="from" name="date1"  value=""  required>
+                <input class="form-control" type="text" id="from" name="date15" required>
             </div>
         </div>
     </div>
@@ -62,7 +55,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">ถึงวันที่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="to" name="to"  value=""  required>
+                <input class="form-control" type="text" id="to" name="date23" required>
             </div>
         </div>
     </div>
@@ -70,7 +63,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">มีกำหนด</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="da" id="daydiff" value="" required>
+                <input type="text" class="form-control" name="da54" >
             </div>
             <label for="text" class="col-md- pr-1 col-form-label">วัน</label>
         </div>

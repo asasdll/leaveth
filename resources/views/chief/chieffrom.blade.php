@@ -25,7 +25,7 @@
                                           <div class="row">
                                             <div class="col-md-4 pr-1">
                                                 <div class="form-group">
-                                                    <label>Company (Code)(กรุณาติดต่อ HR)</label>
+                                                    <label>รหัสบริษัท (Code)(กรุณาติดต่อ HR)</label>
                                                     <input type="text" class="form-control is-invalid @error('code') is-invalid @enderror" placeholder="Code"  name="code"   required autocomplete="code" autofocus>
                                                     @error('code')
                                                         <span class="invalid-feedback" role="alert">

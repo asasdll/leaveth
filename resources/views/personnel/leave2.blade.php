@@ -133,18 +133,22 @@ function demo2() {
                                                     <div class="form-group row">
                                                         <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
                                                         <div class="col-md-8 pr-1">
-                                                            <select class="form-control" name="leave" id="demo6"  onclick="demo2()">
+                                                            <select class="form-control" name="leave" id="demo6"
+                                                                onclick="demo2()">
                                                                 @foreach($leave as $ticketl)
-                                                                <option value="{{$ticketl->sickleave}}">{{$ticketl->sickleave}}</option>
-                                                                <option value="{{$ticketl->personalleave}}">{{$ticketl->personalleave}}</option>
-                                                                <option value="{{$ticketl->vacationleave}}">{{$ticketl->vacationleave}}</option>
+                                                                <option value="{{$ticketl->sickleave}}">
+                                                                    {{$ticketl->sickleave}}</option>
+                                                                <option value="{{$ticketl->personalleave}}">
+                                                                    {{$ticketl->personalleave}}</option>
+                                                                <option value="{{$ticketl->vacationleave}}">
+                                                                    {{$ticketl->vacationleave}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    
+
                                             <div class="row">
                                                 <div class="col-md-12 pr-1">
                                                     <div class="form-group row">
@@ -159,7 +163,7 @@ function demo2() {
                                                 </div>
                                             </div>
 
-                                            <div id="div1" style="display: block;">
+                                            <div id="div1">
 
                                                 @include('layouts.datepicker.date_sickleave')
 
@@ -168,6 +172,7 @@ function demo2() {
                                             <div id="div2" style="display: none;">
 
                                                 @include('layouts.datepicker.date_personalleave')
+                                                
 
                                             </div>
 

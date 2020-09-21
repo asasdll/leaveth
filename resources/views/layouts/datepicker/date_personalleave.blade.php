@@ -19,13 +19,13 @@ $(function() {
         .on("change", function() {
             from.datepicker("option", "maxDate", getDate(this));
 
-            var date1 = $("#from1").val();
-            var date2 = $("#to1").val();
-            var dayDiff = date_diff_indays(date1, date2);
-            $("#daydiff1").val(dayDiff);
+            var date3 = $("#from1").val();
+            var date4 = $("#to1").val();
+            var dayDiff = date_diff_indays(date3, date4);
+            $("#daydiffsum").val(dayDiff);
             console.log($("#to1").val());
             console.log($("#from1").val());
-            console.log($("#daydiff1").val());
+            console.log($("#dayDiff").val());
 
 
         });
@@ -41,11 +41,11 @@ $(function() {
         return date;
     }
 
-    var date_diff_indays = function(date1, date2) {
-        dt1 = new Date(date1);
-        dt2 = new Date(date2);
-        return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date
-            .UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 *
+    var date_diff_indays = function(date3, date4) {
+        dt3 = new Date(date3);
+        dt4 = new Date(date4);
+        return Math.floor((Date.UTC(dt4.getFullYear(), dt4.getMonth(), dt4.getDate()) - Date
+            .UTC(dt3.getFullYear(), dt3.getMonth(), dt3.getDate())) / (1000 * 60 * 60 *
             24));
     }
 });

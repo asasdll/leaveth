@@ -11,6 +11,7 @@ use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+
 class PositionController extends Controller
 {
     /**
@@ -95,7 +96,7 @@ class PositionController extends Controller
             'position'=> ['required', 'string', 'max:255'],
     
          ]);
-    
+           $code_herd_jer =  Str::random(12);
           $member = new Position;
               $member->codecom = $request->codecom;
               $member->idchief = $request->idchief;
@@ -103,10 +104,20 @@ class PositionController extends Controller
               $member->lname = $request->lname;
               $member->niname = $request->niname;
               $member->position = $request->position;
-    
+              $member->herd_code =  $code_herd_jer;
+    //dd( $member);
               $affected = DB::table('users')
               ->where('id', "$request->idchief")
               ->update(['status' => 'chief']);
+
+
+              //$reg = Position::find($id);
+             
+             // $reg1 = $reg->idchief;
+
+              $affected = DB::table('memberusers')
+              ->where('iduser', "$request->idchief")
+              ->update(['code_herd' => "$code_herd_jer"]);
     //dd($member);
              $member->save();
     
@@ -188,12 +199,27 @@ class PositionController extends Controller
       $reg = Position::find($id);
 
       $reg->delete();
-      $reg1 = $reg->idchief;
-   //dd($reg1);
 
+
+      $reg1 = $reg->idchief;
+      $reg2 = $reg->herd_code;
+     
+   //dd($reg2);
+         // tabel users
       $affected = DB::table('users')
               ->where('id', "$reg1")
               ->update(['status' => 'personnel']);
+
+            ///table  memberusers
+     /* //$posed_1 = DB::table('positions')
+        ->where('herd_code')
+        ->get();*/
+        
+       // $posed_2 = $posed_1->herd_code;
+      //dd($reg2);
+      $affected1 = DB::table('memberusers')
+              ->where('code_herd', "$reg2")
+              ->update(['code_herd' => '']);
       //session::flash('massage','ลบข้อมูลเรียบร้อยเเล้ว');
       return redirect('pos');
     }

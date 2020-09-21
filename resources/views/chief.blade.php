@@ -27,19 +27,27 @@
                                     @foreach($users as $ticket)
                                     <form >
                                         <div class="row">
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-6 pr-1">
                                                 <div class="form-group">
-                                                    <label>Company (Code)</label>
+                                                    <label>รหัสบริษัท (Code)</label>
                                                     <input type="text" class="form-control" value="{{$ticket->code}}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 px-1">
+                                            <div class="col-md-6 px-1">
+                                                <div class="form-group">
+                                                    <label>รหัสเเผนก (Code)</label>
+                                                    <input type="text" class="form-control"  value="{{$ticket->code_herd}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 px-1">
                                                 <div class="form-group">
                                                     <label>ชื่อ</label>
                                                     <input type="text" class="form-control"  value="{{$ticket->firstnamebem}}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 px-1">
+                                            <div class="col-md-6 px-1">
                                                 <div class="form-group">
                                                     <label>นามสกุล</label>
                                                     <input type="text" class="form-control" value="{{$ticket->lastnamebem}}">
