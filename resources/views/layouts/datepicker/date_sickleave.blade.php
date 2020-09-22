@@ -1,7 +1,7 @@
 <script>
 $(function() {
     var dateFormat = "mm/dd/yy",
-        from = $("#from")
+        from = $("#from1")
         .datepicker({
             defaultDate: "+1w",
             changeMonth: true,
@@ -10,7 +10,7 @@ $(function() {
         .on("change", function() {
             to.datepicker("option", "minDate", getDate(this));
         }),
-        to = $("#to").datepicker({
+        to = $("#to1").datepicker({
             defaultDate: "+1w",
             changeMonth: true,
             numberOfMonths: 1
@@ -18,26 +18,19 @@ $(function() {
         .on("change", function() {
             from.datepicker("option", "maxDate", getDate(this));
 
-            var date1 = $("#from").val();
-            var date2 = $("#to").val();
-          
-            $("#daydiff").val(dayDiff);
+            var date1 = $("#from1").val();
+            var date2 = $("#to1").val();
+            var dayDiff = date_diff_indays(date1, date2);
+            $("#dayDiff1").val(dayDiff);
          
-            console.log($("#daydiff").val());
+            console.log($("#to1").val());
+            console.log($("#from1").val());
+            console.log($("#dayDiff1").val());
 
 
         });
 
-    function getDate(element) {
-        var date;
-        try {
-            date = $.datepicker.parseDate(dateFormat, element.value);
-        } catch (error) {
-            date = null;
-        }
-
-        return date;
-    }
+  
 
 
 });
@@ -47,7 +40,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-sm-3 col-form-label">นับตั้งเเต่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="from" name="date15" required>
+                <input class="form-control" type="text" id="from1" name="from1" value="">
             </div>
         </div>
     </div>
@@ -55,7 +48,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">ถึงวันที่</label>
             <div class="col-md-8 pr-1">
-                <input class="form-control" type="text" id="to" name="date23" required>
+                <input class="form-control" type="text" id="to1" name="to1" value="">
             </div>
         </div>
     </div>
@@ -63,7 +56,7 @@ $(function() {
         <div class="form-group row">
             <label for="text" class="col-md-3 pr-1 col-form-label">มีกำหนด</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="da54" >
+                <input type="text" class="form-control" id="dayDiff1" name="daydiff1" value="" readonly>
             </div>
             <label for="text" class="col-md- pr-1 col-form-label">วัน</label>
         </div>
@@ -80,12 +73,10 @@ $(function() {
     </div>
     <div class="col-md-6 pr-1">
         <div class="form-group row">
-            @foreach($status as $ticket)
             <label for="text" class="col-md-2 pr-1 col-form-label">เบอร์ติดต่อ</label>
             <div class="col-md-6 pr-1">
-                <input type="text" class="form-control" name="tel" value="{{$ticket->tel}}">
+                <input type="text" class="form-control" name="tel" value="">
             </div>
-            @endforeach
         </div>
     </div>
 </div>

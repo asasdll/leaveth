@@ -83,7 +83,7 @@ class Code_herdController extends Controller
              //dd($request->all());
                      $member =  Memberuser::find($id);
                     $member->code_herd = $request->code_herd;
-                dd($member);
+                //dd($member);
                     $member->save();
                     return redirect('/leave2');
 

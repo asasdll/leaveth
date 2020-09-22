@@ -103,7 +103,7 @@ class MemberuserController extends Controller
 
     public function leave2()
     {
-      //dd('asda');
+     // dd('asda');
       
       $check_code = DB::table('memberusers')
       ->where('code_herd','=', '')
@@ -118,7 +118,7 @@ class MemberuserController extends Controller
         $boss = DB::table('users')  //หัวหน้า
       ->Join('newcompanies', 'users.id', '=','newcompanies.idname')
       ->Join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-      ->Join('positions', 'memberusers.code', '=','positions.codecom')
+      ->Join('positions', 'memberusers.code_herd', '=','positions.herd_code')
       ->groupBy('idchief')
     // ->Join('positions', 'users.id', '=','positions.idchief')
       //->Join('memberusers', 'users.id', '=','memberusers.idname')
@@ -272,7 +272,7 @@ class MemberuserController extends Controller
      */
     public function create()
     {
-///
+      return view('auth.account');
     }
 
     /**

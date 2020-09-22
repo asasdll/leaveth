@@ -16,6 +16,37 @@ label {
     text-align: center;
 }
 </style>
+<script>
+function getDate(element) {
+    var date;
+    try {
+        date = $.datepicker.parseDate(dateFormat, element.value);
+    } catch (error) {
+        date = null;
+    }
+
+    return date;
+}
+var date_diff_indays = function(date3, date4) {
+    dt3 = new Date(date3);
+    dt4 = new Date(date4);
+    return Math.floor((Date.UTC(dt4.getFullYear(), dt4.getMonth(), dt4.getDate()) - Date
+        .UTC(dt3.getFullYear(), dt3.getMonth(), dt3.getDate())) / (1000 * 60 * 60 *
+        24));
+}
+
+function demo2() {
+    let valSelect = $("#demo6").val();
+    if (valSelect == 'ลาป่วย') {
+        $("#div1").attr('style', 'display:block;');
+        $("#div2").attr('style', 'display:none;');
+    } else {
+        $("#div1").attr('style', 'display:none;');
+        $("#div2").attr('style', 'display:block;');
+    }
+}
+</script>
+
 
 <div class="main-panel">
     <!-- Navbar -->
@@ -123,7 +154,7 @@ label {
                                                         <div class="col-md-6 pr-1">
                                                             <input class="form-control" type="text"
                                                                 value="{{$chief->lea_niname}}" id="example-date-input"
-                                                                name="lea_niname">
+                                                                name="lea_niname" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -134,11 +165,15 @@ label {
                                                 <div class="form-group row">
                                                     <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
                                                     <div class="col-md-8 pr-1">
-                                                        <select class="form-control" name="leave">
+                                                        <select class="form-control" name="leave" id="demo6"
+                                                            onclick="demo2()">
                                                             @foreach($leave as $ticketl)
-                                                            <option>{{$ticketl->sickleave}}</option>
-                                                            <option>{{$ticketl->personalleave}}</option>
-                                                            <option>{{$ticketl->vacationleave}}</option>
+                                                            <option value="{{$ticketl->sickleave}}">
+                                                                {{$ticketl->sickleave}}</option>
+                                                            <option value="{{$ticketl->personalleave}}">
+                                                                {{$ticketl->personalleave}}</option>
+                                                            <option value="{{$ticketl->vacationleave}}">
+                                                                {{$ticketl->vacationleave}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -151,12 +186,23 @@ label {
                                                     <label for="text" class="col-sm-2 col-form-label">เนื่องจาก</label>
                                                     <div class="col-md-8 pr-1">
                                                         <input type="text" class="form-control" name="since" id="text"
-                                                        value="{{$chief->since}}" required>
+                                                            value="{{$chief->since}}" required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        @include('layouts.datepicker.date_personalleave')
+                                        <div id="div1">
+
+                                            @include('layouts.datepicker.date_sickleave')
+
+                                        </div>
+
+                                        <div id="div2" style="display: none;">
+
+                                            @include('layouts.datepicker.date_personalleave')
+
+
+                                        </div>
                                         <button type="submit"
                                             class="btn btn-info btn-fill pull-right">บันทึกข้อมูล</button>
                                         <input type="hidden" name="_method" value="PATCH" />

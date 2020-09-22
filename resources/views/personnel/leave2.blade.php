@@ -2,6 +2,24 @@
 @include('layouts.manu.personnel.manu_leave2')
 @section('content')
 <script>
+function getDate(element) {
+    var date;
+    try {
+        date = $.datepicker.parseDate(dateFormat, element.value);
+    } catch (error) {
+        date = null;
+    }
+
+    return date;
+}
+var date_diff_indays = function(date3, date4) {
+    dt3 = new Date(date3);
+    dt4 = new Date(date4);
+    return Math.floor((Date.UTC(dt4.getFullYear(), dt4.getMonth(), dt4.getDate()) - Date
+        .UTC(dt3.getFullYear(), dt3.getMonth(), dt3.getDate())) / (1000 * 60 * 60 *
+        24 ) + (1));
+}
+
 function demo2() {
     let valSelect = $("#demo6").val();
     if (valSelect == 'ลาป่วย') {
@@ -60,7 +78,7 @@ function demo2() {
                                                         <label for="text" class="col-md-2 col-form-label">เรื่อง</label>
                                                         <div class="col-md-10 pr-1">
                                                             <input type="text" class="form-control" name="affair"
-                                                                id="affair" placeholder="affair" required
+                                                                id="affair" required
                                                                 autocomplete="affair" autofocus>
                                                         </div>
                                                     </div>
@@ -74,13 +92,13 @@ function demo2() {
                                                     <div class="form-group row">
                                                         <label for="text" class="col-md-2 col-form-label">เรียน</label>
                                                         <div class="col-md-10 pr-1">
-                                                            <select class="form-control" name="head">
-                                                                @foreach($boss as $boss1)
-                                                                <option value="{{$boss1->idchief}}">
-                                                                    {{$boss1->fname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->niname}})
-                                                                </option>
-                                                                @endforeach
-                                                            </select>
+                                                                <select class="form-control" name="head">
+                                                                    @foreach($boss as $boss1)
+                                                                    <option value="{{$boss1->idchief}}">
+                                                                        {{$boss1->fname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->niname}})
+                                                                    </option>
+                                                                    @endforeach
+                                                                </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -99,7 +117,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->firstnamebem}}"
-                                                                    id="example-date-input" name="lea_fname">
+                                                                    id="example-date-input" name="lea_fname"  readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,7 +128,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->lastnamebem}}"
-                                                                    id="example-date-input2" name="lea_lname">
+                                                                    id="example-date-input2" name="lea_lname" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,7 +139,7 @@ function demo2() {
                                                             <div class="col-md-6 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->nickname}}"
-                                                                    id="example-date-input3" name="lea_niname">
+                                                                    id="example-date-input3" name="lea_niname" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -172,7 +190,7 @@ function demo2() {
                                             <div id="div2" style="display: none;">
 
                                                 @include('layouts.datepicker.date_personalleave')
-                                                
+
 
                                             </div>
 

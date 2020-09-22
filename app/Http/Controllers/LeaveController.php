@@ -71,14 +71,31 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
+
+        $namdate1 = request()->from1;
+       //dd($namdate1);
+        if ($namdate1 != null) {
+            # code...el
+            $date1 = request()->from1;
+            $date2 = request()->to1;
+            $da = request()->daydiff1;
+            //dd('ลาป่วย',$date1,$date2,$da);
+        }else {
+            # code...
+            $date1 = request()->from2;
+            $date2 = request()->to2;
+            $da = request()->daydiff2;
+            //dd('ลากิจ/พักร้อน',$date1,$date2,$da,$request->all());
+        }
+       // dd($request->all());
               //dd($request->all());
               $this->validate($request, [
                 'affair'=> ['required', 'string', 'max:255'],
                 'leave' => ['required', 'string', 'max:255'],
                 'since' => ['required', 'string', 'max:255'],
-                'date1' => ['required', 'string', 'max:255'],
-                'date2' => ['required', 'string', 'max:255'],
-                'da' => ['required', 'string', 'max:255'],
+                //'date1' => ['required', 'string', 'max:255'],
+                //'date2' => ['required', 'string', 'max:255'],
+                //'da' => ['required', 'string', 'max:255'],
 
                 
              ]);
@@ -92,9 +109,9 @@ class LeaveController extends Controller
                  $member->lea_niname = $request->lea_niname;
                  $member->leave = $request->leave;
                  $member->since = $request->since;
-                 $member->date1 = $request->date1;
-                 $member->date2 = $request->date2;
-                 $member->da = $request->da;
+                 $member->date1 = $date1;
+                 $member->date2 = $date2;
+                 $member->da = $da;
                  $member->address = $request->address;
                  $member->tel = $request->tel;
                  $member->status_chief = $request->status_chief;
@@ -179,13 +196,24 @@ class LeaveController extends Controller
           'affair'=> ['required', 'string', 'max:255'],
           'leave' => ['required', 'string', 'max:255'],
           'since' => ['required', 'string', 'max:255'],
-          'date1' => ['required', 'string', 'max:255'],
-          'date2' => ['required', 'string', 'max:255'],
-          'da' => ['required', 'string', 'max:255'],
-          'tel' => ['required', 'numeric']
+          
           
        ]);
-       
+       $namdate1 = request()->from1;
+       //dd($namdate1);
+        if ($namdate1 != null) {
+            # code...el
+            $date1 = request()->from1;
+            $date2 = request()->to1;
+            $da = request()->daydiff1;
+            //dd('ลาป่วย',$date1,$date2,$da);
+        }else {
+            # code...
+            $date1 = request()->from2;
+            $date2 = request()->to2;
+            $da = request()->daydiff2;
+            //dd('ลากิจ/พักร้อน',$date1,$date2,$da,$request->all());
+        }
 
 
        $member = Leave::find($id);     
@@ -194,9 +222,9 @@ class LeaveController extends Controller
            $member->head = $request->head;
            $member->leave = $request->leave;
            $member->since = $request->since;
-           $member->date1 = $request->date1;
-           $member->date2 = $request->date2;
-           $member->da = $request->da;
+           $member->date1 = $date1;
+           $member->date2 = $date2;
+           $member->da = $da;
            $member->address = $request->address;
            $member->tel = $request->tel;
           

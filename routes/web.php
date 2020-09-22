@@ -79,3 +79,5 @@ Route::get('qr-code-g', function () {
       
   });
   Route::post('code_herd/{id}', 'Code_herdController@update');
+  Route::get('account', 'MemberuserController@create');
+  Route::get('resetpass', 'Reset_passwordController@index');

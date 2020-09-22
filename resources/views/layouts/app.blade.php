@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>{{  'leaveth' }}</title>
+    <title>{{  'Leaveth' }}</title>
       <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('/') }}/assets/img/icon_i2.png" />
 
 
