@@ -78,7 +78,7 @@ function demo2() {
                                                         <label for="text" class="col-md-2 col-form-label">เรื่อง</label>
                                                         <div class="col-md-10 pr-1">
                                                             <input type="text" class="form-control" name="affair"
-                                                                id="affair" required
+                                                                id="affair" value="ขออนุญาตลา"  readonly
                                                                 autocomplete="affair" autofocus>
                                                         </div>
                                                     </div>
