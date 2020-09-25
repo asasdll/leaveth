@@ -28,7 +28,7 @@ class CreateLeavesTable extends Migration
             $table->string('date2');
             $table->string('da');
             $table->string('address')->nullable();
-            $table->string('tel');
+            $table->string('tel')->nullable();
             $table->string('image')->nullable();
             $table->string('status_chief')->nullable();
             $table->string('status_text1')->nullable();

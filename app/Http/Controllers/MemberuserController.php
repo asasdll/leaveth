@@ -106,15 +106,15 @@ class MemberuserController extends Controller
      // dd('asda');
       
       $check_code = DB::table('memberusers')
-      ->where('code_herd','=', '')
+      ->where('code_herd','=', 'null')
       ->where('iduser',Auth::user()->id)
       ->get();
       //$check_code1 = $check_code()->code_herd; 
 
-      //dd($check_code);
+     // dd($check_code);
       if(Count($check_code) != '1' ) {
         # code...
-        //dd('555');
+        //dd('มีรหัสเเล้ว');
         $boss = DB::table('users')  //หัวหน้า
       ->Join('newcompanies', 'users.id', '=','newcompanies.idname')
       ->Join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
@@ -149,6 +149,7 @@ class MemberuserController extends Controller
         return view('personnel.leave2' , ['status'=> $status ,'boss'=> $boss , 'leave'=> $leave ]);
 
       }else {
+        //dd('ยังไม่มีรหัส');
         $code_id = DB::table('memberusers')  ///ชื่อ นามสกุลผุ้ใช้
         ->where('iduser', '=' ,Auth::user()->id)
          ->get();
@@ -213,7 +214,7 @@ class MemberuserController extends Controller
         ->Join('positions', 'users.id', '=','positions.idchief')
         ->Join('leaves', 'positions.idchief', '=','leaves.head')
         //->Join('leaves', 'users.id', '=','leaves.idmember')
-        ->whereNull('status_chief')
+        ->whereNull('status_hr')
         //->orderBy('leaves.id','ASC')
         //->groupBy('leaves.id')
         ->where('idmember',Auth::user()->id)
@@ -226,7 +227,7 @@ class MemberuserController extends Controller
         ->Join('leaves', 'users.id', '=','leaves.idmember')
         ->Join('positions', 'leaves.head', '=','positions.idchief')
         ->orderBy('leaves.id','ASC')
-        //->where('status_chief','!=' ,'Null')
+        ->where('status_chief','!=' ,'Null')
         ->where('status_hr','!=' ,'Null')
         ->where('idmember',Auth::user()->id)
         ->groupBy('leaves.id')
@@ -320,7 +321,7 @@ class MemberuserController extends Controller
             $member->city = $request->city;
             $member->status2 = $request->status2;
             $member->postalcode = $request->postalcode;
-            $member->code_herd = '';
+            $member->code_herd = 'null';
             $image = $request->file('image');
 
          if($request->hasFile('image') == '1'){

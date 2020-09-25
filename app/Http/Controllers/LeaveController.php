@@ -71,7 +71,7 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-
+        //dd($request->all());
         $namdate1 = request()->from1;
        //dd($namdate1);
         if ($namdate1 != null) {
@@ -114,10 +114,10 @@ class LeaveController extends Controller
                  $member->da = $da;
                  $member->address = $request->address;
                  $member->tel = $request->tel;
-                 $member->status_chief = $request->status_chief;
+                 /*$member->status_chief = $request->status_chief;
                  $member->status_text1 = $request->status_text1;
                  $member->status_hr = $request->status_hr;
-                 $member->status_text2 = $request->status_text2;
+                 $member->status_text2 = $request->status_text2;*/
                 
                  if($request->hasFile('image')){
                     $image = $request->file('image');
@@ -127,7 +127,7 @@ class LeaveController extends Controller
                   //	$img->save();
                 }
                 
-                // dd($member);
+                 //dd($member);
                  $member->save();
              
              //dd($data);
