@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.chief.manu_leave')
 @section('content')
+@include('layouts.manu.chief.manu_leave')
  
         <div class="main-panel">
             <!-- Navbar -->

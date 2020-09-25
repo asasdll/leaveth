@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.chief.manu_table')
 @section('content')
+@include('layouts.manu.chief.manu_table')
 @include('layouts.function')
 
 @include('layouts.navbar')

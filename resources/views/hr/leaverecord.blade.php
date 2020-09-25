@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.hr.manu_leaverecord')
 @section('content')
+@include('layouts.manu.hr.manu_leaverecord')
 <script type="text/javascript">
 // Show function
 $(document).on('click', '.show-modal', function() {

@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.chief.manu_timestamp')
 @section('content')
+@include('layouts.manu.chief.manu_timestamp')
             <style>
             #circle { 
 

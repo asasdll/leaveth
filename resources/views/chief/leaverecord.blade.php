@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.chief.manu_profile')
 @section('content')
+@include('layouts.manu.chief.manu_profile')
         <script type="text/javascript">
 
 

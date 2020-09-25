@@ -37,6 +37,12 @@
                     </a>
                 </li>
                 <li>
+                    <a class="nav-link" href="{{url('date_leave')}}">
+                        <i class="nc-icon nc-align-left-2"></i>
+                        <p>กำหนดการลา</p>
+                    </a>
+                </li>
+                <li>
                     <a class="nav-link" href="{{url('leave_hr')}}">
                         <i class="nc-icon nc-bell-55"></i>
                         <p>การขออนุมัติลา</p>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.personnel.manu_leave2')
 @section('content')
+@include('layouts.manu.personnel.manu_leave2')
 <script>
 function getDate(element) {
     var date;

@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.hr.manu_leave_hr')
 @section('content')
+@include('layouts.manu.hr.manu_leave_hr')
     
         <div class="main-panel">
             <!-- Navbar -->

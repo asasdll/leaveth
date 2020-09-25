@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.hr.manu_position')
 @section('content')
+@include('layouts.manu.hr.manu_position')
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">

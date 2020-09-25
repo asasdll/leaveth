@@ -18,7 +18,7 @@
                         <p>ข้อมูลผู้ใช้</p>
                     </a>
                 </li>
-                <li  class="nav-item active">
+                <li>
                     <a class="nav-link" href="{{url('table')}}">
                         <i class="nc-icon nc-notes"></i>
                         <p>ประวัติการลงเวลา</p>
@@ -36,7 +36,7 @@
                         <p>พนักงาน</p>
                     </a>
                 </li>
-                <li>
+                <li  class="nav-item active">
                     <a class="nav-link" href="{{url('date_leave')}}">
                         <i class="nc-icon nc-align-left-2"></i>
                         <p>กำหนดการลา</p>
@@ -69,3 +69,4 @@
             </ul>
         </div>
     </div>
+    

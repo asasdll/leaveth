@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.hr.manu_newmacaddress')
 @section('content')
+@include('layouts.manu.hr.manu_newmacaddress')
 <script>
 function confirmDelete(delUrl) {
     if (confirm("คุณแน่ใจหรือว่าต้องการลบ")) {

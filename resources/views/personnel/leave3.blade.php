@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.personnel.manu_leave3')
 @section('content')
+@include('layouts.manu.personnel.manu_leave3')
         <script type="text/javascript">
 
 

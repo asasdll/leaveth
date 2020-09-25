@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.hr.manu_table')
 @section('content')
+@include('layouts.manu.hr.manu_table')
 @include('layouts.function')
         <div class="main-panel">
             <!-- Navbar -->

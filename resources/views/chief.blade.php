@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@include('layouts.manu.chief.manu_profile')
 @section('content')
+@include('layouts.manu.chief.manu_profile')
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
