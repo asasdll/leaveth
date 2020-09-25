@@ -76,6 +76,11 @@ class LeaveController extends Controller
        //dd($namdate1);
         if ($namdate1 != null) {
             # code...el
+            $this->validate($request, [
+                'image'=> ['required','mimes:jpg,png,jpeg,gif,svg'],
+
+                
+             ]);
             $date1 = request()->from1;
             $date2 = request()->to1;
             $da = request()->daydiff1;
@@ -127,7 +132,7 @@ class LeaveController extends Controller
                   //	$img->save();
                 }
                 
-                 //dd($member);
+                 dd($member);
                  $member->save();
              
              //dd($data);
