@@ -81,6 +81,7 @@ class LeaveController extends Controller
 
                 
              ]);
+
             $date1 = request()->from1;
             $date2 = request()->to1;
             $da = request()->daydiff1;
@@ -132,7 +133,7 @@ class LeaveController extends Controller
                   //	$img->save();
                 }
                 
-                 dd($member);
+                 //dd($member);
                  $member->save();
              
              //dd($data);

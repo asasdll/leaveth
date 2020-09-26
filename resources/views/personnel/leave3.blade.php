@@ -210,7 +210,7 @@
                                                     data-id="{{$ticket1->id}}" data-affair="{{$ticket1->affair}}" data-head="{{$ticket1->fname}}&nbsp;&nbsp;&nbsp;{{$ticket1->lname}}&nbsp;&nbsp;&nbsp;({{$ticket1->niname}})" 
                                                     data-lea_fname="{{$ticket1->lea_fname}}" data-lea_lname="{{$ticket1->lea_lname}} &nbsp;&nbsp;&nbsp; ({{$ticket1->lea_niname}})" data-position="{{$ticket1->position}}"
                                                     data-leave="{{$ticket1->leave}}" data-since="{{$ticket1->since}}" data-date1="{{$ticket1->date1}}" data-date2="{{$ticket1->date2}}"
-                                                    data-da="{{$ticket1->da}}" data-address="{{$ticket1->address}}" data-tel="{{$ticket1->tel}}" data-toggle="modal" data-target="#exampleModal">View</a></td>         
+                                                    data-da="{{$ticket1->da}}" data-address="{{$ticket1->address}}" data-tel="{{$ticket1->tel}}"  data-status_chief="{{$ticket1->status_chief}}"  data-status_hr="{{$ticket1->status_hr}}" data-toggle="modal" data-target="#exampleModal">View</a></td>         
                                                 <td><a class="btn btn-info btn-fill pull-right" href="{{route('letter.edit',$ticket1->id) }}"  role="button">เเก้ไข</a></td>
                                             </tr>
                                          @endforeach
@@ -339,6 +339,14 @@
                                 <label for="">เบอร์ติดต่อ :</label>
                                 <b id="t"/>
                             </div>
+                            <div class="form-group">
+                                <label for="">รอการอนุมัติ หัวหน้า:</label>
+                                <b id="sc2"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="">รอการอนุมัติ HR:</label>
+                                <b id="sh2"/>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -401,12 +409,12 @@
                                 <b id="t2"/>
                             </div>
                             <div class="form-group">
-                                <label for="">หมายเหตุ หัวหน้า :</label>
-                                <b id="st1"/>
+                                <label for="">การอนุมัติ หัวหน้า :</label>
+                                <b id="sc"/>
                             </div>
                             <div class="form-group">
-                                <label for="">หมายเหตุ HR :</label>
-                                <b id="st2"/>
+                                <label for="">การอนุมัติ HR :</label>
+                                <b id="sh"/>
                             </div>
                     </div>
                 </div>

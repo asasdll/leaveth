@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\leaves_tops;
+use Auth;
+use DB;
 
 class Date_leaveController extends Controller
 {
@@ -13,7 +16,7 @@ class Date_leaveController extends Controller
      */
     public function index()
     {
-        return view('.hr.date_leave');
+        return view('.hr.date_leave_show');
     }
 
     /**
@@ -22,8 +25,23 @@ class Date_leaveController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {       
+
+        $id_leave = DB::table('leaves_tops')
+        ->where('id_company',Auth::user()->id)
+        ->groupBy('id_company')
+        ->get();
+         if (count($id_leave) === 1) {
+             # code...e
+            // dd($id_leave);
+             return view('.hr.date_leave_show',['id_leave' => $id_leave]);
+         
+            }else {
+
+            //dd($id_leave);
+            return view('.hr.date_leave');
+         }
+        
     }
 
     /**
@@ -34,7 +52,36 @@ class Date_leaveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     
+        $this->validate($request, [
+            'sickleave_date'=> ['required','numeric'],
+            'personalleave_date' => ['required','numeric'],
+            'vacationleave_date' => ['required','numeric'],
+            
+            
+         ]);
+         $id_company =  Auth::user()->id;
+         //dd($id_company);
+         $member = new leaves_tops;       
+             $member->id_company = Auth::user()->id;
+             $member->sickleave = 'ลาป่วย';
+             $member->sickleave_date = $request->sickleave_date;
+             $member->personalleave = 'ลากิจ';
+             $member->personalleave_date = $request->personalleave_date;
+             $member->vacationleave = 'ลาพักร้อน';
+             $member->vacationleave_date = $request->vacationleave_date;
+
+             /*$member->status_chief = $request->status_chief;
+             $member->status_text1 = $request->status_text1;
+             $member->status_hr = $request->status_hr;
+             $member->status_text2 = $request->status_text2;*/
+            
+   
+            
+            // dd($member);
+             $member->save();
+
+             return redirect('date_leave')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 
     /**
@@ -56,7 +103,13 @@ class Date_leaveController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id_com = DB::table('leaves_tops')
+        ->where('id_company',$id)
+        ->groupBy('id_company')
+        ->get();
+        //dd($id_com);
+
+        return view('.hr.date_leave_edit', ['id_com'=> $id_com]);
     }
 
     /**
@@ -68,7 +121,33 @@ class Date_leaveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       //dd($request->all());
+
+        $id_com = DB::table('leaves_tops')
+        ->where('id_company',$id)
+        ->groupBy('id_company')
+        ->get();
+//dd($id_com);
+        $id_com2 = $id_com[0]->id;
+        //dd($id_com2);
+        $id =  $id_com2;
+        
+        $member =  leaves_tops::find($id);
+        //dd( $member);
+        $member->sickleave_date = $request->sickleave_date;
+        $member->personalleave_date = $request->personalleave_date;
+        $member->vacationleave_date = $request->vacationleave_date;
+
+        /*$member->status_chief = $request->status_chief;
+        $member->status_text1 = $request->status_text1;
+        $member->status_hr = $request->status_hr;
+        $member->status_text2 = $request->status_text2;*/
+       
+
+       
+        //d($member);
+        $member->save();
+        return redirect('date_leave')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 
     /**

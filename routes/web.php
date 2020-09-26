@@ -81,4 +81,8 @@ Route::get('qr-code-g', function () {
   Route::post('code_herd/{id}', 'Code_herdController@update');
   Route::get('account', 'MemberuserController@create');
   Route::get('resetpass', 'Reset_passwordController@index');
-  Route::get('date_leave', 'Leave_hrController@index');
+  Route::get('date_leave', 'Date_leaveController@create');
+  Route::post('leave_date', 'Date_leaveController@store');
+  Route::resource('leave_date_index', 'Date_leaveController');
+  Route::get('le_date_edit/{id}', 'Date_leaveController@edit');
+  Route::post('leave_date_up/{id}', 'Date_leaveController@update');

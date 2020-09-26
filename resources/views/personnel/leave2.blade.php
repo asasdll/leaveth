@@ -153,14 +153,12 @@ function demo2() {
                                                         <div class="col-md-8 pr-1">
                                                             <select class="form-control" name="leave" id="demo6"
                                                                 onclick="demo2()">
-                                                                @foreach($leave as $ticketl)
-                                                                <option value="{{$ticketl->sickleave}}">
-                                                                    {{$ticketl->sickleave}}</option>
-                                                                <option value="{{$ticketl->personalleave}}">
-                                                                    {{$ticketl->personalleave}}</option>
-                                                                <option value="{{$ticketl->vacationleave}}">
-                                                                    {{$ticketl->vacationleave}}</option>
-                                                                @endforeach
+                                                                <option value="ลาป่วย">
+                                                                   ลาป่วย </option>
+                                                                <option value="ลากิจ">
+                                                                   ลากิจ</option>
+                                                                <option value="ลาพักร้อน">
+                                                                 ลาพักร้อน</option>
                                                             </select>
                                                         </div>
                                                     </div>

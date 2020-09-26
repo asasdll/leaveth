@@ -37,13 +37,7 @@ class Leave_hrController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'sickleave_date'=> ['string', 'max:255'],
-            'personalleave_date' => ['string', 'max:255'],
-            'vacationleave_date' => ['string', 'max:255'],
-            
-            
-         ]);
+       //
     }
 
     /**

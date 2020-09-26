@@ -44,7 +44,7 @@ class MemberuserController extends Controller
         $user_aaa = DB::table('users')
         ->join('memberusers', 'users.id', '=','memberusers.iduser')
         ->join('times', 'memberusers.iduser', '=','times.user_id')
-        ///->orderBy('id','DESC')
+        ///->groupBy('id','DESC')
          ->where('iduser', Auth::user()->id)
         
          ->Paginate(31);

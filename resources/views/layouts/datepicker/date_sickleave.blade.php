@@ -22,7 +22,7 @@ $(function() {
             var date2 = $("#to1").val();
             var dayDiff = date_diff_indays(date1, date2);
             $("#dayDiff1").val(dayDiff);
-         
+
             console.log($("#to1").val());
             console.log($("#from1").val());
             console.log($("#dayDiff1").val());
@@ -30,7 +30,7 @@ $(function() {
 
         });
 
-  
+
 
 
 });
@@ -84,6 +84,9 @@ $(function() {
     <div class="col-md-6 pr-1">
     </div>
     <div class="col-md- pr-1">
+        @foreach ($errors->all() as $error)
+        <font  color="#ff0000">{{" up image ' jpg,png,jpeg,gif,svg '"}}</font>
+        @endforeach
         <div class="form-group">
             <input type="file" class="form-control" id="image" name="image">
         </div>

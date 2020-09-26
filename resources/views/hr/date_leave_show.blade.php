@@ -22,45 +22,40 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            <form align='center' method="POST" action="leave_date">
+                        @foreach($id_leave as $ticket1)
+                            <form align='center'>
                                 @csrf
                                 <div class="form-group">
-                                    @error('sickleave_date')
-                                         <font color="#ff0000">{{ $message }}</font>
-                                    @enderror
                                     <div class="form-group row">
                                         <label for="staticEmail" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลาป่วย</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="sickleave_date">
+                                            <input type="text" class="form-control" name="sickleave_date" value="{{ $ticket1->sickleave_date}}">
                                         </div>
                                     </div>
-                                    @error('personalleave_date')
-                                         <font color="#ff0000">{{ $message }}</font>
-                                    @enderror
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="personalleave_date">
+                                            <input type="text" class="form-control" name="personalleave_date"  value="{{ $ticket1->personalleave_date}}">
                                         </div>
                                     </div>
-                                    @error('vacationleave_date')
-                                         <font color="#ff0000">{{ $message }}</font>
-                                    @enderror
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="vacationleave_date">
+                                            <input type="text" class="form-control" name="vacationleave_date"  value="{{ $ticket1->vacationleave_date}}">
                                         </div>
                                     </div>
 
                                 </div>
+                                
                                 <div>
-                                    <button type="submit" class="btn btn-info">บันทึกข้อมูล</button>
+                                <a href="{{action('Date_leaveController@edit',$ticket1->id_company)}}" class="btn btn-info btn-fill pull-right" role="button" aria-pressed="true">เเก้ไขข้อมูล</a>
+                                        <div class="clearfix"></div>
                                 </div>
                             </form>
+                            @endforeach
                             </br>
                         </div>
                     </div>
