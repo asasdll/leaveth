@@ -167,7 +167,7 @@ label {
                             <h4 class="card-title">กำลังรอการอนุมัติคำขอ</h4>
                             <p class="card-category">กำลังรอการอนุมัติคำขอ</p>
                         </div>
-                        <div class="card-body table-full-width table-responsive">
+                        <div class="card-body table-full-width  table-responsive">
                             <table class="table table-hover table-striped">
                                 <thead>
                                     <th>id</th>
@@ -210,7 +210,7 @@ label {
                                                 data-date2="{{$ticket1->date2}}" data-da="{{$ticket1->da}}"
                                                 data-address="{{$ticket1->address}}" data-tel="{{$ticket1->tel}}"
                                                 data-toggle="modal" data-target="#exampleModal">View</a>
-                                                <br><br><br><br>
+                                               
                                                 </td>
                                         <td><a href="{{action('LeaveController@show',$ticket1->id)}}"
                                                 class="edit-modal btn btn-success btn-fill pull-right" role="button"
@@ -273,7 +273,7 @@ label {
                                                         data-address="{{$ticket2->address}}"
                                                         data-tel="{{$ticket2->tel}}" data-toggle="modal"
                                                         data-target="#exampleModal">View</a>
-                                                        <br><br><br></td>
+                                                        
                                                 <td><a class="btn btn-info btn-fill pull-right"
                                                         href="{{route('letter.edit',$ticket2->id) }}"
                                                         role="button">เเก้ไข</a></td>

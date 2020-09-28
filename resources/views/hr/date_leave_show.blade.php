@@ -16,13 +16,19 @@
         </div>
     </nav>
     <!-- End Navbar -->
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                        @foreach($id_leave as $ticket1)
+                            @if(session('success'))
+                            <div class="alert alert-success" role="alert">
+                                <p align='center'>{{session('success')}}</p>
+                            </div>
+                            @endif
+                            @foreach($id_leave as $ticket1)
                             <form align='center'>
                                 @csrf
                                 <div class="form-group">
@@ -30,29 +36,34 @@
                                         <label for="staticEmail" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลาป่วย</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="sickleave_date" value="{{ $ticket1->sickleave_date}}">
+                                            <input type="text" class="form-control" name="sickleave_date"
+                                                value="{{ $ticket1->sickleave_date}}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="personalleave_date"  value="{{ $ticket1->personalleave_date}}">
+                                            <input type="text" class="form-control" name="personalleave_date"
+                                                value="{{ $ticket1->personalleave_date}}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="vacationleave_date"  value="{{ $ticket1->vacationleave_date}}">
+                                            <input type="text" class="form-control" name="vacationleave_date"
+                                                value="{{ $ticket1->vacationleave_date}}">
                                         </div>
                                     </div>
 
                                 </div>
-                                
+
                                 <div>
-                                <a href="{{action('Date_leaveController@edit',$ticket1->id_company)}}" class="btn btn-info btn-fill pull-right" role="button" aria-pressed="true">เเก้ไขข้อมูล</a>
-                                        <div class="clearfix"></div>
+                                    <a href="{{action('Date_leaveController@edit',$ticket1->id_company)}}"
+                                        class="btn btn-info btn-fill pull-right" role="button"
+                                        aria-pressed="true">เเก้ไขข้อมูล</a>
+                                    <div class="clearfix"></div>
                                 </div>
                             </form>
                             @endforeach

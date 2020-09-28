@@ -29,10 +29,9 @@ $(document).on('click', '.show-modal-1', function() {
     $('#id').text($(this).data('id'));
     $('#lf').text($(this).data('lea_fname'));
     $('#l_ln').text($(this).data('lea_lname'));
-    
+
     $('.example').text('Show Post');
 });
-
 </script>
 
 <style>
@@ -174,7 +173,7 @@ label {
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header">
                             <h4 class="card-title">การขออนุมัติลา</h4>
-                     
+
                         </div>
                         <div class="card-body table-full-width table-responsive">
                             <table class="table">
@@ -190,9 +189,9 @@ label {
                                     <th>เครื่องมือ</th>
                                 </thead>
                                 <tbody>
-                                @php
-                                $i = 0;
-                                @endphp
+                                    @php
+                                    $i = 0;
+                                    @endphp
                                     @foreach($leave as $ticket1)
                                     <tr>
                                         <td>@php echo ++$i @endphp</td>
@@ -222,14 +221,14 @@ label {
                                                 data-status_chief="{{$ticket1->status_chief}}"
                                                 data-status_text1="{{$ticket1->status_text1}}" data-toggle="modal"
                                                 data-target="#exampleModal">View</a>
-                                                <br><br><br><br></td>
-                                                </td>
-                                         <td>
-                                                <a href="{{action('NewcompaniesController@show',$ticket1->id)}}" type="button" name="status_hr" value="อนุมัติ"
-                                                    class="edit-modal btn btn-success btn-fill " role="button"
-                                                    aria-pressed="true"
-                                                    id="btnPrint">การอนุมัติ</a>
-                                                    
+                                            
+                                        </td>
+                                        <td>
+                                            <a href="{{action('NewcompaniesController@show',$ticket1->id)}}"
+                                                type="button" name="status_hr" value="อนุมัติ"
+                                                class="edit-modal btn btn-success btn-fill " role="button"
+                                                aria-pressed="true" id="btnPrint">การอนุมัติ</a>
+                                                
                                         </td>
                                     </tr>
                                     @endforeach
@@ -330,32 +329,32 @@ label {
                 </button>
             </div>
             <div class="modal-body">
-            <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">ID:</label>
-            <input type="text" class="form-control" name="lea_fname" id="lf">
-            <input type="text" class="form-control" data-id="emp_id">
-            <input type="text" class="form-control" data-id="emp_id">
-          </div>
-        </form>
-            <form method="POST" action="{{'up_no'}}" >
-               @csrf
-               <input type="text" name="lf"  id="lf" />
-                <div class="form-group">
-                    <label for="">ID :</label>
-                       <b id="id" />
-                </div>
-                <div class="form-group">
-                    <label for="">ชื่อ นามสกุล :</label>
-                    <a-l><b id="lf" /></a-l>
-                    <a-l>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b id="l_ln" /></a-l>
-                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">ID:</label>
+                        <input type="text" class="form-control" name="lea_fname" id="lf">
+                        <input type="text" class="form-control" data-id="emp_id">
+                        <input type="text" class="form-control" data-id="emp_id">
+                    </div>
+                </form>
+                <form method="POST" action="{{'up_no'}}">
+                    @csrf
+                    <input type="text" name="lf" id="lf" />
+                    <div class="form-group">
+                        <label for="">ID :</label>
+                        <b id="id" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">ชื่อ นามสกุล :</label>
+                        <a-l><b id="lf" /></a-l>
+                        <a-l>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b id="l_ln" /></a-l>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </form>
+            </form>
         </div>
     </div>
 </div>
