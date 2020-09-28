@@ -19,6 +19,26 @@ class Date_leaveController extends Controller
         return view('.hr.date_leave_show');
     }
 
+
+    public function sum()
+    {
+
+        $user = request()->User();
+      //dd( $user);
+      if ($user && $user->status == 'chief') {
+
+       // dd('55');
+       return view('.chief.sum_date_ch');
+
+      }else {
+          # code...
+          return view('.personnel.sum_date_per');
+
+      }
+        
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

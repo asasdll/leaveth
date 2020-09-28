@@ -37,6 +37,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="{{url('sum_date')}}">
+                            <i class="nc-icon nc-bullet-list-67"></i>
+                            <p>ประวัติการลา</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{url('timestampch')}}">
                             <i class="nc-icon nc-tap-01"></i>
                             <p>บันทึกเวลา</p>

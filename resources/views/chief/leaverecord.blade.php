@@ -188,6 +188,63 @@
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
+                                    <h4 class="card-title">กำลังรอการอนุมัติ</h4>
+                                    <p class="card-category">กำลังรอการอนุมัติ</p>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                    <thead>
+                                            <th>id</th>
+                                            <th>เรื่อง</th>
+                                            <th>ชื่อ</th>
+                                            <th>นามสกุล</th>
+                                            <th>ชื่อเล่น</th>
+                                            <th>ประเภทการลา</th>
+                                            <th>Image</th>
+                                            <th>view</th>
+                                        </thead>
+                                        <tbody>
+                                        @php
+                                            $i = 0;
+                                        @endphp
+                                        @foreach($Edleave as $ticket2)
+                                            <tr>
+                                                <td>@php echo ++$i @endphp</td>
+                                                <td>{{$ticket2->affair}}</td>
+                                                <td>{{$ticket2->lea_fname}}</td>
+                                                <td>{{$ticket2->lea_lname}}</td>
+                                                <td>{{$ticket2->leave}}</td>
+                                                <td>
+                                                    <div id="image">
+                                                        <a href="#modal" data-toggle="modal" data-target="#modalimage">
+                                                            <img id="myImg" src="{{ URL::to('/') }}/img/file/{{$ticket2->image}}" width="30px" height="30px"/>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                @php
+                                                 $sts = $ticket2->status_hr
+                                                @endphp
+                                                <td><label style="color:#0000FF">กำลังรอการอนุมัติ</label></td>
+                                                <td><a class="show-modal btn btn-info btn-fill pull-right"  href="#" 
+                                                    data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}" data-head="{{$ticket2->fname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->niname}})" 
+                                                    data-lea_fname="{{$ticket2->lea_fname}}" data-lea_lname="{{$ticket2->lea_lname}} &nbsp;&nbsp;&nbsp; ({{$ticket2->lea_niname}})" data-position="{{$ticket2->position}}"
+                                                    data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}"
+                                                    data-da="{{$ticket2->da}}" data-address="{{$ticket2->address}}" data-tel="{{$ticket2->tel}}"  data-image="{{$ticket2->image}}"
+                                                    data-status_chief="{{$ticket2->status_chief}}" data-status_text1="{{$ticket2->status_text1}}" data-status_hr="{{$ticket2->status_hr}}"  data-status_text2="{{$ticket2->status_text2}}"
+                                                data-toggle="modal" data-target="#exampleModal">View</a></td>         
+                                            </tr>
+                                         @endforeach
+                                        </tbody>
+                                    </table>
+                                 </div>
+                           </div>
+                       </div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover">
+                                <div class="card-header ">
                                     <h4 class="card-title">ประวัติการลา</h4>
                                     <p class="card-category">ประวัติการลา</p>
                                 </div>
@@ -306,12 +363,12 @@
                                 <b id="t"/>
                             </div>
                             <div class="form-group">
-                                <label for="">หมายเหตุ หัวหน้า :</label>
-                                <b id="st1"/>
+                                <label for="">คำอนุมัติ หัวหน้า :</label>
+                                <b id="sc"/>
                             </div>
                             <div class="form-group">
-                                <label for="">หมายเหตุ HR:</label>
-                                <b id="st2"/>
+                                <label for="">คำอนุมัติ HR:</label>
+                                <b id="sh"/>
                             </div>
                         </div>
                 </div>

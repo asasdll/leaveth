@@ -12,7 +12,7 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="{{url('VH')}}">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>ข้อมูลผู้ใช้</p>
@@ -36,7 +36,7 @@
                             <p>การขออนุมัติลา</p>
                         </a>
                     </li>
-                    <li>
+                    <li  class="nav-item active">
                         <a class="nav-link" href="{{url('sum_date')}}">
                             <i class="nc-icon nc-bullet-list-67"></i>
                             <p>ประวัติการลา</p>

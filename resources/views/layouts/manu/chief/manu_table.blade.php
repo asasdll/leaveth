@@ -43,6 +43,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="{{url('recordch')}}">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>ประวัติการลาพนักงาน</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{url('timestampch')}}">
                             <i class="nc-icon nc-tap-01"></i>
                             <p>บันทึกเวลา</p>

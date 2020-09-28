@@ -16,10 +16,12 @@ class CreateSumDateTable extends Migration
         Schema::create('sum_date', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->string('leave_name');
-            $table->string('leave_date');
-            $table->string('leave_date_up');
-            $table->string('leave_date_user');
+            $table->string('leave_name');//ชื่อ
+            $table->string('leave_date');//วันลา
+            $table->string('leave_date_up');//วันนลาที่เพิ่ม
+            $table->string('leave_date_sum');//วันลารวม
+            $table->string('leave_date_user');//วันลาที่ใช้
+            $table->string('leave_date_surplus');//วันลาที่เหลือ
             $table->timestamps();
         });
     }

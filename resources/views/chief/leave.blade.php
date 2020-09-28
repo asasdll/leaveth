@@ -222,69 +222,6 @@ label {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="card card-plain table-plain-bg">
-                        <div class="card-header ">
-                            <h4 class="card-title">กำลังรอการอนุมัติ</h4>
-                            <p class="card-category">กำลังรอการอนุมัติ</p>
-                        </div>
-                        <div class="card-body table-full-width table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <th>id</th>
-                                    <th>เรื่อง</th>
-                                    <th>ชื่อ</th>
-                                    <th>นามสกุล</th>
-                                    <th>ประเภทการลา</th>
-                                    <th>Image</th>
-                                    <th>ผลการอนุมัติ</th>
-                                </thead>
-                                <tbody>
-                                @php 
-                                    $i = 0;
-                                @endphp
-                                    @foreach($Edleave as $ticket2)
-                                    <tr>
-                                                <td>@php echo ++$i @endphp</td>
-                                                <td>{{$ticket2->affair}}</td>
-                                                <td>{{$ticket2->lea_fname}}</td>
-                                                <td>{{$ticket2->lea_lname}}</td>
-                                                <td>{{$ticket2->leave}}</td>
-                                                <td>
-                                                    <div id="image">
-                                                        <a href="#modal" data-toggle="modal" data-target="#modalimage">
-                                                            <img id="myImg"
-                                                                src="{{ URL::to('/') }}/img/file/{{$ticket2->image}}"
-                                                                width="30px" height="30px" />
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td><label style="color:#0000FF">กำลังรอการอนุมัติ</label></td>
-                                                <td><a class="show-modal btn btn-info btn-fill pull-right" href="#"
-                                                        data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}"
-                                                        data-head="{{$ticket2->fname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->niname}})"
-                                                        data-lea_fname="{{$ticket2->lea_fname}}"
-                                                        data-lea_lname="{{$ticket2->lea_lname}} &nbsp;&nbsp;&nbsp; ({{$ticket2->lea_niname}})"
-                                                        data-position="{{$ticket2->position}}"
-                                                        data-leave="{{$ticket2->leave}}"
-                                                        data-since="{{$ticket2->since}}"
-                                                        data-date1="{{$ticket2->date1}}"
-                                                        data-date2="{{$ticket2->date2}}" data-da="{{$ticket2->da}}"
-                                                        data-address="{{$ticket2->address}}"
-                                                        data-tel="{{$ticket2->tel}}" data-toggle="modal"
-                                                        data-target="#exampleModal">View</a>
-                                                        
-                                                <td><a class="btn btn-info btn-fill pull-right"
-                                                        href="{{route('letter.edit',$ticket2->id) }}"
-                                                        role="button">เเก้ไข</a></td>
-                                            </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <?php echo $leave->links();?>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -297,7 +234,7 @@ label {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">กำลังรอการอนุมัติคำขอ</h5>
+                <h5 class="modal-title" id="exampleModalLabel">กำลังรอการอนุมัติ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

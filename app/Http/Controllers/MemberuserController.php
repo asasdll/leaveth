@@ -189,23 +189,23 @@ class MemberuserController extends Controller
 
          
 
-        $Edleave = DB::table('users') //กำลังรออนุมัติ ส่วนเเด้ไขข้อมูล หัวหน้า
+       /* $Edleave = DB::table('users') //กำลังรออนุมัติ ส่วนเเด้ไขข้อมูล หัวหน้า
         ->rightJoin('positions', 'users.id', '=','positions.idchief')
         ->rightJoin('leaves', 'positions.idchief', '=','leaves.idmember')
         /*->rightJoin('leaves', 'users.id', '=','leaves.idmember')
         ->leftJoin('positions', 'leaves.head', '=','positions.idchief')
-        //->rightJoin('leaves', 'positions.idchief', '=','leaves.head')*/
+        //->rightJoin('leaves', 'positions.idchief', '=','leaves.head')
         //->groupBy('idchief')
-        ->whereNull('status_chief')
+        //->whereNull('status_chief')
         ->whereNull('status_hr')
         ->orderBy('leaves.id','ASC')
         ->where('idchief',Auth::user()->id)
         ->groupBy('leaves.id')
-        ->Paginate(50);
+        ->Paginate(50);*/
 
       //dd($leave,$Edleave);
 
-        return view('chief.leave' , ['leave'=> $leave ,'Edleave'=> $Edleave ]);
+        return view('chief.leave' , ['leave'=> $leave  ]);
       
       }else {
 
@@ -256,7 +256,18 @@ class MemberuserController extends Controller
 
       //dd($soleave2);
 
-        return view('chief.leaverecord' , ['soleave2' => $soleave2]) ;
+      $Edleave = DB::table('users') /// อนุมัติเเล้ว ส่วนของหัวหน้า
+      ->leftJoin('positions', 'users.id', '=','positions.idchief')
+      ->leftJoin('leaves', 'positions.idchief', '=','leaves.idmember')
+      ->orderBy('leaves.id','ASC')
+      ->whereNull('status_hr')
+      ->where('idmember',Auth::user()->id)
+      ->groupBy('leaves.id')
+      ->get();
+
+        //dd($Edleave);
+
+        return view('chief.leaverecord' , ['soleave2' => $soleave2 ,'Edleave' => $Edleave]) ;
   
     }
 
