@@ -36,13 +36,13 @@
                             <p>การขออนุมัติลา</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{url('recordch')}}">
                             <i class="nc-icon nc-paper-2"></i>
                             <p>ประวัติการลา</p>
                         </a>
                     </li>
-                    <li  class="nav-item active">
+                    <li>
                         <a class="nav-link" href="{{url('sum_date')}}">
                             <i class="nc-icon nc-bullet-list-67"></i>
                             <p>ประวัติการลาพนักงาน</p>

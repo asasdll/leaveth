@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('layouts.manu.personnel.manu_leave3')
+@include('layouts.manu.chief.manu_leave')
 <script type="text/javascript">
 // Show function
 $(document).on('click', '.show-modal', function() {

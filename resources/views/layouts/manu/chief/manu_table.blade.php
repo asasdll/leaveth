@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{url('recordch')}}">
+                        <a class="nav-link" href="{{url('sum_date')}}">
                             <i class="nc-icon nc-bullet-list-67"></i>
                             <p>ประวัติการลาพนักงาน</p>
                         </a>

@@ -178,7 +178,6 @@
                                     <table class="table table-hover table-striped">
                                     <thead>
                                             <th>id</th>
-                                            <th>id2</th>
                                             <th>เรื่อง</th>
                                             <th>ชื่อ</th>
                                             <th>นามสกุล</th>
@@ -193,7 +192,6 @@
                                         @foreach($leave as $ticket1)
                                             <tr>
                                                 <td>@php echo ++$i @endphp</td>
-                                                <td>{{$ticket1->id}}</td>
                                                 <td>{{$ticket1->affair}}</td>
                                                 <td>{{$ticket1->lea_fname}}</td>
                                                 <td>{{$ticket1->lea_lname}}</td>
