@@ -17,7 +17,7 @@ var date_diff_indays = function(date3, date4) {
     dt4 = new Date(date4);
     return Math.floor((Date.UTC(dt4.getFullYear(), dt4.getMonth(), dt4.getDate()) - Date
         .UTC(dt3.getFullYear(), dt3.getMonth(), dt3.getDate())) / (1000 * 60 * 60 *
-        24 ) + (1));
+        24) + (1));
 }
 
 function demo2() {
@@ -48,6 +48,7 @@ function demo2() {
     </nav>
     <!-- End Navbar -->
     <div class="content">
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -78,7 +79,7 @@ function demo2() {
                                                         <label for="text" class="col-md-2 col-form-label">เรื่อง</label>
                                                         <div class="col-md-10 pr-1">
                                                             <input type="text" class="form-control" name="affair"
-                                                                id="affair" value="ขออนุญาตลา"  readonly
+                                                                id="affair" value="ขออนุญาตลา" readonly
                                                                 autocomplete="affair" autofocus>
                                                         </div>
                                                     </div>
@@ -92,13 +93,13 @@ function demo2() {
                                                     <div class="form-group row">
                                                         <label for="text" class="col-md-2 col-form-label">เรียน</label>
                                                         <div class="col-md-10 pr-1">
-                                                                <select class="form-control" name="head">
-                                                                    @foreach($boss as $boss1)
-                                                                    <option value="{{$boss1->idchief}}">
-                                                                        {{$boss1->fname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->niname}})
-                                                                    </option>
-                                                                    @endforeach
-                                                                </select>
+                                                            <select class="form-control" name="head">
+                                                                @foreach($boss as $boss1)
+                                                                <option value="{{$boss1->idchief}}">
+                                                                    {{$boss1->fname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->niname}})
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -117,7 +118,7 @@ function demo2() {
                                                             <div class="col-md-8 pr-1">
                                                                 <input class="form-control" type="text"
                                                                     value="{{$ticket->firstnamebem}}"
-                                                                    id="example-date-input" name="lea_fname"  readonly>
+                                                                    id="example-date-input" name="lea_fname" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,19 +151,22 @@ function demo2() {
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group row">
                                                         <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
-                                                        <div class="col-md-8 pr-1">
+                                                        <div class="col-md-8 pr-1"> 
                                                             <select class="form-control" name="leave" id="demo6"
                                                                 onclick="demo2()">
                                                                 <option value="ลาป่วย">
-                                                                   ลาป่วย </option>
+                                                                    ลาป่วย </option>
                                                                 <option value="ลากิจ">
-                                                                   ลากิจ</option>
+                                                                    ลากิจ</option>
                                                                 <option value="ลาพักร้อน">
-                                                                 ลาพักร้อน</option>
+                                                                    ลาพักร้อน</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @if(session('success'))
+                                                            <font color="red">{{session('success')}}</font>
+                                                            @endif
                                             </div>
 
                                             <div class="row">

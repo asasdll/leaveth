@@ -16,6 +16,7 @@ class CreateAddDateTable extends Migration
         Schema::create('add_date', function (Blueprint $table) {
             $table->id();
             $table->string('id_user')->nullable();
+            $table->string('data_name')->nullable();
             $table->string('date_up')->nullable();
             $table->timestamps();
         });
