@@ -44,7 +44,7 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{url('recordch')}}">
-                            <i class="nc-icon nc-paper-2"></i>
+                            <i class="nc-icon nc-bullet-list-67"></i>
                             <p>ประวัติการลาพนักงาน</p>
                         </a>
                     </li>
