@@ -20,19 +20,53 @@ class Date_leaveController extends Controller
     }
 
 
-    public function sum()
+    public function sum(Request $request)
     {
 
         $user = request()->User();
+        $search = $request->get('search');
+            
+                //dd($save_data,$date_user,Auth::user()->id);
+         
+            //dd($code_user);                          // ดึงข้อมูลพนักงาน/บริาษัท/ข้อมูลการลา
+
+      
       //dd( $user);
+
       if ($user && $user->status == 'chief') {
 
        // dd('55');
-       return view('.chief.sum_date_ch');
+       $code_user = DB::table('users')
+                ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                ->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
+                ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                ->where('positions.idchief', '=' ,Auth::user()->id)
+                ->where('firstnamebem','like', '%'.$search.'%')
+                ->get();   
 
+                return view('.chief.sum_date_ch' ,['code_user' =>$code_user]);
+
+      }elseif ($user && $user->status == 'hr') {
+          # code...
+          $code_user = DB::table('users')
+                ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                ->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
+                ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                ->where('firstnamebem','like', '%'.$search.'%')
+                ->where('newcompanies.idname', '=' ,Auth::user()->id)
+                //->where('firstnamebem','like', '%'.$search.'%')
+                ->get();   
+
+               // dd($code_user);
+            return view('.hr.sum_data_hr' ,['code_user' =>$code_user]);
       }else {
           # code...
-          return view('.personnel.sum_date_per');
+          $save_data = DB::table('sum_date')
+                        ->where('user_id',Auth::user()->id)
+                        ->get();  
+           // dd($save_data);                       
+         return view('.personnel.sum_date_per',['save_data' =>$save_data]);
 
       }
         

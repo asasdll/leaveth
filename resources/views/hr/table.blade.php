@@ -93,8 +93,8 @@
                                                @if($ticket->time_out != "")
                                                
                                                @php
-                                               $time_a="$ticket->time_in";
-                                               $time_b="$ticket->time_out";
+                                                    $time_a="$ticket->time_in";
+                                                    $time_b="$ticket->time_out";
                                                @endphp    
                                                 {{diff2time($time_a,$time_b)}}  
 

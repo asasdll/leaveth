@@ -68,7 +68,7 @@ class MemberuserController extends Controller
     public function search_time_user(Request $request)
     {
       //dd('ddd');
-      $search = $request->get('search_time_user');
+     
       //dd($search);
       $user_aaa = DB::table('users')
             ->join('memberusers', 'users.id', '=','memberusers.iduser')

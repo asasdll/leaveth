@@ -44,8 +44,8 @@
                     </li>
                     <li  class="nav-item active">
                         <a class="nav-link" href="{{url('sum_date')}}">
-                            <i class="nc-icon nc-bullet-list-67"></i>
-                            <p>ประวัติการลาพนักงาน</p>
+                        <i class="nc-icon nc-chart-pie-36"></i>
+                            <p>รายงานการลา</p>
                         </a>
                     </li>
                     <li>

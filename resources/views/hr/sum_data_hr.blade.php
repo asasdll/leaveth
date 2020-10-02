@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('layouts.manu.chief.manu_sum_ch')
+@include('layouts.manu.hr.manu_sum_data')
 <div class="main-panel">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">

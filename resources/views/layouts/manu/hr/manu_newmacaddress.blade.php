@@ -54,6 +54,12 @@
                         <p>ประวัติการลา</p>
                     </a>
                 </li>
+                <li>
+                    <a class="nav-link" href="{{url('sum_date')}}">
+                        <i class="nc-icon nc-chart-pie-36"></i>
+                        <p>รายงานการลา</p>
+                    </a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{url('mac')}}">
                         <i class="nc-icon nc-square-pin"></i>

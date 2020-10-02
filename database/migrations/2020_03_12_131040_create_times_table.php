@@ -16,8 +16,9 @@ class CreateTimesTable extends Migration
         Schema::create('times', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->dateTimeTz('time_in');
-            $table->dateTimeTz('time_out')->nullable();
+            $table->string('time_date');
+            $table->string('time_in');
+            $table->string('time_out')->nullable();
             $table->timestamps();
         });
     }

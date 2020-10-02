@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered" >
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ลำดับ</th>
@@ -32,35 +32,28 @@
                                 <th>วันลาที่เหลือ</th>
                             </tr>
                         </thead>
+                        @php
+                        $i = 0;
+                        @endphp
+                        @foreach($save_data as $ticket)
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>@php echo ++$i @endphp</td>
+                                <td>{{$ticket->leave_name}}</td>
+                                <td>{{$ticket->leave_date}}</td>
+                                <td>{{$ticket->leave_date_up}}</td>
+                                <td>{{$ticket->leave_date_sum}}</td>
+                                <td>{{$ticket->leave_date_user}}</td>
+                                <td>
+                                    @if($ticket->leave_date_surplus >= "0" ) 
+                                         {{$ticket->leave_date_surplus}}
+                                     @else()
+                                        <font color="#663399">{{'ไม่มีกำการกำหนดวัลา'}}</font>
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>

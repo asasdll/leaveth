@@ -128,8 +128,8 @@ class TimesController extends Controller
                     ->where('user_id', '=' ,Auth::user()->id)
                     ->whereNull('time_out')
                     ->first();
-                    $regy->time_out = date("Y-m-d H:i:s", time());
-
+                    $regy->time_out = date("H:i:s", time());
+                  //  dd( $regy);
                     $regy->save();
 
                   return redirect('timestampch')->with('successv','บันทึกเวลาออกเรียบร้อย');
@@ -138,9 +138,9 @@ class TimesController extends Controller
 
                     $regu = new Times;
                     $regu->user_id = Auth::user()->id;
-		    $regu->time_date = date("d", time());
-                    $regu->time_in = date("Y-m-d H:i:s", time());
-
+		            $regu->time_date = date("Y-m-d", time());
+                    $regu->time_in = date("H:i:s", time());
+                   //dd($regu);
                     $regu->save();
 
                   return redirect('timestampch')->with('success','บันทึกเวลาเข้าเรียบร้อย');
