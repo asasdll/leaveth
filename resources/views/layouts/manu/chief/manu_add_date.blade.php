@@ -12,13 +12,13 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="{{url('VH')}}">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>ข้อมูลผู้ใช้</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{url('add_date')}}">
                             <i class="far fa-calendar-plus"  style='font-size:25px'></i>
                             <p>เพิ่มวันลา</p>
@@ -50,7 +50,7 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{url('sum_date')}}">
-                        <i class="nc-icon nc-chart-pie-36"></i>
+                            <i class="nc-icon nc-chart-pie-36"></i>
                             <p>รายงานการลา</p>
                         </a>
                     </li>

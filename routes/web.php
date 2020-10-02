@@ -87,3 +87,6 @@ Route::get('qr-code-g', function () {
   Route::get('le_date_edit/{id}', 'Date_leaveController@edit');
   Route::post('leave_date_up/{id}', 'Date_leaveController@update');
   Route::get('sum_date', 'Date_leaveController@sum');
+  Route::get('add_date', 'Add_dateController@index');
+  Route::get('add_/{id}', 'Add_dateController@create');
+  Route::post('lv_date/{id}', 'Add_dateController@store');

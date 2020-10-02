@@ -18,6 +18,12 @@
                             <p>ข้อมูลผู้ใช้</p>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{url('add_date')}}">
+                            <i class="far fa-calendar-plus"  style='font-size:25px'></i>
+                            <p>เพิ่มวันลา</p>
+                        </a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url('tablepe')}}">
                             <i class="nc-icon nc-notes"></i>

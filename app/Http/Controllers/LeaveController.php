@@ -274,17 +274,6 @@ class LeaveController extends Controller
                 
                 
 
-
-              //dd($date0,$date1,$date2);
-
-                
-
-                /*$sum2 = DB::table('sum_date')
-                    ->where('user_id',Auth::user()->id)
-                    ->where('leave_name','=','ลาป่วย')
-                    ->get();*/
-
-
                 $aa = $request->leave;
 
                 if ($aa === 'ลาป่วย') {
