@@ -5,7 +5,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#pablo">เพิ่มวันลาพนักงาน</a>
+            <a class="navbar-brand" href="#pablo">เพิ่ม/เเก้ไข/วันลาพนักงาน</a>
             <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar burger-lines"></span>
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">เพิ่มจำนวนวันลา</label>
+                                            class="col-sm-4 col-form-label">เพิ่ม/เเก้ไข/จำนวนวันลา</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="date_add">
                                         </div>
