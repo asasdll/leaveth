@@ -59,9 +59,67 @@ class Add_dateController extends Controller
                 ->where('data_name', '=' ,$name_la)
                 ->where('id_user','=', $id)
                 ->get();
+            //dd($code_user);
+            if (Count($date_up) == '1') {
+                # code...
+                $date_up_1 = $date_up[0]->date_up;
 
-      
+            }else{
 
+                $date_up_1 = '0';
+
+
+            }
+
+            //dd($date_up_1);
+
+        $date_sum = DB::table('sum_date')
+                ->where('leave_name', '=' ,$name_la)
+                ->where('user_id','=', $id)
+                ->get();
+
+                    if (Count($date_sum) == '1') {
+                        # code...
+                        $date_sum_lea = $date_sum[0]->leave_name;
+                    }
+            
+        //dd($date_sum,);
+
+
+        $code_user = DB::table('users')
+          ->join('memberusers', 'users.id', '=','memberusers.iduser')
+          ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+          ->join('leaves_tops', 'newcompanies.idname', '=','leaves_tops.id_company')
+          ->where('memberusers.iduser', '=' , $id)
+          ->get();
+
+          if (Count($code_user) == '1') {
+            # code...
+            $date_code_user = $code_user[0]->sickleave_date;
+            $date_code_user1 = $code_user[0]->personalleave_date;
+            $date_code_user2 = $code_user[0]->vacationleave_date;
+
+        }else{
+
+            $date_code_user = '0';
+            $date_code_user1 = '0';
+            $date_code_user2 = '0';
+
+        }
+
+        
+
+        $sum_date_new_1 = $date_code_user + $date_la;
+        $sum_date_new_2 = $date_code_user1 + $date_la;
+        $sum_date_new_3 = $date_code_user2 + $date_la;
+
+  $sum_all = DB::table('sum_date')
+        ->where('leave_name', '=' ,$name_la)
+        ->where('user_id','=', $id)
+        ->get();
+
+    
+   // dd($sum_all);
 
        // dd($date_up,$date_id);  
 
@@ -78,6 +136,52 @@ class Add_dateController extends Controller
                 ['id_user' => $id,'data_name' => $name_la, 'date_up' => $date_la]
             );
         }
+
+
+        if (Count($sum_all) == '1') {
+            # code...
+           //dd($sum_all);
+            $date_all_suer = $sum_all[0]->leave_date_user;
+
+        }
+
+        //dd($date_sum);
+        if (Count($date_sum) == '1') {
+            # code...
+            $id_sum = $date_sum[0]->id; 
+
+                    if ($date_sum_lea === 'ลาป่วย') {
+                        # code...
+                        $all_data = $sum_date_new_1  -  $date_all_suer;
+                        //dd('ลาป่วย1');
+                        $affected = DB::table('sum_date')
+                        ->where('id', $id_sum)
+                        ->update(['leave_date' => $date_code_user , 'leave_date_up' => $date_la,'leave_date_sum' => $sum_date_new_1 ,'leave_date_surplus' =>  $all_data]);
+
+                    }elseif ($date_sum_lea === 'ลากิจ') {
+                        # code...
+                        //dd('ลากิจ1');
+                        $all_data = $sum_date_new_2  -  $date_all_suer;
+                        
+                        $affected = DB::table('sum_date')
+                        ->where('id', $id_sum)
+                        ->update(['leave_date' => $date_code_user1 , 'leave_date_up' => $date_la ,'leave_date_sum' => $sum_date_new_2 ,'leave_date_surplus' =>  $all_data]);
+
+                    }elseif ($date_sum_lea === 'ลาพักร้อน') {
+                        # code...
+
+                        $all_data = $sum_date_new_3  -  $date_all_suer;
+                        //dd('ลาพักร้อน1');
+                        $affected = DB::table('sum_date')
+                        ->where('id', $id_sum)
+                        ->update(['leave_date' => $date_code_user2 , 'leave_date_up' => $date_la ,'leave_date_sum' => $sum_date_new_3 ,'leave_date_surplus' =>  $all_data]);
+
+                    }
+                
+
+           
+        }
+
         return redirect('add_date')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 

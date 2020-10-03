@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            <form align='center' method="POST" action="lv_date">
+                            <form align='center' method="POST" action="leave_date_index">
                                 @csrf
                                 <div class="form-group">
                                     @error('sickleave_date')
@@ -40,7 +40,7 @@
                                     @enderror
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
+                                            class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="personalleave_date">
                                         </div>
@@ -50,7 +50,7 @@
                                     @enderror
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
+                                            class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="vacationleave_date">
                                         </div>

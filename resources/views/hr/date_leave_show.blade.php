@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
+                                            class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="personalleave_date"
                                                 value="{{ $ticket1->personalleave_date}}">
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
+                                            class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="vacationleave_date"
                                                 value="{{ $ticket1->vacationleave_date}}">

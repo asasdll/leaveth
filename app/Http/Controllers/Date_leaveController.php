@@ -125,16 +125,191 @@ class Date_leaveController extends Controller
              $member->vacationleave = 'ลาพักร้อน';
              $member->vacationleave_date = $request->vacationleave_date;
 
-             /*$member->status_chief = $request->status_chief;
-             $member->status_text1 = $request->status_text1;
-             $member->status_hr = $request->status_hr;
-             $member->status_text2 = $request->status_text2;*/
-            
-   
+ 
             
             // dd($member);
-             $member->save();
+            $member->save();
 
+            $name_l1 = $request->sickleave_date;
+            $name_l2 = $request->personalleave_date;
+            $name_l3 = $request->vacationleave_date;
+
+            $leave_user = DB::table('users')
+                    ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                    ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                    ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                    ->where('newcompanies.idname', '=' , Auth::user()->id)
+                    ->get();
+
+           //dd( $leave_user);
+
+            if (Count($leave_user) >= '1') {
+                # code...   
+                //dd($code_user);
+
+                            $leave_user = DB::table('users')
+                                    ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                                    ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                                    ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                                    ->where('newcompanies.idname', '=' , Auth::user()->id)
+                                    ->where('sum_date.leave_name', '=' , 'ลาป่วย')
+                                    ->update([ 'leave_date' => $name_l1]);
+
+                            $leave_user1 = DB::table('users')
+                                    ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                                    ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                                    ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                                    ->where('newcompanies.idname', '=' , Auth::user()->id)
+                                    ->where('sum_date.leave_name', '=' , 'ลากิจ')
+                                    ->update([ 'leave_date' => $name_l2]);
+
+                            $leave_user2 = DB::table('users')
+                                    ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                                    ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                                    ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                                    ->where('newcompanies.idname', '=' , Auth::user()->id)
+                                    ->where('sum_date.leave_name', '=' , 'ลาพักร้อน')
+                                    ->update([ 'leave_date' => $name_l3]);
+                            # code...
+                        
+            
+            }
+
+
+    
+          
+                     // dd('555');
+
+                     $leave_user03 = DB::table('users')
+                                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                                        ->join('add_date', 'memberusers.iduser', '=','add_date.id_user')
+                                        ->where('newcompanies.idname', '=' , Auth::user()->id)
+                                        ->where('data_name', '=' , 'ลาป่วย')
+                                        ->get();
+                    
+
+                            if (Count($leave_user03) >= '1') {
+                                        # code...
+                                $add_id = $leave_user03[0]->iduser;
+                                $add_date = $leave_user03[0]->date_up;
+                                $sum_all  = $name_l1 + $add_date; 
+                                
+                           
+                                 $leave_user2 = DB::table('sum_date')
+                                                ->where('user_id', '=' ,  $add_id)
+                                                ->where('leave_name', '=' , 'ลาป่วย')
+                                               ->get();
+                                        if (Count($leave_user2) >= '1') {
+                                                   # code...
+                                                   $date_surplus = $leave_user2[0]->leave_date_user;
+
+                                               }else {
+                                                  $date_surplus = '0';
+                                               }
+                              //  dd($leave_user02);
+                                
+                                $sum_all_dom  = $sum_all - $date_surplus; 
+
+
+
+                                        $leave_user02 = DB::table('sum_date')
+                                                ->where('user_id', '=' ,  $add_id)
+                                                ->where('leave_name', '=' , 'ลาป่วย')
+                                                ->update([ 'leave_date_up' => $add_date ,'leave_date_sum' =>$sum_all,'leave_date_surplus' => $sum_all_dom]);
+
+                                        
+
+                                    }  
+
+
+                            $leave_user03 = DB::table('users')
+                                    ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                                    ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                                    ->join('add_date', 'memberusers.iduser', '=','add_date.id_user')
+                                    ->where('newcompanies.idname', '=' , Auth::user()->id)
+                                    ->where('data_name', '=' , 'ลากิจ')
+                                    ->get();
+                
+
+                        if (Count($leave_user03) >= '1') {
+                                    # code...
+                            $add_id = $leave_user03[0]->iduser;
+                            $add_date = $leave_user03[0]->date_up;
+                            $sum_all  = $name_l2 + $add_date; 
+                            
+                       
+                             $leave_user2 = DB::table('sum_date')
+                                            ->where('user_id', '=' ,  $add_id)
+                                            ->where('leave_name', '=' , 'ลากิจ')
+                                           ->get();
+                                    if (Count($leave_user2) >= '1') {
+                                               # code...
+                                               $date_surplus = $leave_user2[0]->leave_date_user;
+
+                                           }else {
+                                              $date_surplus = '0';
+                                           }
+                          //  dd($leave_user02);
+                            
+                            $sum_all_dom  = $sum_all - $date_surplus; 
+
+
+
+                                    $leave_user02 = DB::table('sum_date')
+                                            ->where('user_id', '=' ,  $add_id)
+                                            ->where('leave_name', '=' , 'ลากิจ')
+                                            ->update([ 'leave_date_up' => $add_date ,'leave_date_sum' =>$sum_all,'leave_date_surplus' => $sum_all_dom]);
+
+                                    
+
+                                }
+
+
+                    $leave_user03 = DB::table('users')
+                                ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                                ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                                ->join('add_date', 'memberusers.iduser', '=','add_date.id_user')
+                                ->where('newcompanies.idname', '=' , Auth::user()->id)
+                                ->where('data_name', '=' , 'ลาพักร้อน')
+                                ->get();
+            
+
+                    if (Count($leave_user03) >= '1') {
+                                # code...
+                        $add_id = $leave_user03[0]->iduser;
+                        $add_date = $leave_user03[0]->date_up;
+                        $sum_all  = $name_l3 + $add_date; 
+                        
+                   
+                         $leave_user2 = DB::table('sum_date')
+                                        ->where('user_id', '=' ,  $add_id)
+                                        ->where('leave_name', '=' , 'ลาพักร้อน')
+                                       ->get();
+                                if (Count($leave_user2) >= '1') {
+                                           # code...
+                                           $date_surplus = $leave_user2[0]->leave_date_user;
+
+                                       }else {
+                                          $date_surplus = '0';
+                                       }
+                      //  dd($leave_user02);
+                        
+                        $sum_all_dom  = $sum_all - $date_surplus; 
+
+
+
+                                $leave_user02 = DB::table('sum_date')
+                                        ->where('user_id', '=' ,  $add_id)
+                                        ->where('leave_name', '=' , 'ลาพักร้อน')
+                                        ->update([ 'leave_date_up' => $add_date ,'leave_date_sum' =>$sum_all,'leave_date_surplus' => $sum_all_dom]);
+
+                                
+
+                            }
+
+                     
+          //  dd('ไม่มี');
              return redirect('date_leave')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 
@@ -192,15 +367,187 @@ class Date_leaveController extends Controller
         $member->personalleave_date = $request->personalleave_date;
         $member->vacationleave_date = $request->vacationleave_date;
 
-        /*$member->status_chief = $request->status_chief;
-        $member->status_text1 = $request->status_text1;
-        $member->status_hr = $request->status_hr;
-        $member->status_text2 = $request->status_text2;*/
-       
-
-       
-        //d($member);
+    
         $member->save();
+
+        $name_l1 = $request->sickleave_date;
+        $name_l2 = $request->personalleave_date;
+        $name_l3 = $request->vacationleave_date;
+
+        $leave_user = DB::table('users')
+        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+        ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+        ->where('newcompanies.idname', '=' , Auth::user()->id)
+        ->get();
+
+//dd( $leave_user);
+
+if (Count($leave_user) >= '1') {
+    # code...   
+    //dd($code_user);
+
+                $leave_user = DB::table('users')
+                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                        ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                        ->where('newcompanies.idname', '=' , Auth::user()->id)
+                        ->where('sum_date.leave_name', '=' , 'ลาป่วย')
+                        ->update([ 'leave_date' => $name_l1]);
+
+                $leave_user1 = DB::table('users')
+                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                        ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                        ->where('newcompanies.idname', '=' , Auth::user()->id)
+                        ->where('sum_date.leave_name', '=' , 'ลากิจ')
+                        ->update([ 'leave_date' => $name_l2]);
+
+                $leave_user2 = DB::table('users')
+                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                        ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                        ->where('newcompanies.idname', '=' , Auth::user()->id)
+                        ->where('sum_date.leave_name', '=' , 'ลาพักร้อน')
+                        ->update([ 'leave_date' => $name_l3]);
+                # code...
+            
+
+}
+
+
+
+
+         // dd('555');
+
+         $leave_user03 = DB::table('users')
+                            ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                            ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                            ->join('add_date', 'memberusers.iduser', '=','add_date.id_user')
+                            ->where('newcompanies.idname', '=' , Auth::user()->id)
+                            ->where('data_name', '=' , 'ลาป่วย')
+                            ->get();
+        
+
+                if (Count($leave_user03) >= '1') {
+                            # code...
+                    $add_id = $leave_user03[0]->iduser;
+                    $add_date = $leave_user03[0]->date_up;
+                    $sum_all  = $name_l1 + $add_date; 
+                    
+               
+                     $leave_user2 = DB::table('sum_date')
+                                    ->where('user_id', '=' ,  $add_id)
+                                    ->where('leave_name', '=' , 'ลาป่วย')
+                                   ->get();
+                            if (Count($leave_user2) >= '1') {
+                                       # code...
+                                       $date_surplus = $leave_user2[0]->leave_date_user;
+
+                                   }else {
+                                      $date_surplus = '0';
+                                   }
+                  //  dd($leave_user02);
+                    
+                    $sum_all_dom  = $sum_all - $date_surplus; 
+
+
+
+                            $leave_user02 = DB::table('sum_date')
+                                    ->where('user_id', '=' ,  $add_id)
+                                    ->where('leave_name', '=' , 'ลาป่วย')
+                                    ->update([ 'leave_date_up' => $add_date ,'leave_date_sum' =>$sum_all,'leave_date_surplus' => $sum_all_dom]);
+
+                            
+
+                        }  
+
+
+                $leave_user03 = DB::table('users')
+                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                        ->join('add_date', 'memberusers.iduser', '=','add_date.id_user')
+                        ->where('newcompanies.idname', '=' , Auth::user()->id)
+                        ->where('data_name', '=' , 'ลากิจ')
+                        ->get();
+    
+
+            if (Count($leave_user03) >= '1') {
+                        # code...
+                $add_id = $leave_user03[0]->iduser;
+                $add_date = $leave_user03[0]->date_up;
+                $sum_all  = $name_l2 + $add_date; 
+                
+           
+                 $leave_user2 = DB::table('sum_date')
+                                ->where('user_id', '=' ,  $add_id)
+                                ->where('leave_name', '=' , 'ลากิจ')
+                               ->get();
+                        if (Count($leave_user2) >= '1') {
+                                   # code...
+                                   $date_surplus = $leave_user2[0]->leave_date_user;
+
+                               }else {
+                                  $date_surplus = '0';
+                               }
+              //  dd($leave_user02);
+                
+                $sum_all_dom  = $sum_all - $date_surplus; 
+
+
+
+                        $leave_user02 = DB::table('sum_date')
+                                ->where('user_id', '=' ,  $add_id)
+                                ->where('leave_name', '=' , 'ลากิจ')
+                                ->update([ 'leave_date_up' => $add_date ,'leave_date_sum' =>$sum_all,'leave_date_surplus' => $sum_all_dom]);
+
+                        
+
+                    }
+
+
+        $leave_user03 = DB::table('users')
+                    ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                    ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                    ->join('add_date', 'memberusers.iduser', '=','add_date.id_user')
+                    ->where('newcompanies.idname', '=' , Auth::user()->id)
+                    ->where('data_name', '=' , 'ลาพักร้อน')
+                    ->get();
+
+
+        if (Count($leave_user03) >= '1') {
+                    # code...
+            $add_id = $leave_user03[0]->iduser;
+            $add_date = $leave_user03[0]->date_up;
+            $sum_all  = $name_l3 + $add_date; 
+            
+       
+             $leave_user2 = DB::table('sum_date')
+                            ->where('user_id', '=' ,  $add_id)
+                            ->where('leave_name', '=' , 'ลาพักร้อน')
+                           ->get();
+                    if (Count($leave_user2) >= '1') {
+                               # code...
+                               $date_surplus = $leave_user2[0]->leave_date_user;
+
+                           }else {
+                              $date_surplus = '0';
+                           }
+          //  dd($leave_user02);
+            
+            $sum_all_dom  = $sum_all - $date_surplus; 
+
+
+
+                    $leave_user02 = DB::table('sum_date')
+                            ->where('user_id', '=' ,  $add_id)
+                            ->where('leave_name', '=' , 'ลาพักร้อน')
+                            ->update([ 'leave_date_up' => $add_date ,'leave_date_sum' =>$sum_all,'leave_date_surplus' => $sum_all_dom]);
+
+                    
+
+                }
+
         return redirect('date_leave')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 

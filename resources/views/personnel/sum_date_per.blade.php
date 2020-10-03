@@ -48,7 +48,7 @@
                                     @if($ticket->leave_date_surplus >= "0" ) 
                                          {{$ticket->leave_date_surplus}}
                                      @else()
-                                        <font color="#663399">{{'ไม่มีกำการกำหนดวัลา'}}</font>
+                                        <font color="#663399">{{'ไม่มีกำการกำหนดวันลา'}}</font>
                                     @endif
                                 </td>
                             </tr>
