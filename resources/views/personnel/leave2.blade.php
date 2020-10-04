@@ -151,7 +151,7 @@ function demo2() {
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group row">
                                                         <label for="text" class="col-sm-2 col-form-label">ขอลา</label>
-                                                        <div class="col-md-8 pr-1"> 
+                                                        <div class="col-md-8 pr-1">
                                                             <select class="form-control" name="leave" id="demo6"
                                                                 onclick="demo2()">
                                                                 <option value="ลาป่วย">
@@ -165,8 +165,8 @@ function demo2() {
                                                     </div>
                                                 </div>
                                                 @if(session('success'))
-                                                            <font color="red">{{session('success')}}</font>
-                                                            @endif
+                                                     <font color="red">{{session('success')}}</font>
+                                                @endif
                                             </div>
 
                                             <div class="row">

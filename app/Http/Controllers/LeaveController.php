@@ -288,7 +288,7 @@ class LeaveController extends Controller
     public function edit(Leave $leave, $id)
     {
 
-
+       // dd('55');
 
           $position = DB::table('positions')
 
@@ -361,15 +361,49 @@ class LeaveController extends Controller
             //	$img->save();
           }
           
-          //dd($member);
-           $member->save();
 
+          $save_data0 = $request->leave;
+          $save_data = DB::table('sum_date')
+          ->where('user_id',Auth::user()->id)
+          ->where('leave_name','=',"$save_data0")
+          ->get();
+          if (Count($save_data) == '1') {
+              # code...Eเเ
+              $save_data01 = $save_data[0]->leave_date_surplus;
+                      if ($save_data01 == 0) {
+                          # code...e
+                          //dd('ไม่ได้');
+                          return redirect()->route('letter.edit', $id)->with('success', "วัน $save_data0 ของคุณไม่พอ");
+                      }else {
+                          # code...
+                         // dd('ได้');
+                          $member->save();
+                      }
+              
+          }else {
+
+              //dd('ไม่มี');
+              $member->save();
+          }
+
+          
+    $user = request()->User();
+        
+    if ($user && $user->status === 'chief') {
+
+        return redirect('recordch');
+        
+    }else {
+          
+       return redirect('leave3');
+
+    }
+
+      
            
        
        //dd($data);
-       
-       return redirect('leave3');
-
+    
       
          
     }

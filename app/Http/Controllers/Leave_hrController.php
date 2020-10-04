@@ -79,12 +79,17 @@ class Leave_hrController extends Controller
            $member->status_hr = $request->status_hr;
            $member->status_text2 = $request->status_text2;
           // dd($member);
+
           $member->save();
-
-
+          $satus =  $request->status_hr;
+        //dd($satus);
+            if ($satus == 'อนุมัติ') {
+                # code...
+               /// dd('อนุมัติ');
            $save_data0 = DB::table('leaves')
            ->where('id',$id)
            ->get();
+
         $save_data1 = $save_data0[0]->idmember;
         $save_data2 = $save_data0[0]->leave;
 
@@ -250,6 +255,8 @@ class Leave_hrController extends Controller
               }
 
           }
+          
+            }
    
            return redirect('leave_hr');
 

@@ -231,7 +231,10 @@
                                                     data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}"
                                                     data-da="{{$ticket2->da}}" data-address="{{$ticket2->address}}" data-tel="{{$ticket2->tel}}"  data-image="{{$ticket2->image}}"
                                                     data-status_chief="{{$ticket2->status_chief}}" data-status_text1="{{$ticket2->status_text1}}" data-status_hr="{{$ticket2->status_hr}}"  data-status_text2="{{$ticket2->status_text2}}"
-                                                data-toggle="modal" data-target="#exampleModal">View</a></td>         
+                                                data-toggle="modal" data-target="#exampleModal">View</a></td>   
+                                                <td><a class="btn btn-info btn-fill pull-right"
+                                                        href="{{route('letter.edit',$ticket2->id) }}"
+                                                        role="button">เเก้ไข</a></td>      
                                             </tr>
                                          @endforeach
                                         </tbody>

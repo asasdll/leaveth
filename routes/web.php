@@ -43,6 +43,7 @@ Route::post('up_no', 'Leave_hrController@update_no')->middleware('admin');
 Route::get('VH', 'MemberuserController@index')->middleware('auth');
 Route::get('recordch', 'MemberuserController@record')->middleware('auth');
 Route::resource('letter', 'LeaveController')->middleware('auth');
+//Route::get('letter2/{id}', 'LeaveController@edit')->middleware('auth');
 Route::resource('timestampch', 'TimesController')->middleware('auth');
 Route::resource('down', 'TimesController')->middleware('auth');
 Route::resource('l_chief', 'Leave_chiefController')->middleware('auth');

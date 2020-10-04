@@ -140,7 +140,7 @@ function demo2() {
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group row">
                                                         <label for="text"
-                                                            class="col-md-2 pr-1 col-form-label">นามสกุล</label>
+                                                            class="col-md-3 pr-1 col-form-label">นามสกุล</label>
                                                         <div class="col-md-8 pr-1">
                                                             <input type="text" class="form-control"
                                                                 value="{{$chief->lea_lname}}" readonly>
@@ -179,6 +179,9 @@ function demo2() {
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if(session('success'))
+                                                 <font color="red">{{session('success')}}</font>
+                                            @endif
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 pr-1">
