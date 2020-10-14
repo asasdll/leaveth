@@ -9,7 +9,7 @@ $time_diff=abs($now_time2-$now_time1);
 $time_diff_h=floor($time_diff/3600); // จำนวนชั่วโมงที่ต่างกัน
 $time_diff_m=floor(($time_diff%3600)/60); // จำวนวนนาทีที่ต่างกัน
 $time_diff_s=($time_diff%3600)%60; // จำนวนวินาทีที่ต่างกัน
-return $time_diff_h." ชั่วโมง ".$time_diff_m." นาที ".$time_diff_s." วินาที";
+return $time_diff_h." : ".$time_diff_m."  :".$time_diff_s." ";
 }
 
 // การใช้งาน

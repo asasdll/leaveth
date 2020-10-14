@@ -47,6 +47,7 @@
                                     <th>เข้างาน</th>
                                     <th>ออกงาน</th>
                                     <th>เวลารวม</th>
+                                    <th>เข้างานสาย</th>
                                 </thead>
                                 @php
                                 $i = 0;
@@ -73,6 +74,19 @@
                                             <font color="red">{{'ยังลงเวลาไม่ครบ'}}</font>
                                             @endif
                                         </td>
+                                        @php
+                                            $rest = substr("{{$ticket->time_in}}", 4, 2)
+                                        @endphp
+                                        @if($ticket->time_out == "")
+                                            
+                                        @else
+                                                @if($rest === '00')
+                                                    <td><font color="#32CD32">{{$rest}}</font></td>
+                                                @else
+                                                    <td><font color="#FF0000">{{$rest}}</font></td>
+                                                @endif 
+                                        @endif
+
 
                                     </tr>
                                 </tbody>
