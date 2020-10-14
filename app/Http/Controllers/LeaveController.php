@@ -72,7 +72,7 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
 
-        
+    //dd($request->all());
         $user = request()->User();
         if ($user && $user->status === 'chief') {
            
@@ -89,14 +89,30 @@ class LeaveController extends Controller
             $date1 = request()->from1;
             $date2 = request()->to1;
             $da = request()->daydiff1;
+            $datoo = request()->datoo1;
             //dd('ลาป่วย',$date1,$date2,$da);
         }else {
             # code...
             $date1 = request()->from2;
             $date2 = request()->to2;
             $da = request()->daydiff2;
+            $datoo = request()->datoo2;
             //dd('ลากิจ/พักร้อน',$date1,$date2,$da,$request->all());
         }
+    //dd( $datoo );
+        if ($datoo === 'ลาครึ่งเช้า') {
+           // dd('มี');
+            $a = 0.5;
+
+            $da = $da - $a;
+        }elseif ($datoo === 'ลาครึ่งบาย') {
+            # code...
+            $a = 0.5;
+
+            $da = $da - $a;
+        }
+
+
        // dd($request->all());
               //dd($request->all());
               $this->validate($request, [
@@ -178,14 +194,28 @@ class LeaveController extends Controller
                  $date1 = request()->from1;
                  $date2 = request()->to1;
                  $da = request()->daydiff1;
+                 $datoo = request()->datoo1;
                  //dd('ลาป่วย',$date1,$date2,$da);
              }else {
                  # code...
                  $date1 = request()->from2;
                  $date2 = request()->to2;
                  $da = request()->daydiff2;
+                 $datoo = request()->datoo2;
                  //dd('ลากิจ/พักร้อน',$date1,$date2,$da,$request->all());
              }
+
+             if ($datoo === 'ลาครึ่งเช้า') {
+                //dd('มี');
+                $a = 0.5;
+    
+                $da = $da - $a;
+            }elseif ($datoo === 'ลาครึ่งบาย') {
+                # code...
+                $a = 0.5;
+    
+                $da = $da - $a;
+            }
             // dd($request->all());
                    //dd($request->all());
                    $this->validate($request, [

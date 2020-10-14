@@ -65,6 +65,23 @@ $(function() {
 <div class="row">
     <div class="col-md-6 pr-1">
         <div class="form-group row">
+            <label for="text" class="col-md-2 pr-1 col-form-label">ลาครึ่งวัน</label>
+            <div class="col-md-6 pr-1">
+                <select class="form-control" name="datoo1">
+                    <option value="0">
+                         ไม่มี</option>
+                    <option value="ลาครึ่งเช้า">
+                        ลาครึ่งเช้า</option>
+                    <option value="ลาครึ่งบาย">
+                        ลาครึ่งบาย</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 pr-1">
+        <div class="form-group row">
             <label for="text" class="col-md-4 pr-1 col-form-label">ในระหว่างลาสมารถติดต่อข้าพเจ้าได้ที่</label>
             <div class="col-md-8 pr-1">
                 <input type="text" class="form-control" name="address" id="address2" placeholder="Address">
@@ -85,7 +102,7 @@ $(function() {
     </div>
     <div class="col-md- pr-1">
         @foreach ($errors->all() as $error)
-        <font  color="#ff0000">{{" up image ' jpg,png,jpeg,gif,svg '"}}</font>
+        <font color="#ff0000">{{" up image ' jpg,png,jpeg,gif,svg '"}}</font>
         @endforeach
         <div class="form-group">
             <input type="file" class="form-control" id="image" name="image">

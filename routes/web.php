@@ -91,3 +91,7 @@ Route::get('qr-code-g', function () {
   Route::get('add_date', 'Add_dateController@index');
   Route::get('add_/{id}', 'Add_dateController@create');
   Route::post('lv_date/{id}', 'Add_dateController@store');
+  Route::resource('camera', 'CameraController');
+  Route::post('exe', 'CameraController@create');
+  Route::get('55', 'SampleController@detectFaces');
+
