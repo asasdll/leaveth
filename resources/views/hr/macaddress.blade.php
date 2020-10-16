@@ -59,7 +59,6 @@ function confirmDelete(delUrl) {
                                                 action="{{action('AddmacController@destroy',$ticket->id)}}">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="DELETE" />
-                                                <br>
                                                 <button type="submit"
                                                 onclick="return confirm('คุณแน่ใจหรือว่าต้องการลบ')"
                                                 class="btn btn-danger">ลบ</button>

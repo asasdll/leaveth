@@ -16,6 +16,7 @@ $(document).on('click', '.show-modal', function() {
     $('#dt1').text($(this).data('date1'));
     $('#dt2').text($(this).data('date2'));
     $('#d').text($(this).data('da'));
+    $('#dt').text($(this).data('datoo'));
     $('#ad').text($(this).data('address'));
     $('#t').text($(this).data('tel'));
     $('#sc').text($(this).data('status_chief'));
@@ -216,7 +217,7 @@ label {
                                                 data-lea_lname="{{$ticket1->lea_lname}}&nbsp;&nbsp;&nbsp;({{$ticket1->lea_niname}})"
                                                 data-position="{{$ticket1->position}}" data-leave="{{$ticket1->leave}}"
                                                 data-since="{{$ticket1->since}}" data-date1="{{$ticket1->date1}}"
-                                                data-date2="{{$ticket1->date2}}" data-da="{{$ticket1->da}}"
+                                                data-date2="{{$ticket1->date2}}" data-da="{{$ticket1->da}}" data-datoo="{{$ticket1->datoo}}"
                                                 data-address="{{$ticket1->address}}" data-tel="{{$ticket1->tel}}"
                                                 data-status_chief="{{$ticket1->status_chief}}"
                                                 data-status_text1="{{$ticket1->status_text1}}" data-toggle="modal"
@@ -294,6 +295,10 @@ label {
                     <label for="">ลาทั้งหมด :</label>
                     <b id="d" />
                     <label for=""> วัน </label>
+                </div>
+                <div class="form-group">
+                    <label for="">ลาครึ่งวัน :</label>
+                    <b id="dt" />
                 </div>
                 <div class="form-group">
                     <label for="">ที่อยุ่ขณะที่ลา :</label>

@@ -18,6 +18,7 @@
             $('#dt1').text($(this).data('date1'));
             $('#dt2').text($(this).data('date2'));
             $('#d').text($(this).data('da'));
+            $('#dt').text($(this).data('datoo'));
             $('#ad').text($(this).data('address'));
             $('#t').text($(this).data('tel'));
             $('#sc').text($(this).data('status_chief'));
@@ -228,7 +229,7 @@
                                                 <td><a class="show-modal btn btn-info btn-fill pull-right"  href="#" 
                                                     data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}" data-head="{{$ticket2->fname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->niname}})" 
                                                     data-lea_fname="{{$ticket2->lea_fname}}" data-lea_lname="{{$ticket2->lea_lname}} &nbsp;&nbsp;&nbsp; ({{$ticket2->lea_niname}})" data-position="{{$ticket2->position}}"
-                                                    data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}"
+                                                    data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}"  data-datoo="{{$ticket2->datoo}}"
                                                     data-da="{{$ticket2->da}}" data-address="{{$ticket2->address}}" data-tel="{{$ticket2->tel}}"  data-image="{{$ticket2->image}}"
                                                     data-status_chief="{{$ticket2->status_chief}}" data-status_text1="{{$ticket2->status_text1}}" data-status_hr="{{$ticket2->status_hr}}"  data-status_text2="{{$ticket2->status_text2}}"
                                                 data-toggle="modal" data-target="#exampleModal">View</a></td>   
@@ -292,7 +293,7 @@
                                                 <td><a class="show-modal btn btn-info btn-fill pull-right"  href="#" 
                                                     data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}" data-head="{{$ticket2->fname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->niname}})" 
                                                     data-lea_fname="{{$ticket2->lea_fname}}" data-lea_lname="{{$ticket2->lea_lname}} &nbsp;&nbsp;&nbsp; ({{$ticket2->lea_niname}})" data-position="{{$ticket2->position}}"
-                                                    data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}"
+                                                    data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}" data-datoo="{{$ticket2->datoo}}"
                                                     data-da="{{$ticket2->da}}" data-address="{{$ticket2->address}}" data-tel="{{$ticket2->tel}}"  data-image="{{$ticket2->image}}"
                                                     data-status_chief="{{$ticket2->status_chief}}" data-status_text1="{{$ticket2->status_text1}}" data-status_hr="{{$ticket2->status_hr}}"  data-status_text2="{{$ticket2->status_text2}}"
                                                 data-toggle="modal" data-target="#exampleModal">View</a></td>         
@@ -356,6 +357,10 @@
                                 <label for="">ลาทั้งหมด :</label>
                                 <b id="d"/>
                                 <label for=""> วัน </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ลาครึ่งวัน :</label>
+                                <b id="dt"/>
                             </div>
                             <div class="form-group">
                                 <label for="">ที่อยุ่ขณะที่ลา :</label>

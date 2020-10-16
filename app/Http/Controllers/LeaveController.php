@@ -138,6 +138,7 @@ class LeaveController extends Controller
                  $member->date1 = $date1;
                  $member->date2 = $date2;
                  $member->da = $da;
+                 $member->datoo = $datoo;
                  $member->address = $request->address;
                  $member->tel = $request->tel;
                  $member->status_chief = 'อนุมัติ';
@@ -241,6 +242,7 @@ class LeaveController extends Controller
                       $member->date1 = $date1;
                       $member->date2 = $date2;
                       $member->da = $da;
+                      $member->datoo = $datoo;
                       $member->address = $request->address;
                       $member->tel = $request->tel;
                       /*$member->status_chief = $request->status_chief;
@@ -380,6 +382,7 @@ class LeaveController extends Controller
            $member->date1 = $date1;
            $member->date2 = $date2;
            $member->da = $da;
+           $member->datoo = $datoo;
            $member->address = $request->address;
            $member->tel = $request->tel;
           

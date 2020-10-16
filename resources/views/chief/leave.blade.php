@@ -16,6 +16,7 @@ $(document).on('click', '.show-modal', function() {
     $('#dt1').text($(this).data('date1'));
     $('#dt2').text($(this).data('date2'));
     $('#d').text($(this).data('da'));
+    $('#dt').text($(this).data('datoo'));
     $('#ad').text($(this).data('address'));
     $('#t').text($(this).data('tel'));
     $('#sc').text($(this).data('status_chief'));
@@ -207,7 +208,7 @@ label {
                                                 data-lea_lname="{{$ticket1->lea_lname}}&nbsp;&nbsp;&nbsp;({{$ticket1->lea_niname}})"
                                                 data-position="{{$ticket1->position}}" data-leave="{{$ticket1->leave}}"
                                                 data-since="{{$ticket1->since}}" data-date1="{{$ticket1->date1}}"
-                                                data-date2="{{$ticket1->date2}}" data-da="{{$ticket1->da}}"
+                                                data-date2="{{$ticket1->date2}}" data-da="{{$ticket1->da}}" data-datoo="{{$ticket1->datoo}}"
                                                 data-address="{{$ticket1->address}}" data-tel="{{$ticket1->tel}}"
                                                 data-toggle="modal" data-target="#exampleModal">View</a>
                                                
@@ -272,6 +273,10 @@ label {
                     <label for=""> วัน </label>
                 </div>
                 <div class="form-group">
+                    <label for="">ลาครึ่งวัน :</label>
+                    <b id="dt" />
+                </div>
+                <div class="form-group">
                     <label for="">ที่อยุ่ขณะที่ลา :</label>
                     <b id="ad" />
                 </div>
@@ -284,81 +289,6 @@ label {
     </div>
 </div>
 <!---END-- Modal -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">กำลังรอการอนุมัติ</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="">ID :</label>
-                    <b id="i" />
-                </div>
-                <div class="form-group">
-                    <label for="">เรื่อง :</label>
-                    <b id="af" />
-                </div>
-                <div class="form-group">
-                    <label for="">ชื่อหัวหน้า :</label>
-                    <b id="he" />
-                </div>
-                <div class="form-group">
-                    <label for="">ชื่อ นามสกุล :</label>
-                    <a-l><b id="fi" /></a-l>
-                    <a-l>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b id="la" /></a-l>
-                </div>
-                <div class="form-group">
-                    <label for="">ประเภทการ :</label>
-                    <b id="le" />
-                </div>
-                <div class="form-group">
-                    <label for="">เนื่่องจาก :</label>
-                    <b id="si" />
-                </div>
-                <div class="form-group">
-                    <label for="">ตั้งเเต่- จนถึง :</label>
-                    <a-l><b id="dt1" /></a-l>
-                    <a-l>&nbsp;&nbsp;ถึง&nbsp;&nbsp;<b id="dt2" /></a-l>
-                </div>
-                <div class="form-group">
-                    <label for="">ลาทั้งหมด :</label>
-                    <b id="d" />
-                    <label for=""> วัน </label>
-                </div>
-                <div class="form-group">
-                    <label for="">ที่อยุ่ขณะที่ลา :</label>
-                    <b id="ad" />
-                </div>
-                <div class="form-group">
-                    <label for="">เบอร์ติดต่อ :</label>
-                    <b id="t" />
-                </div>
-                <div class="form-group">
-                    <label for="">คำอนุมัติหัวหน้า :</label>
-                    <b id="sc" />
-                </div>
-                <div class="form-group">
-                    <label for="">หมายเหตุหัวหน้า :</label>
-                    <b id="st1" />
-                </div>
-                <div class="form-group">
-                    <label for="">คำอนุมัติ HR :</label>
-                    <b id="sh" />
-                </div>
-                <div class="form-group">
-                    <label for="">หมายเหตุ HR :</label>
-                    <b id="st2" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!---- Modal  Img -->
 <div>

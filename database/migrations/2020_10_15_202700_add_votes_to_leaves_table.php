@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPositionsTable extends Migration
+class AddVotesToLeavesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddPositionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('positions', function (Blueprint $table) {
-            $table->string('herd_code')->unique()->after('position');
+        Schema::table('leaves', function (Blueprint $table) {
+
+            $table->string('datoo')->nullable()->after('da');
+            //
         });
     }
 
@@ -25,8 +27,9 @@ class AddPositionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('positions', function (Blueprint $table) {
-            $table->dropColumn('herd_code');
+        Schema::table('leaves', function (Blueprint $table) {
+            //
+            $table->dropColumn('datoo');
         });
     }
 }

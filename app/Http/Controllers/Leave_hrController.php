@@ -153,14 +153,14 @@ class Leave_hrController extends Controller
               ->where('leave_name','=','ลาป่วย')
               ->get();
               //dd($sum2);
-              
+              $l_user2 =$save_data3;
               
               if (Count($sum2) == '1') {
                   
                   $l_user = $sum2[0]->leave_date_user;
                   $l_id = $sum2[0]->id;
 
-                  $l_user2 =$save_data3;
+                 
                   $l_user1 = $l_user + $l_user2;
                   //dd($l_user1);
 
@@ -193,12 +193,14 @@ class Leave_hrController extends Controller
              // $date_sp1 = $date1 - '1';
             
              //dd($sum2);
+             $l_user2 = $save_data3;
+
               if (Count($sum2) == '1') {
         //dd('aaa');
                   $l_user = $sum2[0]->leave_date_user;
                   $l_id = $sum2[0]->id;
                  // dd($l_id,$l_user);
-                  $l_user2 = $save_data3;
+               
                   $l_user1 = $l_user + $l_user2;
 
                   $date_sp01 = $date1 - $l_user;
@@ -228,13 +230,15 @@ class Leave_hrController extends Controller
               
              // $date_sp2 = $date2 - '1';
               //dd($sum2);
+              $l_user2 = $save_data3;
+
               if (Count($sum2) == '1') {
                   
                   
                   $l_user = $sum2[0]->leave_date_user;
                   $l_id = $sum2[0]->id;
                  //dd($l_user01);
-                  $l_user2 = $save_data3;
+                 
                   $l_user1 = $l_user + $l_user2;
                     //dd($l_user1);
                     $date_sp01 = $date1 - $l_user;

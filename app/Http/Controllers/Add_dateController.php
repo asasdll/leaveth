@@ -14,19 +14,48 @@ class Add_dateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*public function __construct()
+    {
+        $this->middleware('admin');
+    }*/
+
+
     public function index(Request $request)
     {
-        $search = $request->get('search');
-        $add_date = DB::table('users')
-                ->join('memberusers', 'users.id', '=','memberusers.iduser')
-                ->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
-                ->where('positions.idchief', '=' ,Auth::user()->id)
-                ->where('firstnamebem','like', '%'.$search.'%')
-                ->get();  
-        //dd($add_date); 
 
+        $user = request()->User();
+            if ($user && $user->status == 'chief') {
 
-        return view('chief.add_date' ,['add_date' => $add_date]);
+                $search = $request->get('search');
+                $add_date = DB::table('users')
+                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                        ->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
+                        ->where('positions.idchief', '=' ,Auth::user()->id)
+                        ->where('firstnamebem','like', '%'.$search.'%')
+                        ->get();  
+                //dd($add_date); 
+        
+        
+                return view('chief.add_date' ,['add_date' => $add_date]);
+               
+                  }else{
+                 //
+                        return redirect('/home');
+                  }
+
+                /*  $search = $request->get('search');
+                  $add_date = DB::table('users')
+                          ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                          ->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
+                          ->where('positions.idchief', '=' ,Auth::user()->id)
+                          ->where('firstnamebem','like', '%'.$search.'%')
+                          ->get();  
+                  //dd($add_date); 
+          
+          
+                  return view('chief.add_date' ,['add_date' => $add_date]);*/
+      
     }
 
     /**

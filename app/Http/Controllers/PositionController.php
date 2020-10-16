@@ -219,7 +219,7 @@ class PositionController extends Controller
       //dd($reg2);
       $affected1 = DB::table('memberusers')
               ->where('code_herd', "$reg2")
-              ->update(['code_herd' => 'null']);
+              ->update(['code_herd' => NULL]);
       //session::flash('massage','ลบข้อมูลเรียบร้อยเเล้ว');
       return redirect('pos');
     }

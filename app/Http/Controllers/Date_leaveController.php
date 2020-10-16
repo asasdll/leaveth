@@ -81,20 +81,30 @@ class Date_leaveController extends Controller
     public function create()
     {       
 
-        $id_leave = DB::table('leaves_tops')
-        ->where('id_company',Auth::user()->id)
-        ->groupBy('id_company')
-        ->get();
-         if (count($id_leave) === 1) {
-             # code...e
-            // dd($id_leave);
-             return view('.hr.date_leave_show',['id_leave' => $id_leave]);
-         
-            }else {
+        $user = request()->User();
+        if ($user && $user->status == 'hr') {
 
-            //dd($id_leave);
-            return view('.hr.date_leave');
-         }
+                $id_leave = DB::table('leaves_tops')
+                ->where('id_company',Auth::user()->id)
+                ->groupBy('id_company')
+                ->get();
+                 if (count($id_leave) === 1) {
+                     # code...e
+                    // dd($id_leave);
+                     return view('.hr.date_leave_show',['id_leave' => $id_leave]);
+                 
+                    }else {
+        
+                    //dd($id_leave);
+                    return view('.hr.date_leave');
+                 }
+           
+              }else{
+             //
+                    return redirect('/home');
+              }
+
+       
         
     }
 

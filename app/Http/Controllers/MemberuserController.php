@@ -106,7 +106,7 @@ class MemberuserController extends Controller
      // dd('asda');
       
       $check_code = DB::table('memberusers')
-      ->where('code_herd','=', 'null')
+      ->whereNull('code_herd')
       ->where('iduser',Auth::user()->id)
       ->get();
       //$check_code1 = $check_code()->code_herd; 
@@ -332,7 +332,7 @@ class MemberuserController extends Controller
             $member->city = $request->city;
             $member->status2 = $request->status2;
             $member->postalcode = $request->postalcode;
-            $member->code_herd = 'null';
+            //$member->code_herd = 'null';
             $image = $request->file('image');
 
          if($request->hasFile('image') == '1'){
