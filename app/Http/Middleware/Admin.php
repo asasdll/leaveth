@@ -21,7 +21,7 @@ class Admin
                 return $next($request);
               }elseif (Auth::check() && $user && $user->status == 'chief') {
                 //dd($all);
-                return redirect('/home');
+                return redirect('/chief');
 
               }elseif (Auth::check() && $user && $user->status == 'personnel') {
 

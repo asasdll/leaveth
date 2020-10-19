@@ -80,7 +80,7 @@ class Leave_hrController extends Controller
            $member->status_text2 = $request->status_text2;
           // dd($member);
 
-          $member->save();
+         $member->save();
           $satus =  $request->status_hr;
         //dd($satus);
             if ($satus == 'อนุมัติ') {
@@ -93,7 +93,10 @@ class Leave_hrController extends Controller
         $save_data1 = $save_data0[0]->idmember;
         $save_data2 = $save_data0[0]->leave;
         $save_data3 = $save_data0[0]->da;
-      //  dd($save_data0,$save_data1,$save_data2,$save_data3);
+
+
+    
+        //dd($save_data0,$save_data1,$save_data2,$save_data3);
            $date_user = DB::table('add_date')
            ->where('id_user', $id)
            ->where('data_name','=', "$save_data2")
@@ -114,10 +117,6 @@ class Leave_hrController extends Controller
           ->where('memberusers.iduser', '=' , $save_data1)
           ->get();
  //dd($code_user);
-
- 
-      
-
 
           if (Count($code_user) == '1') {
               $code_user1 = $code_user[0]->sickleave_date;
@@ -153,12 +152,15 @@ class Leave_hrController extends Controller
               ->where('leave_name','=','ลาป่วย')
               ->get();
               //dd($sum2);
-              $l_user2 =$save_data3;
+              $l_user2 = $save_data3;
               
               if (Count($sum2) == '1') {
                   
                   $l_user = $sum2[0]->leave_date_user;
                   $l_id = $sum2[0]->id;
+                  $da2 = $sum2[0]->da;
+                  $da01 = '1';
+                  $da = $da2 + $da01;
 
                  
                   $l_user1 = $l_user + $l_user2;
@@ -170,14 +172,14 @@ class Leave_hrController extends Controller
                   $affected = DB::table('sum_date')
                               ->where('id',  $l_id)
                               ->update([ 'leave_date' => $code_user1,'leave_date_up' => $date_user,'leave_date_user' => $l_user1,
-                              'leave_date_sum' =>  $date0 ,'leave_date_surplus' => $date_sp02]);
+                              'leave_date_sum' =>  $date0 ,'da' => $da ,'leave_date_surplus' => $date_sp02]);
 
               }else {
                   # code...
                   $date_sp0 = $date0 - $l_user2;
                   DB::table('sum_date')->insert(
                       ['user_id' =>  $save_data1,'leave_name' =>$aa, 'leave_date' => $code_user1,
-                      'leave_date_up' => $date_user,'leave_date_user' => '1','leave_date_sum' =>  $date0 ,'leave_date_surplus' =>  $date_sp0]
+                      'leave_date_up' => $date_user,'da' => '1' ,'leave_date_user' => $l_user2,'leave_date_sum' =>  $date0 ,'leave_date_surplus' =>  $date_sp0]
                   );
               }
 
@@ -194,34 +196,39 @@ class Leave_hrController extends Controller
             
              //dd($sum2);
              $l_user2 = $save_data3;
-
+             //dd($l_user2);
               if (Count($sum2) == '1') {
         //dd('aaa');
                   $l_user = $sum2[0]->leave_date_user;
                   $l_id = $sum2[0]->id;
+                  $da2 = $sum2[0]->da;
+                  $da01 = '1';
+                  $da = $da2 + $da01;
                  // dd($l_id,$l_user);
                
                   $l_user1 = $l_user + $l_user2;
-
+              //  dd(  $l_user);
                   $date_sp01 = $date1 - $l_user;
-                  $date_sp02 = $date_sp01 - $l_user2;
-               //  dd($date_sp02);
+                 $date_sp02 = $date_sp01 - $l_user2;   
+                //dd($date_sp02);
                   $affected = DB::table('sum_date')
                               ->where('id',  $l_id)
                               ->update([ 'leave_date' => $code_user2, 'leave_date_up' => $date_user,'leave_date_user' => $l_user1,
-                                'leave_date_sum' =>  $date1 ,'leave_date_surplus' =>  $date_sp02]);
+                                'leave_date_sum' =>  $date1 ,'da' => $da ,'leave_date_surplus' =>  $date_sp02]);
 
               }else {
                   # code...
                   $date_sp1 = $date1 - $l_user2;
                   DB::table('sum_date')->insert(
                       ['user_id' =>  $save_data1,'leave_name' => $aa, 'leave_date' => $code_user2,
-                      'leave_date_up' => $date_user,'leave_date_user' => '1' ,'leave_date_sum' =>  $date1 ,'leave_date_surplus' =>  $date_sp1]
+                      'leave_date_up' => $date_user,'da' => '1','leave_date_user' => $l_user2 ,'leave_date_sum' =>  $date1 ,'leave_date_surplus' =>  $date_sp1]
                   );
               }
 
           }elseif ($aa === 'ลาพักร้อน') {
               # code...
+
+              
               $sum2 = DB::table('sum_date')
               ->where('user_id', $save_data1)
               ->where('leave_name','=','ลาพักร้อน')
@@ -231,31 +238,32 @@ class Leave_hrController extends Controller
              // $date_sp2 = $date2 - '1';
               //dd($sum2);
               $l_user2 = $save_data3;
-
+            //dd($l_user2);
               if (Count($sum2) == '1') {
                   
                   
                   $l_user = $sum2[0]->leave_date_user;
+                  $da2 = $sum2[0]->da;
                   $l_id = $sum2[0]->id;
                  //dd($l_user01);
-                 
+                 $da01 = '1';
                   $l_user1 = $l_user + $l_user2;
                     //dd($l_user1);
                     $date_sp01 = $date1 - $l_user;
                    $date_sp02 = $date_sp01 - $l_user2;
-
+                 $da = $da2 + $da01;
               //dd($code_user3,$date_sp02,$date_user);
                   $affected = DB::table('sum_date')
                               ->where('id', $l_id)
                               ->update([ 'leave_date' => $code_user3,'leave_date_up' => $date_user,'leave_date_user' => $l_user1,
-                              'leave_date_sum' =>  $date2 ,'leave_date_surplus' => $date_sp02]);
+                              'leave_date_sum' =>  $date2 ,'da' => $da,'leave_date_surplus' => $date_sp02]);
 
               }else {
                   # code...
                   $date_sp2 = $date2 - $l_user2;
                   DB::table('sum_date')->insert(
                       ['user_id' =>  $save_data1,'leave_name' =>$aa, 'leave_date' => $code_user3,
-                      'leave_date_up' => $date_user,'leave_date_user' => '1' ,'leave_date_sum' =>  $date2 ,'leave_date_surplus' =>  $date_sp2]
+                      'leave_date_up' => $date_user,'da' => '1','leave_date_user' => $l_user2 ,'leave_date_sum' =>  $date2 ,'leave_date_surplus' =>  $date_sp2]
                   );
               }
 

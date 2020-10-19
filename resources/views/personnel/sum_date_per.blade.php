@@ -28,6 +28,7 @@
                                 <th>วันลา/วัน</th>
                                 <th>วันนลาที่เพิ่ม/วัน</th>
                                 <th>วันลารวม/วัน</th>
+                                <th>จำนวนครั้งที่ลา</th>
                                 <th>วันลาที่ใช้/วัน</th>
                                 <th>วันลาที่เหลือ/วัน</th>
                             </tr>
@@ -43,6 +44,7 @@
                                 <td>{{$ticket->leave_date}}</td>
                                 <td>{{$ticket->leave_date_up}}</td>
                                 <td>{{$ticket->leave_date_sum}}</td>
+                                <td>{{$ticket->da}}</td>
                                 <td>{{$ticket->leave_date_user}}</td>
                                 <td>
                                     @if($ticket->leave_date_surplus >= "0" ) 

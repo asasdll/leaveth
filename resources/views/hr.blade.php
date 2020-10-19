@@ -45,13 +45,13 @@
                                             <div class="col-md-6 pr-1">
                                                 <div class="form-group">
                                                     <label>ชื่อ</label>
-                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Company" value="{{$ticket->firstnamebem}}">
+                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Company" value="{{$ticket->firstname}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 pl-1">
                                                 <div class="form-group">
                                                     <label>นามสกุล</label>
-                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Last Name" value="{{$ticket->lastnamebem}}">
+                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Last Name" value="{{$ticket->lastname}}">
                                                 </div>
                                             </div>
                                         </div>

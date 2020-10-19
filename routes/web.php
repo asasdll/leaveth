@@ -80,8 +80,8 @@ Route::get('qr-code-g', function () {
       
   });
   Route::post('code_herd/{id}', 'Code_herdController@update')->middleware('auth');
-  Route::get('account', 'MemberuserController@create')->middleware('auth');
-  Route::get('resetpass', 'Reset_passwordController@index')->middleware('auth');
+  Route::get('account', 'MemberuserController@create');
+  Route::get('resetpass', 'Reset_passwordController@index');
   Route::get('date_leave', 'Date_leaveController@create')->middleware('auth');
   Route::post('leave_date', 'Date_leaveController@store')->middleware('auth');
   Route::resource('leave_date_index', 'Date_leaveController')->middleware('auth');
