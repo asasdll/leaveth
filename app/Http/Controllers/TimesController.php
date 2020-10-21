@@ -15,6 +15,13 @@ class TimesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    
     public function index()
     {
         return view('.chief.timestamp');
@@ -25,71 +32,7 @@ class TimesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function new_pdf($name,$date)
-    {
-        //dd($name,$date);
-        $user_aaa = DB::table('users')
-            ->join('newcompanies', 'users.id', '=','newcompanies.idname')
-            ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-            ->join('times', 'memberusers.iduser', '=','times.user_id')
-            ->orderBy('times.user_id')
-            ->orderBy('times.time_date','DESC')
-            ->where('time_in','like', '%'.$date.'%')
-            ->where('firstnamebem','like', '%'.$name.'%')
-            ->where('idname',Auth::user()->id)
-            ->get();
-        $pdf = PDF::loadview('hr.pdf_time',['user_aaa'=> $user_aaa]);
-       return @$pdf->stream();
-       // dd($user_aaa);
   
-        //return view('hr.pdf_time' , ['user_aaa' => $user_aaa]);
-    }
-    public function pdf_date($date)
-    {
-        //dd($date);
-        $user_aaa = DB::table('users')
-            ->join('newcompanies', 'users.id', '=','newcompanies.idname')
-            ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-            ->join('times', 'memberusers.iduser', '=','times.user_id')
-            ->orderBy('times.user_id')
-            ->orderBy('times.time_date')
-            ->where('time_in','like', '%'.$date.'%')
-            ->where('idname',Auth::user()->id)
-            ->get();
-        $pdf = PDF::loadview('hr.pdf_time',['user_aaa'=> $user_aaa]);
-       return @$pdf->stream();
-        //dd($user_aaa);
-  
-        //return view('hr.pdf_time' , ['user_aaa' => $user_aaa]);
-    }
-
-    public function pdf_name($name)
-    {
-        //dd($name);
-        $user_aaa = DB::table('users')
-            ->join('newcompanies', 'users.id', '=','newcompanies.idname')
-            ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-            ->join('times', 'memberusers.iduser', '=','times.user_id')
-            ->orderBy('times.user_id','ASC')
-            ->orderBy('times.time_date','ASC')
-            ->orderBy('times.time_in','ASC')
-            ->where('firstnamebem','like', '%'.$name.'%')
-            ->where('idname',Auth::user()->id)
-            ->get();
-
-            $image_user = DB::table('users')
-            ->join('newcompanies', 'users.id', '=','newcompanies.idname')
-            ->where('idname',Auth::user()->id)
-            ->get();
-
-            //dd($img_user);
-        $pdf = PDF::loadview('hr.pdf_time',['image_user'=> $image_user ,'user_aaa'=> $user_aaa]);
-       return @$pdf->stream();
-        //dd($user_aaa);
-  
-        //return view('hr.pdf_time' , ['user_aaa' => $user_aaa]);
-    }
-
 
     /**
      * Store a newly created resource in storage.

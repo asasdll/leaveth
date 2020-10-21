@@ -18,8 +18,16 @@ class MemberuserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+      public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
+
     public function index()
     {
+      //dd('5555');
       $user = request()->User();
       if ($user && $user->status == 'chief') {
         //dd('aaa');

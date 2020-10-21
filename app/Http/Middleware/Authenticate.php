@@ -12,7 +12,7 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected function redirectTo($request)
+    protected function redirectTo($request, Closure $next)
     {
         if (! $request->expectsJson()) {
             return redirect('/home');

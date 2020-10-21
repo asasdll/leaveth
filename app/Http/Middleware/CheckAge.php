@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class Admin
+class CheckAge
 {
     /**
      * Handle an incoming request.
@@ -18,9 +18,7 @@ class Admin
     {
         $user = $request->user();
         if(Auth::check() && $user && $user->status == 'hr'){
-              
-          return redirect('/home');
-
+                return $next($request);
               /*}elseif (Auth::check() && $user && $user->status == 'chief') {
                 //dd($all);
                 return redirect('/chief');*/
@@ -28,10 +26,10 @@ class Admin
               }elseif (Auth::check() && $user && $user->status != 'hr') {
 
                 
-                return $next($request);
+                return redirect('/home');
 
               }else {
                 return redirect('/');
               }
        }
-     }
+}
