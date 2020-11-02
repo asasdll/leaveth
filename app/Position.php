@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     protected $fillable = [
-        'newcode','idchief','fname','lname','niname','position'
+        'id_com','idchief','code_division','division'
     ];
     protected $hidden = [
         'password', 'remember_token',

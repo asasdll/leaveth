@@ -15,12 +15,10 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->string('codecom');
-            $table->string('idchief');
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('niname')->nullable();
-            $table->string('position');
+            $table->string('id_com');
+            $table->string('code_division');
+            $table->string('division');
+            $table->string('id_user')->nullable();
             $table->timestamps();
         });
     }

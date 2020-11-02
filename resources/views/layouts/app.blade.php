@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>{{  'Leaveth' }}</title>
-      <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('/') }}/assets/img/icon_i2.png" />
-
+    <link rel="shortcut icon" href="{{ URL::to('/') }}/assets/img/icon_i2.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{{ URL::to('/') }}/assets/img/icon_i2.png">
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -26,33 +26,34 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-     
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
     <style>
-h5 {
-    text-align: center;
-    font-family: "Times New Roman", Times, serif;
-    color:#FF0000;
+    h5 {
+        text-align: center;
+        font-family: "Times New Roman", Times, serif;
+        color: #FF0000;
 
-}
-</style>
+    }
+    </style>
 </head>
 
 <body>
-<div class="wrapper">
-       
-            @yield('content')
-            
+    <div class="wrapper">
 
-           
+        @yield('content')
 
-</div>
+
+
+
+    </div>
 
 </body>
 <!--   Core JS Files   -->

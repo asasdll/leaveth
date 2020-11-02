@@ -94,27 +94,64 @@ class PositionController extends Controller
     }
 
 
-    public function pos()
+    public function pos(Request $request)
     {
       //dd('pos');
+
+     $pos = $request->get('Search');
+    //dd($pos);
+
+
+      $posed = DB::table('positions') ///เเสดงชื่อพนักงาน
+      ->where('division','like', '%'.$pos.'%')
+      /*->join('newcompanies', 'users.id', '=','newcompanies.idname')
+      ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
+      ->join('positions', 'memberusers.iduser', '=','positions.idchief')*/
+      ->where('id_com', '=' ,Auth::user()->id)
+      ->orderBy('id','ASC')
+      ->Paginate(50);
+
+
+     
+
+      
+      //dd($pass_div);
+
+        return view('hr.position',['posed'=>$posed ]);
+    }
+
+    public function pos_p(Request $request)
+    {
+      //dd('pos');
+
+     $pos = $request->get('Search');
+    //dd($pos);
       $status = DB::table('users') ///เเสดงชื่อพนักงาน
       ->join('newcompanies', 'users.id', '=','newcompanies.idname')
       ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
       ->where('idname', '=' ,Auth::user()->id)
+      ->where('memberusers.firstnamebem','like', '%'.$pos.'%')
+      ->whereNull('pass_division')
+      ->orderBy('memberusers.id','ASC')
       ->Paginate(50);
 
-      $posed = DB::table('users') ///เเสดงชื่อพนักงาน
+
+
+      $pass_div = DB::table('users') ///เเสดงชื่อพนักงาน
       ->join('newcompanies', 'users.id', '=','newcompanies.idname')
       ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-      ->join('positions', 'memberusers.iduser', '=','positions.idchief')
-      ->where('idname', '=' ,Auth::user()->id)
-      ->get();
-
+      ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
+      ->where('newcompanies.idname', '=' ,Auth::user()->id)
+      ->where('memberusers.firstnamebem','like', '%'.$pos.'%')
+      ->where('positions.division','like', '%'.$pos.'%')
+      ->where('memberusers.pass_division' ,'!=' , "")
+      ->orderBy('memberusers.id','ASC')
+      ->Paginate(50);
 
       
-      //dd($status);
+      //dd($pass_div);
 
-        return view('hr.position',['status'=>$status ,'posed'=>$posed]);
+        return view('hr.position_p',['status'=>$status ,'pass_div'=>$pass_div]);
     }
 
     
@@ -148,9 +185,14 @@ class PositionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request,$id)
     {
-        //
+        //dd($request->all());
+        $affected = DB::table('memberusers')
+        ->where('id', "$id")
+        ->update(['pass_division' => $request->division]);
+        
+        return redirect('pos_p')->with('success', 'บันทึกข้อมูลเรียบร้อย');
     }
 
     /**
@@ -166,32 +208,18 @@ class PositionController extends Controller
             'position'=> ['required', 'string', 'max:255'],
     
          ]);
-           $code_herd_jer =  Str::random(12);
+           $code_herd_jer =  Str::random(30);
           $member = new Position;
-              $member->codecom = $request->codecom;
-              $member->idchief = $request->idchief;
-              $member->fname = $request->fname;
-              $member->lname = $request->lname;
-              $member->niname = $request->niname;
-              $member->position = $request->position;
-              $member->herd_code =  $code_herd_jer;
-    //dd( $member);
-              $affected = DB::table('users')
-              ->where('id', "$request->idchief")
-              ->update(['status' => 'chief']);
+              $member->id_com = Auth::user()->id;
+              $member->code_division = $code_herd_jer;
+              $member->division =  $request->position;
 
 
-              //$reg = Position::find($id);
-             
-             // $reg1 = $reg->idchief;
-
-              $affected = DB::table('memberusers')
-              ->where('iduser', "$request->idchief")
-              ->update(['code_herd' => "$code_herd_jer"]);
-    //dd($member);
+             // dd($member);
              $member->save();
     
-               return redirect('pos');
+               return redirect('pos')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+            
     }
 
     /**
@@ -204,7 +232,33 @@ class PositionController extends Controller
     {
         $ticket = Memberuser::find($id);
         //dd($ticket);
-          return view('hr.positionup', compact('ticket','id'));
+
+        $posed = DB::table('positions') ///เเสดงชื่อพนักงาน
+        ->where('id_com', '=' ,Auth::user()->id)
+        ->get();
+          return view('hr.positionup', compact('ticket','id'),['posed'=>$posed]);
+    }
+
+
+    function fetch(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      $data = DB::table('positions')
+        ->where('division', 'LIKE', "%{$query}%")
+        ->where('id_com', '=' ,Auth::user()->id)
+        ->get();
+      $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li><a href="#">'.$row->division.'</a></li>
+       ';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
     }
 
     /**
@@ -217,20 +271,160 @@ class PositionController extends Controller
     {
         //$ticket = Memberuser::find($id)
       //dd($id);
+      $posed = DB::table('positions')
+      ///->join('positions', 'memberusers.iduser', '=','positions.idchief')
+      ->where('id', '=' ,$id)
+      //->where('memberusers.iduser', '=' , 'memberusers.iduser')
+      ->get();
+
+      //$posed = DB::table('positions')
+      //->get();
+  
+      //dd($posed);
+      
+           return view('hr.edit_positions', compact('posed','id'));
+    }
+
+    public function p_div(Position $position , $id)
+    {
+        //$ticket = Memberuser::find($id)
+      //dd($id);
       $ticket = DB::table('memberusers')
-      ->join('positions', 'memberusers.iduser', '=','positions.idchief')
-      ->where('positions.id', '=' ,$id)
+      ///->join('positions', 'memberusers.iduser', '=','positions.idchief')
+      ->where('iduser', '=' ,$id)
       //->where('memberusers.iduser', '=' , 'memberusers.iduser')
       ->get();
 
       $posed = DB::table('positions')
+      ///->join('positions', 'memberusers.iduser', '=','positions.idchief')
+      ->where('id_com', '=' ,Auth::user()->id)
+      //->where('memberusers.iduser', '=' , 'memberusers.iduser')
       ->get();
+
+      //$posed = DB::table('positions')
+      //->get();
   
-      //dd($posed);
+    //dd($posed);
       
-           return view('hr.editpositionsup', compact('ticket','id') ,['posed' =>$posed]);
+           return view('hr.e_p_positions',['posed'=>$posed ,'ticket'=>$ticket] );
     }
 
+    public function p_e_div(Request $request ,Position $position , $id)
+    {
+        //$ticket = Memberuser::find($id)
+     // dd($id);
+      $affected1 = DB::table('memberusers')
+
+      ->where('iduser', "$id")
+      ->update(['pass_division' => $request->division]);
+
+  
+    //dd($posed);
+      
+           return redirect('pos_p' )->with('success', 'บันทึกข้อมูลเรียบร้อย');
+    }
+
+
+    public function p_d_div(Request $request ,Position $position , $id)
+    {
+        //$ticket = Memberuser::find($id)
+   // dd($id);
+      $affected1 = DB::table('memberusers')
+
+      ->where('iduser', "$id")
+      ->update(['pass_division' => NULL]);
+
+  
+    //dd($posed);
+      
+           return redirect('pos_p' )->with('success', 'บันทึกข้อมูลเรียบร้อย');
+    }
+
+    
+    public function pos_c(Request $request)
+    {
+      //dd('pos');
+
+     $pos = $request->get('Search');
+    
+
+
+      $pass_div = DB::table('users') ///เเสดงชื่อพนักงาน
+      ->join('newcompanies', 'users.id', '=','newcompanies.idname')
+      ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
+      ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
+      ->where('newcompanies.idname', '=' ,Auth::user()->id)
+      ->where('memberusers.firstnamebem','like', '%'.$pos.'%')
+      ->where('positions.division','like', '%'.$pos.'%')
+      ->where('memberusers.pass_division' ,'!=' , "")
+      ->whereNULL('positions.id_user')
+      ->orderBy('memberusers.id','ASC')
+      ->Paginate(50);
+
+      $pass_pos = DB::table('positions') ///เเสดงชื่อพนักงาน
+      ->join('memberusers', 'positions.id_user', '=','memberusers.iduser')
+      ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+
+      ->where('newcompanies.idname', '=' ,Auth::user()->id)
+      ->where('memberusers.firstnamebem','like', '%'.$pos.'%')
+      ->where('positions.division','like', '%'.$pos.'%')
+      ->where('positions.id_user' , '!=', NULL)
+      ->orderBy('memberusers.id','ASC')
+      ->Paginate(50);
+
+      
+      //dd($pass_pos);
+
+        return view('hr.position_c',['pass_div'=>$pass_div ,'pass_pos' =>$pass_pos]);
+    }
+
+    public function pos_c_up(Request $request,$id)
+    {
+      //dd('pos');
+      //dd($id);
+
+      $id_user = substr($id, 0,-2); //idหนักงาน
+      $id_po = substr($id, -1); //id ตำเเหน่ง
+
+     //dd($id_user, $id_po);
+
+      $affected1 = DB::table('positions')
+
+          ->where('id', "$id_po")
+          ->update(['id_user' => $id_user]);
+
+
+
+          $status_user = DB::table('users')
+              ->where('id', "$id_user")
+              ->update(['status' =>  'chief']);
+
+      //dd($status_user);
+
+      return redirect('pos_c' )->with('success', 'บันทึกข้อมูลเรียบร้อย');
+    }
+
+
+    public function pos_c_d(Request $request,$id)
+    {
+     // dd($id);
+      
+
+      $affected1 = DB::table('positions')
+
+          ->where('id_user', "$id")
+          ->update(['id_user' => NULL]);
+
+
+
+        $status_user = DB::table('users')
+              ->where('id', "$id")
+              ->update(['status' =>  'personnel']);
+
+      //dd($status_user);
+
+      return redirect('pos_c' )->with('success', 'ลบตำเเหน่งหัวหน้าเรียบร้อย');
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -249,12 +443,12 @@ class PositionController extends Controller
      //dd($request->all());
       $member = Position::find($id);
           
-          $member->position = $request->position;
+             $member->division =  $request->position;
 
 //dd($member);
          $member->save();
 
-           return redirect('pos');
+           return redirect('pos')->with('success', 'เเก้ไขข้อมูลเรียบร้อย');
     }
 
     /**
@@ -265,32 +459,26 @@ class PositionController extends Controller
      */
     public function destroy(Request $request ,Position $position, $id)
     {
-            ///dd($id);
+           // dd($id);
       $reg = Position::find($id);
 
-      $reg->delete();
+     $reg->delete();
 
 
-      $reg1 = $reg->idchief;
-      $reg2 = $reg->herd_code;
+      //$reg1 = $reg->idchief;
+      $reg2 = $reg->code_division;
      
    //dd($reg2);
          // tabel users
-      $affected = DB::table('users')
-              ->where('id', "$reg1")
-              ->update(['status' => 'personnel']);
 
             ///table  memberusers
-     /* //$posed_1 = DB::table('positions')
-        ->where('herd_code')
-        ->get();*/
-        
+   
        // $posed_2 = $posed_1->herd_code;
       //dd($reg2);
       $affected1 = DB::table('memberusers')
-              ->where('code_herd', "$reg2")
-              ->update(['code_herd' => NULL]);
+              ->where('pass_division', "$reg2")
+              ->update(['pass_division' => NULL]);
       //session::flash('massage','ลบข้อมูลเรียบร้อยเเล้ว');
-      return redirect('pos');
+      return redirect('pos')->with('success', 'ลบข้อมูลเรียบร้อย');
     }
 }

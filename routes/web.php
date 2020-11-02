@@ -31,7 +31,15 @@ Route::get('mac', 'AddmacController@mac');
 Route::resource('newmac', 'AddmacController');
 Route::resource('newcompany', 'NewcompaniesController');
 Route::resource('AAA', 'PositionController');
+Route::post('divsion/{id}', 'PositionController@create');
 Route::get('pos', 'PositionController@pos');
+Route::get('pos_p', 'PositionController@pos_p');
+Route::get('p_div/{id}', 'PositionController@p_div');
+Route::post('p_e_div/{id}', 'PositionController@p_e_div');
+Route::get('p_d_div/{id}', 'PositionController@p_d_div');
+Route::get('pos_c', 'PositionController@pos_c');
+Route::get('pos_c_up/{id}', 'PositionController@pos_c_up');
+Route::get('pos_c_d/{id}', 'PositionController@pos_c_d');
 Route::resource('posup', 'PositionsupsController');
 Route::resource('l_hr', 'Leave_hrController');
 //Route::post('up_hr/{id}', 'Leave_hrController@update')->middleware('admin');
@@ -79,8 +87,14 @@ Route::get('qr-code-g', function () {
     return view('hr.qrCode');
       
   });
+
+  Route::get('account', function () {
+
+    return view('auth.account');
+      
+  });
   Route::post('code_herd/{id}', 'Code_herdController@update');
-  Route::get('account', 'MemberuserController@create');
+  //Route::get('account', 'MemberuserController@create');
   Route::get('resetpass', 'Reset_passwordController@index');
   Route::get('date_leave', 'Date_leaveController@create');
   Route::post('leave_date', 'Date_leaveController@store');

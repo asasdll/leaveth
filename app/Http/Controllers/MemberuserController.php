@@ -422,7 +422,7 @@ class MemberuserController extends Controller
         'tel2' => ['required', 'numeric'],
         'telname2' => ['required', 'string', 'max:255'],
         'address' => ['required', 'string', 'max:255'],
-        'image'=>'image|mimes:jpeg,png,jpg|max:2048'
+        //'image'=>['image|mimes:jpeg,png,jpg'],
      ]);
 
 

@@ -62,10 +62,18 @@ class Date_leaveController extends Controller
             return view('.hr.sum_data_hr' ,['code_user' =>$code_user]);
       }else {
           # code...
-          $save_data = DB::table('sum_date')
-                        ->where('user_id',Auth::user()->id)
-                        ->get();  
-           // dd($save_data);                       
+
+          $code_user = DB::table('users')
+          ->join('memberusers', 'users.id', '=','memberusers.iduser')
+          //->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
+          ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+          ->join('leaves_tops', 'newcompanies.idname', '=','leaves_tops.id_company')
+          //->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+          ->where('memberusers.iduser', '=' ,Auth::user()->id)
+          ->get();   
+        dd($code_user);
+   
+            //dd($save_data);                       
          return view('.personnel.sum_date_per',['save_data' =>$save_data]);
 
       }

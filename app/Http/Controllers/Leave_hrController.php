@@ -87,7 +87,7 @@ class Leave_hrController extends Controller
            $member->status_text2 = $request->status_text2;
           // dd($member);
 
-         $member->save();
+         //$member->save();
           $satus =  $request->status_hr;
         //dd($satus);
             if ($satus == 'อนุมัติ') {
@@ -126,6 +126,7 @@ class Leave_hrController extends Controller
  //dd($code_user);
 
           if (Count($code_user) == '1') {
+              $idcom = $code_user[0]->id_company;
               $code_user1 = $code_user[0]->sickleave_date;
               $code_user2 = $code_user[0]->personalleave_date;
               $code_user3 = $code_user[0]->vacationleave_date;

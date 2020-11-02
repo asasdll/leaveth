@@ -32,32 +32,36 @@
                     </nav>
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            <h5 class="alert alert-warning">กรุณาเพิ่มตำเเหน่งพนักงาน</h4>
+                            <h5 class="alert alert-warning">กรุณาเเก้ไขตำเเหน่งพนักงาน</h4>
                         </div>
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-hover table-striped">
                                 <tbody>
-                                    <form method="POST" action="/divsion/{{$ticket->id}}" enctype="multipart/form-data">
+                                    @foreach($ticket as $tick)
+                                    <form method="POST" action="/p_e_div/{{$tick->iduser}}"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-md-12 pr-1">
                                                     <div class="row">
+
                                                         <div class="col-md-2 pr-1">
                                                             <label for="exampleInputEmail1">ชื่อ</label>
                                                             <input type="text" class="form-control" name="fname"
-                                                                value="{{$ticket->firstnamebem}}" readonly>
+                                                                value="{{$tick->firstnamebem}}" readonly>
                                                         </div>
                                                         <div class="col-md-2 pr-1">
                                                             <label for="exampleInputEmail1">นามสกุล</label>
                                                             <input type="text" class="form-control" name="lname"
-                                                                value="{{$ticket->lastnamebem}}" readonly>
+                                                                value="{{$tick->lastnamebem}}" readonly>
                                                         </div>
                                                         <div class="col-md-1 pr-1">
                                                             <label for="exampleInputEmail1">ชื่อเล่น</label>
                                                             <input type="text" class="form-control" name="niname"
-                                                                value="{{$ticket->nickname}}" readonly>
+                                                                value="{{$tick->nickname}}" readonly>
                                                         </div>
+
                                                         <div class="form-group col-md-4">
                                                             <label for="inputState">ตำเเหน่ง</label>
                                                             <select id="inputState" class="form-control"
@@ -78,6 +82,7 @@
                                             </div>
                                         </div>
                                     </form>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

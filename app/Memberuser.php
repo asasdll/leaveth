@@ -9,7 +9,7 @@ class Memberuser extends Model
     protected $fillable = [
         'idname','code','firstnamebem', 'lastnamebem','nickname','age','date','tel',
         'tel2','telname2','tel3','telname3','address','city','postalcode',
-        'status2','image','code_herd'
+        'status2','image','pass_division'
     ];
     protected $hidden = [
         'password', 'remember_token',

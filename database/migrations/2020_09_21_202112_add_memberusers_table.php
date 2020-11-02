@@ -14,7 +14,7 @@ class AddMemberusersTable extends Migration
     public function up()
     {
         Schema::table('memberusers', function (Blueprint $table) {
-            $table->string('code_herd')->nullable()->after('image');
+            $table->string('pass_division')->nullable()->after('image');
         });
     }
 
@@ -26,7 +26,7 @@ class AddMemberusersTable extends Migration
     public function down()
     {
         Schema::table('memberusers', function (Blueprint $table) {
-            $table->dropColumn('code_herd');
+            $table->dropColumn('pass_division');
         });
     }
 }
