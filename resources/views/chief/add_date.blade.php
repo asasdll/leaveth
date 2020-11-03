@@ -51,7 +51,7 @@
                                 <td>@php echo ++$i @endphp</td>
                                 <td>{{$ticket->firstnamebem}} &nbsp; &nbsp; &nbsp; &nbsp; {{$ticket->lastnamebem}}</td>
                                 <td>
-                                    <a class="btn btn-info btn-fill" href="/add_/{{$ticket->iduser}}" role="button">เพิ่ม/เเก้ไข</a>
+                                    <a class="btn btn-info btn-fill" href="/show_date/{{$ticket->iduser}}" role="button">เพิ่ม/เเก้ไข</a>
                                 </td>
                             </tr>
                         </tbody>

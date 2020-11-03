@@ -25,16 +25,6 @@
                             <form align='center' method="POST" action="leave_date_index">
                                 @csrf
                                 <div class="form-group">
-                                    @error('sickleave_date')
-                                         <font color="#ff0000">{{ $message }}</font>
-                                    @enderror
-                                    <div class="form-group row">
-                                        <label for="staticEmail" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลาป่วย</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="sickleave_date">
-                                        </div>
-                                    </div>
                                     @error('personalleave_date')
                                          <font color="#ff0000">{{ $message }}</font>
                                     @enderror

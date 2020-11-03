@@ -5,7 +5,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#pablo">เพิ่ม/เเก้ไข/วันลาพนักงาน</a>
+            <a class="navbar-brand" href="#pablo">เพิ่มวันลา</a>
             <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar burger-lines"></span>
@@ -34,7 +34,6 @@
                                             class="col-sm-4 col-form-label">วันลา</label>
                                         <div class="col-sm-4">
                                             <select class="form-control" name="name_lv">
-                                                <option value="ลาป่วย">ลาป่วย</option>
                                                 <option value="ลากิจ">ลากิจ</option>
                                                 <option value="ลาพักร้อน">ลาพักร้อน</option>
                                             </select>
@@ -42,7 +41,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">เพิ่ม/เเก้ไข/จำนวนวันลา</label>
+                                            class="col-sm-4 col-form-label">จำนวนวันลา</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="date_add">
                                         </div>

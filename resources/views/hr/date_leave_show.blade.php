@@ -21,55 +21,53 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover">
-                        <div class="card-header ">
-                            @if(session('success'))
-                            <div class="alert alert-success" role="alert">
-                                <p align='center'>{{session('success')}}</p>
-                            </div>
-                            @endif
-                            @foreach($id_leave as $ticket1)
-                            <form align='center'>
-                                @csrf
-                                <div class="form-group">
-                                    <div class="form-group row">
-                                        <label for="staticEmail" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลาป่วย</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="sickleave_date"
-                                                value="{{ $ticket1->sickleave_date}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="personalleave_date"
-                                                value="{{ $ticket1->personalleave_date}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" name="vacationleave_date"
-                                                value="{{ $ticket1->vacationleave_date}}">
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div>
-                                    <a href="{{action('Date_leaveController@edit',$ticket1->id_company)}}"
-                                        class="btn btn-info btn-fill pull-right" role="button"
-                                        aria-pressed="true">เเก้ไขข้อมูล</a>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </form>
-                            @endforeach
-                            </br>
-                        </div>
+                    @if(session('success'))
+                    <div class="alert alert-success" role="alert">
+                        <p align='center'>{{session('success')}}</p>
                     </div>
+                    @endif
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand">Navbar</a>
+                        <a class="btn btn-info" href="/add_lea_top" role="button">เพิ่มการลา</a>
+                    </nav>
+                    <br>
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ลำดับ</th>
+                                <th scope="col">ชื่อ</th>
+                                <th scope="col">จำนวนลากิจ</th>
+                                <th scope="col">ชื่อ</th>
+                                <th scope="col">จำนวนลาพักร้อน</th>
+                                <th scope="col">ประจำปี</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $i = 0;
+                            @endphp
+                            @foreach($id_leave as $ticket1)
+                            <tr>
+                                <th>@php echo++$i @endphp</th>
+                                <td>{{$ticket1->personalleave}}</td>
+                                <td>{{$ticket1->personalleave_date}}</td>
+                                <td>{{$ticket1->vacationleave}}</td>
+                                <td>{{$ticket1->vacationleave_date}}</td>
+                                <td>@php  
+                                        $time = substr($ticket1->created_at, 0 ,4);
+                                    @endphp 
+                                    {{$time}}
+                                </td>
+                                <td><a href="{{action('Date_leaveController@edit',$ticket1->id)}}"
+                                        class="btn btn-info btn-fill pull-right" role="button"
+                                        aria-pressed="true">เเก้ไข</a>
+                                    <div class="clearfix">
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-@include('layouts.manu.hr.manu_date_leave')
+@include('layouts.manu.chief.manu_add_date')
 <div class="main-panel">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#pablo">เเก้ไขกำหนดการลา</a>
+            <a class="navbar-brand" href="#pablo">เเเก้ไขวันลา</a>
             <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar burger-lines"></span>
@@ -22,44 +22,43 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            @foreach($id_com as $id_coms)
-                            <form align='center' method="POST"
-                                action="{{ route('leave_date_index.update', $id_coms->id) }}">
+                            
+                            <form align='center' method="POST" action="{{url('up_date',$id_user)}}">
                                 @csrf
                                 <div class="form-group">
                                     <div class="form-group row">
-                                        <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลากิจ</label>
+                                        <label for="staticEmail" align='right'
+                                            class="col-sm-4 col-form-label">วันลา{{$id_user}}</label>
                                         <div class="col-sm-4">
-                                            @error('personalleave_date')
-                                            <font color="#ff0000">{{ $message }}</font>
-                                            @enderror
-                                            <input type="text" class="form-control" name="personalleave_date"
-                                                value="{{ $id_coms->personalleave_date}}">
+                                            <select class="form-control" name="name_lv">
+                                            @if($reg->data_name == 'ลากิจ')
+                                                 <option value="{{$reg->data_name}}">{{$reg->data_name}}</option>
+                                                 <option value="ลาพักร้อน">ลาพักร้อน</option>
+                                               @else
+                                                <option value="{{$reg->data_name}}">{{$reg->data_name}}</option>
+                                                    <option value="ลาพักร้อน">ลากิจ</option>
+                                               @endif   
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputPassword" align='right'
-                                            class="col-sm-4 col-form-label">จำนวนวันลาพักร้อน</label>
+                                            class="col-sm-4 col-form-label">จำนวนวันลา</label>
                                         <div class="col-sm-4">
-                                            @error('vacationleave_date')
-                                            <font color="#ff0000">{{ $message }}</font>
-                                            @enderror
-                                            <input type="text" class="form-control" name="vacationleave_date"
-                                                value="{{ $id_coms->vacationleave_date}}">
+                                            <input type="text" class="form-control"   Value="{{$reg->date_up}}" name="date_add">
                                         </div>
                                     </div>
 
                                 </div>
                                 <div>
                                     <button type="submit" class="btn btn-info">บันทึกข้อมูล</button>
-                                    <input type="hidden" name="_method" value="PATCH" />
+
                                 </div>
                             </form>
-                            @endforeach
                             </br>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

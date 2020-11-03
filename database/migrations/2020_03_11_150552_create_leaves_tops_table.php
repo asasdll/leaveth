@@ -15,7 +15,6 @@ class CreateLeavesTopsTable extends Migration
     {
         Schema::create('leaves_tops', function (Blueprint $table) {
             $table->id();
-            $table->string('sickleave');
             $table->string('personalleave');
             $table->string('vacationleave');
             $table->timestamps();
