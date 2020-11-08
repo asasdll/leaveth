@@ -51,7 +51,7 @@ class Date_leaveController extends Controller
           # code...
           $code_user = DB::table('users')
                 ->join('memberusers', 'users.id', '=','memberusers.iduser')
-                ->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
+                ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
                 ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
                 ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
                 ->where('firstnamebem','like', '%'.$search.'%')

@@ -72,7 +72,7 @@ class HomeController extends Controller
                 // dd($users);
               
 
-                  return view('chief', ['users' => $users]);
+                  return view('.chief.timestamp');
                  }
               //dd($user);
             }else {
@@ -93,7 +93,7 @@ class HomeController extends Controller
                   }else{
                  //
                  // dd($users);
-                   return view('personnel',['userspe' => $userspe]);
+                   return view('.chief.timestamp');
                   }
             //  return view('personnel');
       

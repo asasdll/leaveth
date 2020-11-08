@@ -27,7 +27,7 @@
                                 aria-controls="nav-home" aria-selected="true">ตำเเหน่ง</a>
                             <a class="nav-link" id="nav-profile-tab" href="{{url('pos_p')}}" role="tab"
                                 aria-controls="nav-profile" aria-selected="false">พนักงาน</a>
-                            <a class="nav-link active" id="nav-contact-tab" href="{{url('pos_c')}}" role="tab"
+                            <a class="nav-link atcive" id="nav-contact-tab" href="{{url('pos_c')}}" role="tab"
                                 aria-controls="nav-contact" aria-selected="false">หัวหน้า</a>
                         </div>
                     </nav>

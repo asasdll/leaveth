@@ -28,9 +28,10 @@ class PhotoController extends Controller
         $leave = DB::table('users') //กำลังรออนุมัติ  ของHR
         ->join('newcompanies', 'users.id', '=','newcompanies.idname')
         ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
+        ->leftJoin('positions', 'memberusers.pass_division', '=','positions.code_division')
       
-        //->orderBy('idchief','DESC')
-        ->where('idname',Auth::user()->id)
+        ->orderBy('memberusers.id','ASC')
+        ->where('newcompanies.idname',Auth::user()->id)
         ->Paginate(30);
   
         //dd($leave);

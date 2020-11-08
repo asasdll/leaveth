@@ -81,8 +81,8 @@ class NewcompaniesController extends Controller
 
       $leave = DB::table('users') //การขออนุมัติ hr
       ->leftJoin('newcompanies', 'users.id', '=','newcompanies.idname')
-      ->leftJoin('positions', 'newcompanies.newcode', '=','positions.codecom')
-      ->leftJoin('leaves', 'positions.idchief', '=','leaves.head')
+      ->leftJoin('positions', 'newcompanies.id', '=','positions.id_com')
+      ->leftJoin('leaves', 'positions.id_user', '=','leaves.head')
       //->rightJoin('leaves', 'positions.iduser', '=','leaves.idmember')
       ->where('status_chief', '!=' ,'null')
       ->whereNull('status_hr')
@@ -100,8 +100,8 @@ class NewcompaniesController extends Controller
       //dd('ประวัติการลา');
       $leave = DB::table('users') //ประวัติการลา
       ->leftJoin('newcompanies', 'users.id', '=','newcompanies.idname')
-      ->leftJoin('positions', 'newcompanies.newcode', '=','positions.codecom')
-      ->leftJoin('leaves', 'positions.idchief', '=','leaves.head')
+      ->leftJoin('positions', 'newcompanies.id', '=','positions.id_com')
+      ->leftJoin('leaves', 'positions.id_user', '=','leaves.head')
       ->where('status_hr','!=' ,'null')
       ->where('status_chief', '!=' ,'null')
       //->orderBy('idname','DESC')

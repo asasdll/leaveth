@@ -120,7 +120,7 @@ class Leave_hrController extends Controller
           $code_user = DB::table('users')
           ->join('memberusers', 'users.id', '=','memberusers.iduser')
           ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
-          ->join('leaves_tops', 'newcompanies.idname', '=','leaves_tops.id_company')
+          ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
           ->where('memberusers.iduser', '=' , $save_data1)
           ->get();
  //dd($code_user);

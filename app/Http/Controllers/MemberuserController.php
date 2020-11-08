@@ -52,7 +52,8 @@ class MemberuserController extends Controller
         $user_aaa = DB::table('users')
         ->join('memberusers', 'users.id', '=','memberusers.iduser')
         ->join('times', 'memberusers.iduser', '=','times.user_id')
-        ///->groupBy('id','DESC')
+        ->orderBy('times.time_date','ASC')
+        ->orderBy('times.time_in','ASC')
          ->where('iduser', Auth::user()->id)
         
          ->Paginate(31);
@@ -65,10 +66,12 @@ class MemberuserController extends Controller
         ->join('memberusers', 'users.id', '=','memberusers.iduser')
         ->join('times', 'memberusers.iduser', '=','times.user_id')
         ///->orderBy('id','DESC')
+        ->orderBy('times.time_date','ASC')
+        ->orderBy('times.time_in','ASC')
          ->where('iduser', Auth::user()->id)
         
          ->Paginate(31);
-   
+   //dd($user_aaa);
            return view('personnel.table2', ['user_aaa' => $user_aaa]);
       }
     }

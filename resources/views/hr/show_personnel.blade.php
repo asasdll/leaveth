@@ -121,7 +121,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      <a href="{{url('usersprofile')}}" class="btn btn-info btn-fill pull-right" role="button" aria-pressed="true">back</a>
+                                      <a href="{{url('usersprofile')}}" class="btn btn-info btn-fill pull-right" role="button" aria-pressed="true">ย้อนกลับ</a>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>

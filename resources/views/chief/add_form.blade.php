@@ -22,10 +22,10 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                        @php
-                                 $id = empty($add_date) ? '' : $add_date;
+                            @php
+                            $id = empty($add_date) ? '' : $add_date;
                             @endphp
-                            
+
                             <form align='center' method="POST" action="{{url('lv_date',$id)}}">
                                 @csrf
                                 <div class="form-group">
@@ -33,6 +33,11 @@
                                         <label for="staticEmail" align='right'
                                             class="col-sm-4 col-form-label">วันลา</label>
                                         <div class="col-sm-4">
+                                        @error('name_lv')
+                                            <span class="invalid-feedback" role="alert">
+                                                <font color="red">{{ $message}}</font>
+                                            </span>
+                                            @enderror
                                             <select class="form-control" name="name_lv">
                                                 <option value="ลากิจ">ลากิจ</option>
                                                 <option value="ลาพักร้อน">ลาพักร้อน</option>
@@ -43,6 +48,10 @@
                                         <label for="inputPassword" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลา</label>
                                         <div class="col-sm-4">
+                                        @error('date_add')
+                                                <font  color="red">{{ $message}}</font>
+                                            
+                                            @enderror
                                             <input type="text" class="form-control" name="date_add">
                                         </div>
                                     </div>

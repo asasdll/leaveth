@@ -35,7 +35,7 @@
                                             </div>
                                 <div class="card-body">
                                     <div class="author">
-                                        <a href="{{action('PhotoController@show',$ticket->id)}}">
+                                        <a href="{{url('u_show',$ticket->id)}}">
                                             <img class="avatar border-gray" src="{{ URL::to('/') }}/img/profile/{{$ticket->image}}" alt="...">
 
                                         </a>
@@ -45,6 +45,10 @@
                                     
                                     <p class="description text-center">
                                       Tel-&nbsp;&nbsp; {{$ticket->tel}}
+                                    </p>
+
+                                    <p class="description text-center">
+                                      ตำเเหน่ง-&nbsp;&nbsp; {{$ticket->division}}
                                     </p>
                                     <hr>
                                 <div class="button-container mr-auto ml-auto">

@@ -27,6 +27,7 @@ Route::get('record', 'NewcompaniesController@record');
 Route::post('search_leaves', 'NewcompaniesController@search_leaves');
 Route::post('search_time', 'NewcompaniesController@search_time');
 Route::resource('usersprofile', 'PhotoController');
+Route::get('u_show/{id}', 'PhotoController@show');
 Route::get('mac', 'AddmacController@mac');
 Route::resource('newmac', 'AddmacController');
 Route::resource('newcompany', 'NewcompaniesController');

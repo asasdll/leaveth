@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            
+
                             <form align='center' method="POST" action="{{url('up_date',$id_user)}}">
                                 @csrf
                                 <div class="form-group">
@@ -30,14 +30,18 @@
                                         <label for="staticEmail" align='right'
                                             class="col-sm-4 col-form-label">วันลา{{$id_user}}</label>
                                         <div class="col-sm-4">
+                                            @error('name_lv')
+                                            <font color="red">{{ $message}}</font>
+
+                                            @enderror
                                             <select class="form-control" name="name_lv">
-                                            @if($reg->data_name == 'ลากิจ')
-                                                 <option value="{{$reg->data_name}}">{{$reg->data_name}}</option>
-                                                 <option value="ลาพักร้อน">ลาพักร้อน</option>
-                                               @else
+                                                @if($reg->data_name == 'ลากิจ')
                                                 <option value="{{$reg->data_name}}">{{$reg->data_name}}</option>
-                                                    <option value="ลาพักร้อน">ลากิจ</option>
-                                               @endif   
+                                                <option value="ลาพักร้อน">ลาพักร้อน</option>
+                                                @else
+                                                <option value="{{$reg->data_name}}">{{$reg->data_name}}</option>
+                                                <option value="ลาพักร้อน">ลากิจ</option>
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -45,7 +49,12 @@
                                         <label for="inputPassword" align='right'
                                             class="col-sm-4 col-form-label">จำนวนวันลา</label>
                                         <div class="col-sm-4">
-                                            <input type="text" class="form-control"   Value="{{$reg->date_up}}" name="date_add">
+                                            @error('date_add')
+                                            <font color="red">{{ $message}}</font>
+
+                                            @enderror
+                                            <input type="text" class="form-control" Value="{{$reg->date_up}}"
+                                                name="date_add">
                                         </div>
                                     </div>
 
