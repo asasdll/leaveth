@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Memberuser;
 use App\Positionsups;
 use Auth;
+use PDF;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -30,14 +31,14 @@ class PositionController extends Controller
     }
     public function new_pdf($name,$date)
     {
-        //dd($name,$date);
+     //   dd($name,$date);
         $user_aaa = DB::table('users')
             ->join('newcompanies', 'users.id', '=','newcompanies.idname')
             ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
             ->join('times', 'memberusers.iduser', '=','times.user_id')
             ->orderBy('times.user_id')
             ->orderBy('times.time_date','DESC')
-            ->where('time_in','like', '%'.$date.'%')
+            ->where('time_date','like', '%'.$date.'%')
             ->where('firstnamebem','like', '%'.$name.'%')
             ->where('idname',Auth::user()->id)
             ->get();
@@ -56,7 +57,7 @@ class PositionController extends Controller
             ->join('times', 'memberusers.iduser', '=','times.user_id')
             ->orderBy('times.user_id')
             ->orderBy('times.time_date')
-            ->where('time_in','like', '%'.$date.'%')
+            ->where('time_date','like', '%'.$date.'%')
             ->where('idname',Auth::user()->id)
             ->get();
         $pdf = PDF::loadview('hr.pdf_time',['user_aaa'=> $user_aaa]);

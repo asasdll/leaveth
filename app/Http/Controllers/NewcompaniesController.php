@@ -42,7 +42,7 @@ class NewcompaniesController extends Controller
             ->orderBy('times.time_in','ASC')
             //->orderBy('times.time_date','ASC')
              ->where('idname', Auth::user()->id)
-             ->Paginate(31);
+             ->Paginate(2000);
             
          
     //dd('asdas');
@@ -54,7 +54,8 @@ class NewcompaniesController extends Controller
      ///dd($request->all());
       $search_dt = $request->get('search_date');
       $search_na = $request->get('search_name');
-   //dd($search, $search2);
+      $search_mo = $request->get('search_month');
+   //dd($search_na);
       $user_search = DB::table('users')
             ->join('newcompanies', 'users.id', '=','newcompanies.idname')
             ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
@@ -62,14 +63,16 @@ class NewcompaniesController extends Controller
             ->orderBy('times.user_id','ASC')
             ->orderBy('times.time_date','ASC')
             ->orderBy('times.time_in','ASC')
-            ->where('time_in','like', '%'.$search_dt.'%')
+            ->where('time_date','like', '%'.$search_dt.'%')
+            ->where('time_date','like', '%'.$search_mo.'%')
             ->where('firstnamebem','like', '%'.$search_na.'%')
             ->where('idname',Auth::user()->id)
-            ->get();
+            ->Paginate(2000);
+            
           //$idpdf =  $user_search;
      //dd($idpdf);
      //dd($user_search);
-      return view('hr.table' ,['name'=>  $search_na ,'user_aaa' => $user_search ,'date' => $search_dt ]);
+      return view('hr.table' ,['name'=>  $search_na ,'user_aaa' => $user_search ,'date' => $search_dt ,'month' =>$search_mo  ]);
     }
 
 

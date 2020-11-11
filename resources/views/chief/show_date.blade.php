@@ -77,7 +77,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-info btn-fill" href="/add_edit/{{$ticket->id}}"
-                                        role="button">เพิ่ม/เเก้ไข</a>
+                                        role="button">เเก้ไข</a>
                                 </td>
                             </tr>
                         </tbody>

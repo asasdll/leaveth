@@ -84,7 +84,7 @@ class MemberuserController extends Controller
       $user_aaa = DB::table('users')
             ->join('memberusers', 'users.id', '=','memberusers.iduser')
             ->join('times', 'memberusers.iduser', '=','times.user_id')
-            ->where('time_in','like', '%'.$search.'%')
+            ->where('time_date','like', '%'.$search.'%')
             ->where('iduser',Auth::user()->id)
             ->Paginate(31);
 
@@ -101,7 +101,7 @@ class MemberuserController extends Controller
       $user_aaa = DB::table('users')
             ->join('memberusers', 'users.id', '=','memberusers.iduser')
             ->join('times', 'memberusers.iduser', '=','times.user_id')
-            ->where('time_in','like', '%'.$search.'%')
+            ->where('time_date','like', '%'.$search.'%')
             ->where('iduser',Auth::user()->id)
             ->Paginate(31);
 
