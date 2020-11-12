@@ -25,10 +25,11 @@
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-link " id="nav-home-tab" href="{{url('pos')}}" role="tab"
                                 aria-controls="nav-home" aria-selected="true">ตำเเหน่ง</a>
-                            <a class="nav-link" id="nav-profile-tab" href="{{url('pos_p')}}" role="tab"
+                            <a class="nav-link atcive" id="nav-profile-tab" href="{{url('pos_p')}}" role="tab"
                                 aria-controls="nav-profile" aria-selected="false">พนักงาน</a>
-                            <a class="nav-link atcive" id="nav-contact-tab" href="{{url('pos_c')}}" role="tab"
-                                aria-controls="nav-contact" aria-selected="false">หัวหน้า</a>
+                            <a class="nav-link active" id="contact-tab" data-toggle="tab" href="{{url('pos_c')}}" role="tab"
+                                aria-controls="contact" aria-selected="false">หัวหน้า</a>
+                         
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -77,9 +78,10 @@
                                                                 <td>
                                                                     <a class="btn btn-primary pull-right"
                                                                         href="/pos_c_up/{{$pass->iduser}}-{{$pass->id}}"
-                                                                        onclick="return confirm('คุณแน่ใจหรือว่าจะตั้งเป็นหัวหน้า')" role="button">ตั้งเป็นหัวหน้า</a>
+                                                                        onclick="return confirm('คุณแน่ใจหรือว่าจะตั้งเป็นหัวหน้า')"
+                                                                        role="button">ตั้งเป็นหัวหน้า</a>
                                                                 </td>
-                                                                
+
                                                             </tr>
                                                         </tbody>
                                                         @endforeach
@@ -104,7 +106,7 @@
                                                         @php
                                                         $i = 0;
                                                         @endphp
-                                                        @foreach($pass_pos  as $pass_p)
+                                                        @foreach($pass_pos as $pass_p)
 
                                                         <tbody>
                                                             <tr>

@@ -25,24 +25,10 @@
                             @php
                             $idcode = empty($code_id[0]->id) ? '' : $code_id[0]->id;
                             @endphp
-                            <form align='center' method="POST" action="code_herd/{{$idcode}}">
-                                @csrf
-                                <div class="form-group">
-                                    @if(session('success'))
-                                    <div class="alert alert-warning" role="alert">
-                                        {!! \Session::get('success') !!}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    </div>
-                                    @endif
-                                    <label for="exampleInputEmail1">รหัสแผนก</label>
-                                    <input type="text" class="form-control" name="code_herd" required>
-                                    <small id="emailHelp" class="form-text text-muted">ขอรหัสได้จากหัวหน้าแผนก</small>
-                                </div>
-                                <div>
-                                    <button type="submit" class="btn btn-info">บันทึกข้อมูล</button>
-                                </div>
-                            </form>
-                            </br>
+
+                            <div class="alert alert-primary" role="alert">
+                            <h5 align = 'center'>คุณยังไม่ได้ ถูกบรรจุใจเเผนก กรุณาติดต่อ HR</h5>
+                            </div>
                         </div>
                     </div>
                 </div>

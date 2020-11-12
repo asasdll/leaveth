@@ -32,7 +32,7 @@
                     </nav>
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            <h5 class="alert alert-warning">กรุณาเพิ่มตำเเหน่งพนักงาน</h4>
+                            <h5 class="alert alert-warning">กรุณาเพิ่มแผนกพนักงาน</h4>
                         </div>
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-hover table-striped">
@@ -59,7 +59,7 @@
                                                                 value="{{$ticket->nickname}}" readonly>
                                                         </div>
                                                         <div class="form-group col-md-4">
-                                                            <label for="inputState">ตำเเหน่ง</label>
+                                                            <label for="inputState">แผนก</label>
                                                             <select id="inputState" class="form-control"
                                                                 name="division">
                                                                 @foreach($posed as $pod)

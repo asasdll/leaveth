@@ -18,6 +18,9 @@ class CreatePositionsTable extends Migration
             $table->string('id_com');
             $table->string('code_division');
             $table->string('division');
+            $table->string('nname')->nullable();
+            $table->string('lname')->nullable();
+            $table->string('nikname')->nullable();
             $table->string('id_user')->nullable();
             $table->timestamps();
         });

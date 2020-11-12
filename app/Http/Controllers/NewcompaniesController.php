@@ -37,7 +37,7 @@ class NewcompaniesController extends Controller
       $user_aaa = DB::table('users')
             ->join('newcompanies', 'users.id', '=','newcompanies.idname')
             ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-            ->join('times', 'memberusers.iduser', '=','times.user_id')
+            ->leftJoin('times', 'memberusers.iduser', '=','times.user_id')
             ->orderBy('times.time_date','DESC')
             ->orderBy('times.time_in','ASC')
             //->orderBy('times.time_date','ASC')
@@ -45,7 +45,7 @@ class NewcompaniesController extends Controller
              ->Paginate(2000);
             
          
-    //dd('asdas');
+    //d($user_aaa);
       return view('hr.table' ,['user_aaa' => $user_aaa ]);
     }
 
@@ -57,9 +57,11 @@ class NewcompaniesController extends Controller
       $search_mo = $request->get('search_month');
    //dd($search_na);
       $user_search = DB::table('users')
-            ->join('newcompanies', 'users.id', '=','newcompanies.idname')
-            ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-            ->join('times', 'memberusers.iduser', '=','times.user_id')
+            //->join('newcompanies', 'users.id', '=','newcompanies.idname')
+            //->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
+            ->join('times', 'users.id', '=','times.user_id')
+            ->rightJoin('memberusers', 'times.user_id', '=','memberusers.iduser')
+            ->rightJoin('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
             ->orderBy('times.user_id','ASC')
             ->orderBy('times.time_date','ASC')
             ->orderBy('times.time_in','ASC')

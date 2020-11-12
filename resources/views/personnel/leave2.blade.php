@@ -95,8 +95,8 @@ function demo2() {
                                                         <div class="col-md-10 pr-1">
                                                             <select class="form-control" name="head">
                                                                 @foreach($boss as $boss1)
-                                                                <option value="{{$boss1->idchief}}">
-                                                                    {{$boss1->fname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->niname}})
+                                                                <option value="{{$boss1->id_user}}">
+                                                                    {{$boss1->nname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->nikname}})
                                                                 </option>
                                                                 @endforeach
                                                             </select>

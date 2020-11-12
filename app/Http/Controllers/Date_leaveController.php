@@ -38,13 +38,19 @@ class Date_leaveController extends Controller
 
        // dd('55');
        $code_user = DB::table('users')
-                ->join('memberusers', 'users.id', '=','memberusers.iduser')
-                ->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
-                ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
-                ->where('positions.idchief', '=' ,Auth::user()->id)
-                ->where('firstnamebem','like', '%'.$search.'%')
-                ->get();   
+                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                        ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
+                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                        ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
+                        ->leftJoin('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                       ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
+                         ->where('memberusers.iduser', '=' ,Auth::user()->id)
+               // ->where('firstnamebem','like', '%'.$search.'%')
 
+               
+                        ->get();   
+
+              // dd( $code_user);
                 return view('.chief.sum_date_ch' ,['code_user' =>$code_user]);
 
       }elseif ($user && $user->status == 'hr') {
@@ -64,14 +70,15 @@ class Date_leaveController extends Controller
       }else {
           # code...
 
-          $code_user = DB::table('users')
-          ->join('memberusers', 'users.id', '=','memberusers.iduser')
-          //->join('positions', 'memberusers.code_herd', '=','positions.herd_code')
-          ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
-          ->join('leaves_tops', 'newcompanies.idname', '=','leaves_tops.id_company')
-          //->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
-          ->where('memberusers.iduser', '=' ,Auth::user()->id)
-          ->get();   
+          $save_data = DB::table('users')
+                ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
+                ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
+                ->leftJoin('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
+                ->where('memberusers.iduser', '=' ,Auth::user()->id)
+                ->get();   
       //  dd($code_user);
    
             //dd($save_data);                       

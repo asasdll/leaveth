@@ -383,16 +383,21 @@ class PositionController extends Controller
     {
       //dd('pos');
       //dd($id);
-
       $id_user = substr($id, 0,-2); //idหนักงาน
       $id_po = substr($id, -1); //id ตำเเหน่ง
+      $user_name = DB::table('memberusers') ///เเสดงชื่อพนักงาน
+            ->where('iduser', '=' ,$id_user)
+            ->get();
 
-     //dd($id_user, $id_po);
+          $name = $user_name[0]->firstnamebem;
+          $lname =  $user_name[0]->lastnamebem;
+          $nikname =  $user_name[0]->nickname;
+    // dd($id_user, $id_po,$user_name, $name);
 
       $affected1 = DB::table('positions')
 
           ->where('id', "$id_po")
-          ->update(['id_user' => $id_user]);
+          ->update(['id_user' => $id_user,'nname'=>$name, 'lname' => $lname, 'nikname' => $nikname]);
 
 
 
@@ -414,7 +419,7 @@ class PositionController extends Controller
       $affected1 = DB::table('positions')
 
           ->where('id_user', "$id")
-          ->update(['id_user' => NULL]);
+          ->update(['id_user' => NULL,'nname'=>NULL , 'lname' => NULL, 'nikname' => NULL]);
 
 
 

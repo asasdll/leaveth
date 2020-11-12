@@ -19,10 +19,10 @@ class MemberuserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-      public function __construct()
+     /* public function __construct()
     {
         $this->middleware('admin');
-    }
+    }*/
 
 
     public function index()
@@ -117,7 +117,7 @@ class MemberuserController extends Controller
      // dd('asda');
       
       $check_code = DB::table('memberusers')
-      ->whereNull('code_herd')
+      ->whereNull('pass_division')
       ->where('iduser',Auth::user()->id)
       ->get();
       //$check_code1 = $check_code()->code_herd; 
@@ -129,8 +129,9 @@ class MemberuserController extends Controller
         $boss = DB::table('users')  //หัวหน้า
       ->Join('newcompanies', 'users.id', '=','newcompanies.idname')
       ->Join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-      ->Join('positions', 'memberusers.code_herd', '=','positions.herd_code')
-      ->groupBy('idchief')
+      ->Join('positions', 'memberusers.pass_division', '=','positions.code_division')
+      //->Join('memberusers', 'positions.id_user', '=','memberusers.iduser')
+      //->groupBy('pass_division')
     // ->Join('positions', 'users.id', '=','positions.idchief')
       //->Join('memberusers', 'users.id', '=','memberusers.idname')
       ->where('iduser', '=' ,Auth::user()->id)
@@ -147,7 +148,7 @@ class MemberuserController extends Controller
       ->get();*/
   
 
-      //dd($position);
+      //dd($boss);
 
         $status = DB::table('users')  ///ชื่อ นามสกุลผุ้ใช้
        ->join('memberusers', 'users.id', '=','memberusers.iduser')
@@ -180,8 +181,8 @@ class MemberuserController extends Controller
        
        // dd('หัวหน้า');
         $leave = DB::table('users') //กำลังรออนุมัติ  ของหัวหน้า
-        ->rightJoin('positions', 'users.id', '=','positions.idchief')
-        ->rightJoin('leaves', 'positions.idchief', '=','leaves.idmember')
+        ->rightJoin('positions', 'users.id', '=','positions.id_user')
+        ->rightJoin('leaves', 'positions.id_user', '=','leaves.idmember')
         //->rightJoin('leaves', 'positions.idchief', '=','leaves.idmember')
         ->whereNull('status_chief')
         ->orderBy('leaves.id','ASC')
@@ -222,8 +223,8 @@ class MemberuserController extends Controller
 
          //dd('พนักงาน');
         $leave = DB::table('users') //กำลังรออนุมัติ ส่วนของพนักงาน
-        ->Join('positions', 'users.id', '=','positions.idchief')
-        ->Join('leaves', 'positions.idchief', '=','leaves.head')
+        ->Join('positions', 'users.id', '=','positions.id_user')
+        ->Join('leaves', 'positions.id_user', '=','leaves.head')
         //->Join('leaves', 'users.id', '=','leaves.idmember')
         ->whereNull('status_hr')
         //->orderBy('leaves.id','ASC')
@@ -236,7 +237,7 @@ class MemberuserController extends Controller
         $leave2 = DB::table('users') /// อนุมัติเเล้ว ส่วนของพนักงาน
         //->Join('positions', 'users.id', '=','positions.idchief')
         ->Join('leaves', 'users.id', '=','leaves.idmember')
-        ->Join('positions', 'leaves.head', '=','positions.idchief')
+        ->Join('positions', 'leaves.idmember', '=','positions.id_user')
         ->orderBy('leaves.id','ASC')
         ->where('status_chief','!=' ,'Null')
         ->where('status_hr','!=' ,'Null')

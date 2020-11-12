@@ -21,15 +21,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
-                        <thead>
+                    <thead>
                             <tr>
-                                <th>ลำดับ</th>
                                 <th>ชื่อ</th>
                                 <th>วันลา/วัน</th>
                                 <th>วันนลาที่เพิ่ม/วัน</th>
                                 <th>วันลารวม/วัน</th>
-                                <th>จำนวนครั้งที่ลา</th>
-                                <th>วันลาที่ใช้/วัน</th>
+                                <th>จำนวนคนวนวันลาที่ใช้</th>
                                 <th>วันลาที่เหลือ/วัน</th>
                             </tr>
                         </thead>
@@ -39,18 +37,30 @@
                         @foreach($save_data as $ticket)
                         <tbody>
                             <tr>
-                                <td>@php echo ++$i @endphp</td>
-                                <td>{{$ticket->leave_name}}</td>
-                                <td>{{$ticket->leave_date}}</td>
-                                <td>{{$ticket->leave_date_up}}</td>
-                                <td>{{$ticket->leave_date_sum}}</td>
-                                <td>{{$ticket->da}}</td>
-                                <td>{{$ticket->leave_date_user}}</td>
+                                <td>{{$ticket->personalleave}}</td>
+                                <td>{{$ticket->personalleave_date}}</td>
+                                <td>{{$ticket->personal_date}}</td>
+                                <td>{{$ticket->per_date_sum}}</td>
+                                <td>{{$ticket->per_date_user}}</td>
                                 <td>
-                                    @if($ticket->leave_date_surplus >= "0" ) 
-                                         {{$ticket->leave_date_surplus}}
-                                     @else()
-                                        <font color="#663399">{{'ไม่มีกำการกำหนดวันลา'}}</font>
+                                    @if($ticket->per_date_surplus >= "0" )
+                                    {{$ticket->leave_date_surplus}}
+                                    @else()
+                                    <font color="#663399">{{'ไม่มีกำการกำหนดวันลา'}}</font>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{$ticket->vacationleave}}</td>
+                                <td>{{$ticket->vacationleave_date}}</td>
+                                <td>{{$ticket->vacation_date}}</td>
+                                <td>{{$ticket->vac_date_sum}}</td>
+                                <td>{{$ticket->vac_date_user}}</td>
+                                <td>
+                                    @if($ticket->vac_date_surplus >= "0" )
+                                    {{$ticket->leave_date_surplus}}
+                                    @else()
+                                    <font color="#663399">{{'ไม่มีกำการกำหนดวันลา'}}</font>
                                     @endif
                                 </td>
                             </tr>

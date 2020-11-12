@@ -72,7 +72,7 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
 
-    //dd($request->all());
+   // dd($request->all());
         $user = request()->User();
         if ($user && $user->status === 'chief') {
            
@@ -113,7 +113,7 @@ class LeaveController extends Controller
         }
 
 
-       // dd($request->all());
+       //dd($request->all());
               //dd($request->all());
               $this->validate($request, [
                 'affair'=> ['required', 'string', 'max:255'],
@@ -153,15 +153,31 @@ class LeaveController extends Controller
                   //  $member = $img->getClientOriginalExtension();
                   //	$img->save();
                 }
-
+                //dd($member);
                 $save_data0 = $request->leave;
-                $save_data = DB::table('sum_date')
-                ->where('user_id',Auth::user()->id)
-                ->where('leave_name','=',"$save_data0")
-                ->get();
-                if (Count($save_data) == '1') {
+                $add_date = DB::table('users')
+                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                        ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
+                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                        ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
+                        ->leftJoin('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                        ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
+                        ->where('memberusers.iduser',Auth::user()->id)
+                        ->get();
+                    $per =   $add_date[0]->personalleave_date;
+                    $up_per = $add_date[0]->personal_date;
+                    $sum_per = $per +  $up_per;
+
+                    $vac =   $add_date[0]->vacationleave_date;
+                    $up_vac = $add_date[0]->vacation_date;
+                    $sum_vac = $vac +  $up_vac;
+
+                dd($add_date, $save_data0);
+                if ($save_data0 == 'ลาป่วย') {
                     # code...Eเเ
-                    $save_data01 = $save_data[0]->leave_date_surplus;
+                   // dd('ลาป่วย');
+                    $member->save();
+                   /* $save_data01 = $save_data[0]->leave_date_surplus;
                             if ($save_data01 == 0) {
                                 # code...e
                                 //dd('ไม่ได้');
@@ -170,12 +186,16 @@ class LeaveController extends Controller
                                 # code...
                                // dd('ได้');
                                 $member->save();
-                            }
+                            }*/
                     
                 }else {
 
-                    //dd('ไม่มี');
-                    $member->save();
+                    if (condition) {
+                        # code...
+                        
+                    }else {
+                        # code...
+                    }
                 }
 
                 
@@ -394,7 +414,7 @@ class LeaveController extends Controller
             //	$img->save();
           }
           
-
+dd($member);
           $save_data0 = $request->leave;
           $save_data = DB::table('sum_date')
           ->where('user_id',Auth::user()->id)

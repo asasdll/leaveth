@@ -5,7 +5,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg " color-on-scroll="500">
         <div class="container-fluid">
-            <a class="navbar-brand" href="pos">เพิ่มตำเเหน่ง</a>
+            <a class="navbar-brand" href="pos">เพิ่มเเผนกพนักงาน</a>
             <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar burger-lines"></span>
@@ -37,7 +37,7 @@
                             aria-labelledby="nav-profile-tab">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h5 class="alert alert-warning">เพิ่มตำเเหน่งพนักงาน
+                                    <h5 class="alert alert-warning">เพิ่มเเผนกพนักงาน
                                         @if(session('success'))
                                         <p align='center' style="color:#008000">{{session('success')}}
                                         </p>
@@ -97,7 +97,7 @@
                                                         <th>ID</th>
                                                         <th>ชื่อ</th>
                                                         <th>นามสกุล</th>
-                                                        <th>ตำเเหน่ง</th>
+                                                        <th>แผนก</th>
                                                     </thead>
                                                     <div class="row">
                                                         @php
