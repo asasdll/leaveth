@@ -90,194 +90,28 @@ class Leave_hrController extends Controller
          //$member->save();
           $satus =  $request->status_hr;
         //dd($satus);
-            if ($satus == 'อนุมัติ') {
-                # code...
-               /// dd('อนุมัติ');
-           $save_data0 = DB::table('leaves')
-           ->where('id',$id)
-           ->get();
-//dd($save_data0);
-        $save_data1 = $save_data0[0]->idmember;
-        $save_data2 = $save_data0[0]->leave;
-        $save_data3 = $save_data0[0]->da;
+        if ($satus == 'อนุมัติ') {
+              
+            $leave = DB::table('leaves') // เอาประวัติการลา
+                ->where('id',$id)
+                ->get();
+            dd($leave);
+            $idmember = $leave[0]->idmember;
+            $name_leave = $leave[0]->leave;
 
-
-    
-        //dd($save_data0,$save_data1,$save_data2,$save_data3);
-           $date_user = DB::table('add_date')
-           ->where('id_user', $id)
-           ->where('data_name','=', "$save_data2")
-           ->get();
-          // dd( $date_user);
-           if (Count($date_user) == '1') {
-               # code...
-               $date_user = $date_user[0]->date_up;
+            $leave = DB::table('leaves') // เอาเอาจำนวนวันลา ของพนักงาน
+                ->where('id',$id)
+                ->get();
+            dd($leave);
+        
            }else {
                # code...
-               $date_user = '0';
+              
            }
 
-          $code_user = DB::table('users')
-          ->join('memberusers', 'users.id', '=','memberusers.iduser')
-          ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
-          ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
-          ->where('memberusers.iduser', '=' , $save_data1)
-          ->get();
- //dd($code_user);
-
-          if (Count($code_user) == '1') {
-              $idcom = $code_user[0]->id_company;
-              $code_user1 = $code_user[0]->sickleave_date;
-              $code_user2 = $code_user[0]->personalleave_date;
-              $code_user3 = $code_user[0]->vacationleave_date;
-            
-             
-             
-
-          }else {
-              
-              $code_user1 = '0';
-              $code_user2 = '0';
-              $code_user3 = '0';
-
-            
-          }
-
-   // dd($code_user1,$code_user2,$code_user3);
-          $date0 =  $code_user1 +  $date_user;
-          $date1=  $code_user2 +  $date_user;
-          $date2 =  $code_user3 +  $date_user;
+        
           
-          //dd($date0,$date1,$date2);
-
-          $aa =  $save_data2;
-
-          //dd($aa);
-          if ($aa === 'ลาป่วย') {
-              # code...e
-              $sum2 = DB::table('sum_date')
-              ->where('user_id', $save_data1)
-              ->where('leave_name','=','ลาป่วย')
-              ->get();
-              //dd($sum2);
-              $l_user2 = $save_data3;
-              
-              if (Count($sum2) == '1') {
-                  
-                  $l_user = $sum2[0]->leave_date_user;
-                  $l_id = $sum2[0]->id;
-                  $da2 = $sum2[0]->da;
-                  $da01 = '1';
-                  $da = $da2 + $da01;
-
-                 
-                  $l_user1 = $l_user + $l_user2;
-                  //dd($l_user1);
-
-                  $date_sp01 = $date1 - $l_user;
-                  $date_sp02 = $date_sp01 - $l_user2;
-
-                  $affected = DB::table('sum_date')
-                              ->where('id',  $l_id)
-                              ->update([ 'leave_date' => $code_user1,'leave_date_up' => $date_user,'leave_date_user' => $l_user1,
-                              'leave_date_sum' =>  $date0 ,'da' => $da ,'leave_date_surplus' => $date_sp02]);
-
-              }else {
-                  # code...
-                  $date_sp0 = $date0 - $l_user2;
-                  DB::table('sum_date')->insert(
-                      ['user_id' =>  $save_data1,'leave_name' =>$aa, 'leave_date' => $code_user1,
-                      'leave_date_up' => $date_user,'da' => '1' ,'leave_date_user' => $l_user2,'leave_date_sum' =>  $date0 ,'leave_date_surplus' =>  $date_sp0]
-                  );
-              }
-
-              
-          }elseif ($aa === 'ลากิจ') {
-              # code...
-              //dd('ลากิจ5585');
-              $sum2 = DB::table('sum_date')
-              ->where('user_id', $save_data1)
-              ->where('leave_name','=','ลากิจ')
-              ->get();
-
-             // $date_sp1 = $date1 - '1';
             
-             //dd($sum2);
-             $l_user2 = $save_data3;
-             //dd($l_user2);
-              if (Count($sum2) == '1') {
-        //dd('aaa');
-                  $l_user = $sum2[0]->leave_date_user;
-                  $l_id = $sum2[0]->id;
-                  $da2 = $sum2[0]->da;
-                  $da01 = '1';
-                  $da = $da2 + $da01;
-                 // dd($l_id,$l_user);
-               
-                  $l_user1 = $l_user + $l_user2;
-              //  dd(  $l_user);
-                  $date_sp01 = $date1 - $l_user;
-                 $date_sp02 = $date_sp01 - $l_user2;   
-                //dd($date_sp02);
-                  $affected = DB::table('sum_date')
-                              ->where('id',  $l_id)
-                              ->update([ 'leave_date' => $code_user2, 'leave_date_up' => $date_user,'leave_date_user' => $l_user1,
-                                'leave_date_sum' =>  $date1 ,'da' => $da ,'leave_date_surplus' =>  $date_sp02]);
-
-              }else {
-                  # code...
-                  $date_sp1 = $date1 - $l_user2;
-                  DB::table('sum_date')->insert(
-                      ['user_id' =>  $save_data1,'leave_name' => $aa, 'leave_date' => $code_user2,
-                      'leave_date_up' => $date_user,'da' => '1','leave_date_user' => $l_user2 ,'leave_date_sum' =>  $date1 ,'leave_date_surplus' =>  $date_sp1]
-                  );
-              }
-
-          }elseif ($aa === 'ลาพักร้อน') {
-              # code...
-
-              
-              $sum2 = DB::table('sum_date')
-              ->where('user_id', $save_data1)
-              ->where('leave_name','=','ลาพักร้อน')
-              ->get();
-
-              
-             // $date_sp2 = $date2 - '1';
-              //dd($sum2);
-              $l_user2 = $save_data3;
-            //dd($l_user2);
-              if (Count($sum2) == '1') {
-                  
-                  
-                  $l_user = $sum2[0]->leave_date_user;
-                  $da2 = $sum2[0]->da;
-                  $l_id = $sum2[0]->id;
-                 //dd($l_user01);
-                 $da01 = '1';
-                  $l_user1 = $l_user + $l_user2;
-                    //dd($l_user1);
-                    $date_sp01 = $date1 - $l_user;
-                   $date_sp02 = $date_sp01 - $l_user2;
-                 $da = $da2 + $da01;
-              //dd($code_user3,$date_sp02,$date_user);
-                  $affected = DB::table('sum_date')
-                              ->where('id', $l_id)
-                              ->update([ 'leave_date' => $code_user3,'leave_date_up' => $date_user,'leave_date_user' => $l_user1,
-                              'leave_date_sum' =>  $date2 ,'da' => $da,'leave_date_surplus' => $date_sp02]);
-
-              }else {
-                  # code...
-                  $date_sp2 = $date2 - $l_user2;
-                  DB::table('sum_date')->insert(
-                      ['user_id' =>  $save_data1,'leave_name' =>$aa, 'leave_date' => $code_user3,
-                      'leave_date_up' => $date_user,'da' => '1','leave_date_user' => $l_user2 ,'leave_date_sum' =>  $date2 ,'leave_date_surplus' =>  $date_sp2]
-                  );
-              }
-
-          }
-          
-            }
    
            return redirect('leave_hr');
 

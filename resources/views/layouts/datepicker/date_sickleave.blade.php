@@ -68,7 +68,7 @@ $(function() {
             <label for="text" class="col-md-2 pr-1 col-form-label">ลาครึ่งวัน</label>
             <div class="col-md-6 pr-1">
                 <select class="form-control" name="datoo1">
-                    <option value="เต็มวัน">
+                    <option value="1">
                     เต็มวัน</option>
                     <option value="ลาครึ่งเช้า">
                         ลาครึ่งเช้า</option>

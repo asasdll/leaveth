@@ -87,7 +87,8 @@ class NewcompaniesController extends Controller
       $leave = DB::table('users') //การขออนุมัติ hr
       ->leftJoin('newcompanies', 'users.id', '=','newcompanies.idname')
       ->leftJoin('positions', 'newcompanies.id', '=','positions.id_com')
-      ->leftJoin('leaves', 'positions.id_user', '=','leaves.head')
+      ->leftJoin('memberusers', 'positions.code_division', '=','memberusers.pass_division')
+      ->leftJoin('leaves', 'memberusers.iduser', '=','leaves.idmember')
       //->rightJoin('leaves', 'positions.iduser', '=','leaves.idmember')
       ->where('status_chief', '!=' ,'null')
       ->whereNull('status_hr')
@@ -106,14 +107,15 @@ class NewcompaniesController extends Controller
       $leave = DB::table('users') //ประวัติการลา
       ->leftJoin('newcompanies', 'users.id', '=','newcompanies.idname')
       ->leftJoin('positions', 'newcompanies.id', '=','positions.id_com')
-      ->leftJoin('leaves', 'positions.id_user', '=','leaves.head')
+      ->leftJoin('memberusers', 'positions.code_division', '=','memberusers.pass_division')
+      ->leftJoin('leaves', 'memberusers.iduser', '=','leaves.idmember')
       ->where('status_hr','!=' ,'null')
       ->where('status_chief', '!=' ,'null')
       //->orderBy('idname','DESC')
       ->where('idname',Auth::user()->id)
       ->groupBy('leaves.id')
       ->Paginate(100);
-     //dd($leave);
+     dd($leave);
       return view('hr.leaverecord' , ['leave' => $leave]);
     }
 
@@ -125,15 +127,15 @@ class NewcompaniesController extends Controller
       
      
       $leave = DB::table('newcompanies') //ค้นหาประวัติการลา
-      ->join('positions', 'newcompanies.newcode', '=','positions.codecom')
-      ->join('leaves', 'positions.idchief', '=','leaves.head')
-      ->where('status_hr', '!=' ,'Null')
-      ->where('lea_fname','like', '%'.$search.'%')
-      ->orderBy('leaves.id','DESC')
+      ->join('positions', 'newcompanies.id', '=','positions.id_com')
+      //->join('leaves', 'positions.id_com', '=','leaves.head')
+      //->where('status_hr', '!=' ,'Null')
+      //->where('lea_fname','like', '%'.$search.'%')
+      //->orderBy('leaves.id','DESC')
       //->orderBy('times.time_in','ASC')
       ->where('idname',Auth::user()->id)
       ->Paginate(100);
-     //dd($leave);
+     dd($leave);
      //$search_id = $leave;
      //dd($search_id);
       return view('hr.leaverecord' , ['name'=> $search ,'leave' => $leave]);
@@ -229,7 +231,7 @@ class NewcompaniesController extends Controller
     {
       //dd($id);
       $chief = Leave::find($id);
-
+      //dd();l
       return view('hr.edit_upleave_hr', compact('chief','id'));
     }
 

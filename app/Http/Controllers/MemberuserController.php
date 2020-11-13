@@ -257,29 +257,29 @@ class MemberuserController extends Controller
     public function record()
     {
       //dd('sadas');
-      $soleave2 = DB::table('users') /// อนุมัติเเล้ว ส่วนของหัวหน้า
-      ->leftJoin('positions', 'users.id', '=','positions.idchief')
-      ->leftJoin('leaves', 'positions.idchief', '=','leaves.idmember')
+      $soleave2 = DB::table('positions') /// อนุมัติเเล้ว ส่วนของหัวหน้า
+      ->Join('memberusers', 'positions.code_division', '=','memberusers.pass_division')
+      ->Join('leaves', 'memberusers.iduser', '=','leaves.idmember')
       ->orderBy('leaves.id','ASC')
       ->where('status_hr','!=' ,'Null')
       ->where('idmember',Auth::user()->id)
-      ->groupBy('leaves.id')
       ->get();
 
       //dd($soleave2);
 
-      $Edleave = DB::table('users') /// อนุมัติเเล้ว ส่วนของหัวหน้า
-      ->leftJoin('positions', 'users.id', '=','positions.idchief')
-      ->leftJoin('leaves', 'positions.idchief', '=','leaves.idmember')
-      ->orderBy('leaves.id','ASC')
+      $Edleave = DB::table('positions') /// ยังไม่อนุมัติ
+      ->Join('memberusers', 'positions.code_division', '=','memberusers.pass_division')
+      ->Join('leaves', 'memberusers.iduser', '=','leaves.idmember')
+      //->orderBy('leaves.id','ASC')
       ->whereNull('status_hr')
       ->where('idmember',Auth::user()->id)
-      ->groupBy('leaves.id')
+      ->orderBy('leaves.id','ASC')
+      ///->groupBy('leaves.id')
       ->get();
 
-        //dd($Edleave);
+        //dd($soleave2,$Edleave);
 
-        return view('chief.leaverecord' , ['soleave2' => $soleave2 ,'Edleave' => $Edleave]) ;
+        return view('chief.leaverecord' , ['Edleave' => $Edleave ,'soleave2' =>$soleave2]) ;
   
     }
 

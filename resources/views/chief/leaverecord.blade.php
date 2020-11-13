@@ -227,7 +227,7 @@
                                                 @endphp
                                                 <td><label style="color:#0000FF">กำลังรอการอนุมัติ</label></td>
                                                 <td><a class="show-modal btn btn-info btn-fill pull-right"  href="#" 
-                                                    data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}" data-head="{{$ticket2->fname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->niname}})" 
+                                                    data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}" data-head="{{$ticket2->nname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->nikname}})" 
                                                     data-lea_fname="{{$ticket2->lea_fname}}" data-lea_lname="{{$ticket2->lea_lname}} &nbsp;&nbsp;&nbsp; ({{$ticket2->lea_niname}})" data-position="{{$ticket2->position}}"
                                                     data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}"  data-datoo="{{$ticket2->datoo}}"
                                                     data-da="{{$ticket2->da}}" data-address="{{$ticket2->address}}" data-tel="{{$ticket2->tel}}"  data-image="{{$ticket2->image}}"
@@ -291,7 +291,7 @@
                                                     <label style="color:#FF0000">ไม่อนุมัติ</label>
                                                     @endif</td>
                                                 <td><a class="show-modal btn btn-info btn-fill pull-right"  href="#" 
-                                                    data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}" data-head="{{$ticket2->fname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->niname}})" 
+                                                    data-id="{{$ticket2->id}}" data-affair="{{$ticket2->affair}}" data-head="{{$ticket2->nname}}&nbsp;&nbsp;&nbsp;{{$ticket2->lname}}&nbsp;&nbsp;&nbsp;({{$ticket2->nikname}})" 
                                                     data-lea_fname="{{$ticket2->lea_fname}}" data-lea_lname="{{$ticket2->lea_lname}} &nbsp;&nbsp;&nbsp; ({{$ticket2->lea_niname}})" data-position="{{$ticket2->position}}"
                                                     data-leave="{{$ticket2->leave}}" data-since="{{$ticket2->since}}" data-date1="{{$ticket2->date1}}" data-date2="{{$ticket2->date2}}" data-datoo="{{$ticket2->datoo}}"
                                                     data-da="{{$ticket2->da}}" data-address="{{$ticket2->address}}" data-tel="{{$ticket2->tel}}"  data-image="{{$ticket2->image}}"
