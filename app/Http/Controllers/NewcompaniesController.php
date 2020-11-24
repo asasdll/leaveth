@@ -36,32 +36,36 @@ class NewcompaniesController extends Controller
 
       $user_aaa = DB::table('users')
             ->join('newcompanies', 'users.id', '=','newcompanies.idname')
-            ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
+            ->rightJoin('memberusers', 'newcompanies.newcode', '=','memberusers.code')
             ->leftJoin('times', 'memberusers.iduser', '=','times.user_id')
-            ->orderBy('times.time_date','DESC')
-            ->orderBy('times.time_in','ASC')
+           // ->orderBy('times.time_date','DESC')
+            //->orderBy('times.time_in','ASC')
             //->orderBy('times.time_date','ASC')
              ->where('idname', Auth::user()->id)
              ->Paginate(2000);
             
          
-    //d($user_aaa);
+    //dd($user_aaa);
       return view('hr.table' ,['user_aaa' => $user_aaa ]);
     }
 
     public function search_time(Request $request)
     {
-     ///dd($request->all());
+     //dd($request->all());
       $search_dt = $request->get('search_date');
       $search_na = $request->get('search_name');
       $search_mo = $request->get('search_month');
+   
+
+
    //dd($search_na);
       $user_search = DB::table('users')
             //->join('newcompanies', 'users.id', '=','newcompanies.idname')
             //->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
-            ->join('times', 'users.id', '=','times.user_id')
-            ->rightJoin('memberusers', 'times.user_id', '=','memberusers.iduser')
-            ->rightJoin('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+            ->join('newcompanies', 'users.id', '=','newcompanies.idname')
+            ->join('memberusers', 'newcompanies.newcode', '=','memberusers.code')
+            ->leftJoin('times', 'memberusers.iduser', '=','times.user_id')
+            ->crossJoin('times')
             ->orderBy('times.user_id','ASC')
             ->orderBy('times.time_date','ASC')
             ->orderBy('times.time_in','ASC')
@@ -72,7 +76,7 @@ class NewcompaniesController extends Controller
             ->Paginate(2000);
             
           //$idpdf =  $user_search;
-     //dd($idpdf);
+     dd($user_search);
      //dd($user_search);
       return view('hr.table' ,['name'=>  $search_na ,'user_aaa' => $user_search ,'date' => $search_dt ,'month' =>$search_mo  ]);
     }
@@ -115,7 +119,7 @@ class NewcompaniesController extends Controller
       ->where('idname',Auth::user()->id)
       ->groupBy('leaves.id')
       ->Paginate(100);
-     dd($leave);
+     //dd($leave);
       return view('hr.leaverecord' , ['leave' => $leave]);
     }
 

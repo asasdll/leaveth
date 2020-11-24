@@ -44,7 +44,7 @@
                                 <td>{{$ticket->per_date_user}}</td>
                                 <td>
                                     @if($ticket->per_date_surplus >= "0" )
-                                    {{$ticket->leave_date_surplus}}
+                                    {{$ticket->per_date_surplus}}
                                     @else()
                                     <font color="#663399">{{'ไม่มีกำการกำหนดวันลา'}}</font>
                                     @endif
@@ -58,7 +58,7 @@
                                 <td>{{$ticket->vac_date_user}}</td>
                                 <td>
                                     @if($ticket->vac_date_surplus >= "0" )
-                                    {{$ticket->leave_date_surplus}}
+                                    {{$ticket->vac_date_surplus}}
                                     @else()
                                     <font color="#663399">{{'ไม่มีกำการกำหนดวันลา'}}</font>
                                     @endif

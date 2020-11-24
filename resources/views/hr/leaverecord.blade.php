@@ -220,13 +220,14 @@ label {
                                         </td>
                                         <td><a class="show-modal btn btn-info btn-fill pull-right" href="#"
                                                 data-id="{{$ticket1->id}}" data-affair="{{$ticket1->affair}}"
-                                                data-head="{{$ticket1->fname}}&nbsp;&nbsp;&nbsp;{{$ticket1->lname}}&nbsp;&nbsp;&nbsp;({{$ticket1->niname}})"
+                                                data-head="{{$ticket1->nname}}&nbsp;&nbsp;&nbsp;{{$ticket1->lname}}&nbsp;&nbsp;&nbsp;({{$ticket1->nikname}})"
                                                 data-lea_fname="{{$ticket1->lea_fname}}"
                                                 data-lea_lname="{{$ticket1->lea_lname}}&nbsp;&nbsp;&nbsp;({{$ticket1->lea_niname}})"
                                                 data-position="{{$ticket1->position}}" data-leave="{{$ticket1->leave}}"
                                                 data-since="{{$ticket1->since}}" data-date1="{{$ticket1->date1}}"
                                                 data-date2="{{$ticket1->date2}}" data-da="{{$ticket1->da}}" data-datoo="{{$ticket1->datoo}}"
-                                                data-address="{{$ticket1->address}}" data-tel="{{$ticket1->tel}}"
+                                                data-address="{{$ticket1->address}}" data-tel="{{$ticket1->tel}}" data-status_chief="{{$ticket1->status_chief}}" data-status_text1="{{$ticket1->status_text1}}"
+                                                data-status_hr="{{$ticket1->status_hr}}" data-status_text2="{{$ticket1->status_text2}}"
                                                 data-toggle="modal" data-target="#exampleModal">View</a></td>
                                     </tr>
                                     @endforeach
@@ -306,19 +307,19 @@ label {
                 </div>
                 <div class="form-group">
                     <label for="">ผลการอนุมัติ หัวหน้า :</label>
-                    <b id="t" />
+                    <b id="sc" />
                 </div>
                 <div class="form-group">
                     <label for="">หมายเหตุ หัวหน้า :</label>
-                    <b id="t" />
+                    <b id="st1" />
                 </div>
                 <div class="form-group">
                     <label for="">ผลการอันุมัติ HR  :</label>
-                    <b id="t" />
+                    <b id="sh" />
                 </div>
                 <div class="form-group">
                     <label for="">หมายเหตุ HR :</label>
-                    <b id="t" />
+                    <b id="st2" />
                 </div>
             </div>
         </div>

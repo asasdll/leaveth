@@ -182,7 +182,8 @@ class MemberuserController extends Controller
        // dd('หัวหน้า');
         $leave = DB::table('users') //กำลังรออนุมัติ  ของหัวหน้า
         ->rightJoin('positions', 'users.id', '=','positions.id_user')
-        ->rightJoin('leaves', 'positions.id_user', '=','leaves.idmember')
+        ->rightJoin('memberusers', 'positions.code_division', '=','memberusers.pass_division')
+        ->rightJoin('leaves', 'memberusers.iduser', '=','leaves.idmember')
         //->rightJoin('leaves', 'positions.idchief', '=','leaves.idmember')
         ->whereNull('status_chief')
         ->orderBy('leaves.id','ASC')
@@ -215,7 +216,7 @@ class MemberuserController extends Controller
         ->groupBy('leaves.id')
         ->Paginate(50);*/
 
-      //dd($leave,$Edleave);
+      //dd($leave);
 
         return view('chief.leave' , ['leave'=> $leave  ]);
       
@@ -223,8 +224,9 @@ class MemberuserController extends Controller
 
          //dd('พนักงาน');
         $leave = DB::table('users') //กำลังรออนุมัติ ส่วนของพนักงาน
-        ->Join('positions', 'users.id', '=','positions.id_user')
-        ->Join('leaves', 'positions.id_user', '=','leaves.head')
+        ->rightJoin('positions', 'users.id', '=','positions.id_user')
+        ->rightJoin('memberusers', 'positions.code_division', '=','memberusers.pass_division')
+        ->rightJoin('leaves', 'memberusers.iduser', '=','leaves.idmember')
         //->Join('leaves', 'users.id', '=','leaves.idmember')
         ->whereNull('status_hr')
         //->orderBy('leaves.id','ASC')
@@ -235,9 +237,9 @@ class MemberuserController extends Controller
         //dd($leave);
 
         $leave2 = DB::table('users') /// อนุมัติเเล้ว ส่วนของพนักงาน
-        //->Join('positions', 'users.id', '=','positions.idchief')
-        ->Join('leaves', 'users.id', '=','leaves.idmember')
-        ->Join('positions', 'leaves.idmember', '=','positions.id_user')
+        ->rightJoin('positions', 'users.id', '=','positions.id_user')
+        ->rightJoin('memberusers', 'positions.code_division', '=','memberusers.pass_division')
+        ->rightJoin('leaves', 'memberusers.iduser', '=','leaves.idmember')
         ->orderBy('leaves.id','ASC')
         ->where('status_chief','!=' ,'Null')
         ->where('status_hr','!=' ,'Null')

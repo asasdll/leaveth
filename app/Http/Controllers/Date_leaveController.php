@@ -37,20 +37,25 @@ class Date_leaveController extends Controller
       if ($user && $user->status == 'chief') {
 
        // dd('55');
+       $search = $request->get('search');
        $code_user = DB::table('users')
-                        ->join('memberusers', 'users.id', '=','memberusers.iduser')
-                        ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
-                        ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
-                        ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
-                        ->leftJoin('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
-                       ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
-                         ->where('memberusers.iduser', '=' ,Auth::user()->id)
+               ->join('memberusers', 'users.id', '=','memberusers.iduser')
+               ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
+               ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+               ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
+               ->leftJoin('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+              ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
+               //->selectRaw(DB::raw("SUM(date_up) as add_date ,firstnamebem ,lastnamebem"))
+               
+               ->where('positions.id_user', '=' ,Auth::user()->id)
+               ->where('firstnamebem','like', '%'.$search.'%')
+               ->orderBy('memberusers.id','ASC')
+               ->get(); 
                // ->where('firstnamebem','like', '%'.$search.'%')
 
-               
-                        ->get();   
+     
 
-              // dd( $code_user);
+               //dd( $code_user);
                 return view('.chief.sum_date_ch' ,['code_user' =>$code_user]);
 
       }elseif ($user && $user->status == 'hr') {
@@ -59,13 +64,15 @@ class Date_leaveController extends Controller
                 ->join('memberusers', 'users.id', '=','memberusers.iduser')
                 ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
                 ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                ->join('sum_top', 'newcompanies.idname', '=','sum_top.id_com')
+                ->join('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
                 ->join('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
                 ->where('firstnamebem','like', '%'.$search.'%')
                 ->where('newcompanies.idname', '=' ,Auth::user()->id)
                 //->where('firstnamebem','like', '%'.$search.'%')
                 ->get();   
 
-               // dd($code_user);
+                //dd($code_user);
             return view('.hr.sum_data_hr' ,['code_user' =>$code_user]);
       }else {
           # code...

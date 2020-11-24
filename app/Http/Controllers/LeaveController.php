@@ -153,7 +153,7 @@ class LeaveController extends Controller
                   //  $member = $img->getClientOriginalExtension();
                   //	$img->save();
                 }
-                //dd($member);
+            //dd($member);
                 $save_data0 = $request->leave;
                 $add_date = DB::table('users')
                         ->join('memberusers', 'users.id', '=','memberusers.iduser')
@@ -164,6 +164,8 @@ class LeaveController extends Controller
                         ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
                         ->where('memberusers.iduser',Auth::user()->id)
                         ->get();
+
+                        ///dd(  $add_date);
                     $per =   $add_date[0]->personalleave_date;
                     $up_per = $add_date[0]->personal_date;
                     $sum_per = $per +  $up_per;
@@ -172,7 +174,7 @@ class LeaveController extends Controller
                     $up_vac = $add_date[0]->vacation_date;
                     $sum_vac = $vac +  $up_vac;
 
-              //  dd($sum_per, $sum_vac);
+               //dd($save_data0, $sum_vac);
                 if ($save_data0 == 'ลาป่วย') {
                     # code...Eเเ
                    // dd('ลาป่วย');
@@ -311,14 +313,11 @@ class LeaveController extends Controller
                      ->where('memberusers.iduser',Auth::user()->id)
                      ->get();
                
-                    $per =   $add_date[0]->personalleave_date;
-                    $up_per = $add_date[0]->personal_date;
-                    $sum_per = $per +  $up_per;
-                    $vac =   $add_date[0]->vacationleave_date;
-                    $up_vac = $add_date[0]->vacation_date;
-                    $sum_vac = $vac +  $up_vac;
+                    $per =   $add_date[0]->per_date_surplus;
+                   
+                    $vac =   $add_date[0]->vac_date_surplus;
 
-           //  dd($sum_per, $sum_vac);
+             //dd($add_date,$sum_per, $sum_vac);
              if ($save_data0 == 'ลาป่วย') {
                  # code...Eเเ
                 // dd('ลาป่วย');
@@ -329,7 +328,7 @@ class LeaveController extends Controller
 
                  if ($save_data0 == 'ลากิจ') {
 
-                     if ($sum_per  > 50) {
+                     if ($per  <= 0) {
                          # code...e
                          $member->save();
                         // return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
@@ -342,7 +341,7 @@ class LeaveController extends Controller
                      
                  }else {
                      # code...
-                     if ($sum_vac  > 0) {
+                     if ($vac  <= 0) {
                          # code...e
                          $member->save();
                         // return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
