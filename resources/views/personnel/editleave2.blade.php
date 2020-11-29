@@ -113,8 +113,8 @@ function demo2() {
                                                         <div class="col-md-10 pr-1">
                                                             <select class="form-control" name="head">
                                                                 @foreach($position as $boss1)
-                                                                <option value="{{$boss1->idchief}}">
-                                                                    {{$boss1->fname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->niname}})
+                                                                <option value="{{$boss1->id_user}}">
+                                                                    {{$boss1->nname}}&nbsp;&nbsp;{{$boss1->lname}}&nbsp;&nbsp;&nbsp;({{$boss1->nikname}})
                                                                 </option>
                                                                 @endforeach
                                                             </select>
@@ -167,20 +167,18 @@ function demo2() {
                                                     <div class="col-md-8 pr-1">
                                                         <select class="form-control" name="leave" id="demo6"
                                                             onclick="demo2()">
-                                                            @foreach($leave as $ticketl)
-                                                            <option value="{{$ticketl->sickleave}}">
-                                                                {{$ticketl->sickleave}}</option>
-                                                            <option value="{{$ticketl->personalleave}}">
-                                                                {{$ticketl->personalleave}}</option>
-                                                            <option value="{{$ticketl->vacationleave}}">
-                                                                {{$ticketl->vacationleave}}</option>
-                                                            @endforeach
+                                                            <option value="ลาป่วย">
+                                                                ลาป่วย </option>
+                                                            <option value="ลากิจ">
+                                                                ลากิจ</option>
+                                                            <option value="ลาพักร้อน">
+                                                                ลาพักร้อน</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             @if(session('success'))
-                                                 <font color="red">{{session('success')}}</font>
+                                            <font color="red">{{session('success')}}</font>
                                             @endif
                                         </div>
                                         <div class="row">

@@ -193,7 +193,7 @@ class LeaveController extends Controller
                 }else {
 
                     if ($save_data0 == 'ลากิจ') {
-
+                        dd('dasd');
                         if ($sum_per  > 0) {
                             # code...e
                            // dd('dasd');
@@ -201,7 +201,7 @@ class LeaveController extends Controller
                            // return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
                         }else {
                             # code...
-                          // dd('ไน้อย');
+                           dd('ไน้อย');
                            return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
                            // $member->save();
                         }
@@ -312,12 +312,34 @@ class LeaveController extends Controller
                      ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
                      ->where('memberusers.iduser',Auth::user()->id)
                      ->get();
-               
-                    $per =   $add_date[0]->per_date_surplus;
-                   
+                     //ลากิจ
+                     $pe_top =   $add_date[0]->personalleave_date;
+                     $pe_top2 =   $add_date[0]->personal_date;
+                     $per2 =  $pe_top + $pe_top2;
+                     $pe_sl =   $add_date[0]->per_date_surplus;
+                     if ($pe_sl == '1') {
+                         # code...
+                         $pe_sl =   $add_date[0]->per_date_surplus;
+                     }else {
+                         # code...
+                         $pe_sl =  '0';
+                     }
+                     $pel = $pe_sl + $da;
+                     // ลาพักร้อน
+                     $vac_top =   $add_date[0]->vacationleave_date;
+                     $vac_top2 =   $add_date[0]->vacation_date;
+                     $vac2 =  $vac_top + $vac_top2;
                     $vac =   $add_date[0]->vac_date_surplus;
+                    if ($vac == '1') {
+                        # code...
+                        $vac =   $add_date[0]->vac_date_surplus;
+                    }else {
+                        # code...
+                        $vac =  '0';
+                    }
+                    $vacl = $da + $vac;
 
-             //dd($add_date,$sum_per, $sum_vac);
+            //dd($vacl);
              if ($save_data0 == 'ลาป่วย') {
                  # code...Eเเ
                 // dd('ลาป่วย');
@@ -327,21 +349,22 @@ class LeaveController extends Controller
              }else {
 
                  if ($save_data0 == 'ลากิจ') {
-
-                     if ($per  <= 0) {
+                    //dd($pel);
+                     if ($pel  <= $per2) {
                          # code...e
+                       //  dd('ss');
                          $member->save();
                         // return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
                      }else {
                          # code...
-                       // dd('ไน้อย');
+                      // dd('ไน้อย');
                         return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
                         // $member->save();
                      }
                      
                  }else {
                      # code...
-                     if ($vac  <= 0) {
+                     if ($vacs  <= $vac2) {
                          # code...e
                          $member->save();
                         // return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
@@ -433,17 +456,37 @@ class LeaveController extends Controller
        //dd($namdate1);
         if ($namdate1 != null) {
             # code...el
+            $this->validate($request, [
+                'image'=> ['required','mimes:jpg,png,jpeg,gif,svg'],
+
+                
+             ]);
+
             $date1 = request()->from1;
             $date2 = request()->to1;
             $da = request()->daydiff1;
+            $datoo = request()->datoo1;
             //dd('ลาป่วย',$date1,$date2,$da);
         }else {
             # code...
             $date1 = request()->from2;
             $date2 = request()->to2;
             $da = request()->daydiff2;
+            $datoo = request()->datoo2;
             //dd('ลากิจ/พักร้อน',$date1,$date2,$da,$request->all());
         }
+
+        if ($datoo === 'ลาครึ่งเช้า') {
+           //dd('มี');
+           $a = 0.5;
+
+           $da = $da - $a;
+       }elseif ($datoo === 'ลาครึ่งบาย') {
+           # code...
+           $a = 0.5;
+
+           $da = $da - $a;
+       }
 
 
        $member = Leave::find($id);     
@@ -467,43 +510,84 @@ class LeaveController extends Controller
             //	$img->save();
           }
           
-dd($member);
-          $save_data0 = $request->leave;
-          $save_data = DB::table('sum_date')
-          ->where('user_id',Auth::user()->id)
-          ->where('leave_name','=',"$save_data0")
-          ->get();
-          if (Count($save_data) == '1') {
-              # code...Eเเ
-              $save_data01 = $save_data[0]->leave_date_surplus;
-                      if ($save_data01 == 0) {
-                          # code...e
-                          //dd('ไม่ได้');
-                          return redirect()->route('letter.edit', $id)->with('success', "วัน $save_data0 ของคุณไม่พอ");
-                      }else {
-                          # code...
-                         // dd('ได้');
-                          $member->save();
-                      }
-              
-          }else {
+//dd($member);
+                $save_data0 = $request->leave;
+                $add_date = DB::table('users')
+                ->join('memberusers', 'users.id', '=','memberusers.iduser')
+                ->join('positions', 'memberusers.pass_division', '=','positions.code_division')
+                ->join('newcompanies', 'memberusers.code', '=','newcompanies.newcode')
+                ->join('sum_top', 'newcompanies.id', '=','sum_top.id_com')
+                ->leftJoin('sum_date', 'memberusers.iduser', '=','sum_date.user_id')
+                ->leftJoin('sum_add_date', 'memberusers.iduser', '=','sum_add_date.id_u')
+                ->where('memberusers.iduser',Auth::user()->id)
+                ->get();
+                //ลากิจ
+                $pe_top =   $add_date[0]->personalleave_date;
+                $pe_top2 =   $add_date[0]->personal_date;
+                $per2 =  $pe_top + $pe_top2;
+                $pe_sl =   $add_date[0]->per_date_surplus;
+                if ($pe_sl == '1') {
+                    # code...
+                    $pe_sl =   $add_date[0]->per_date_surplus;
+                }else {
+                    # code...
+                    $pe_sl = '0';
+                }
+                $pel = $pe_sl + $da;
+                // ลาพักร้อน
+                $vac_top =   $add_date[0]->vacationleave_date;
+                $vac_top2 =   $add_date[0]->vacation_date;
+                $vac2 =  $vac_top + $vac_top2;
+                $vac =   $add_date[0]->vac_date_surplus;
+                if ($vac == '1') {
+                    # code...
+                    $vac =   $add_date[0]->vac_date_surplus;
+                }else {
+                    # code...
+                    $vac =   '0';
+                }
+                $vacl = $da + $vac;
 
-              //dd('ไม่มี');
-              $member->save();
-          }
+               // dd($vac);
+                if ($save_data0 == 'ลาป่วย') {
+                # code...Eเเ
+                // dd('ลาป่วย');
+                $member->save();
 
-          
-    $user = request()->User();
-        
-    if ($user && $user->status === 'chief') {
 
-        return redirect('recordch');
-        
-    }else {
-          
-       return redirect('leave3');
+                }else {
 
-    }
+                if ($save_data0 == 'ลากิจ') {
+                //dd($pel);
+                if ($pel  <= $per2) {
+                    # code...e
+                //  dd('ss');
+                    $member->save();
+                // return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
+                }else {
+                    # code...
+                // dd('ไน้อย');
+                return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
+                // $member->save();
+                }
+
+                }else {
+                # code...
+                if ($vacs  <= $vac2) {
+                    # code...e
+                    $member->save();
+                // return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
+                }else {
+                    # code...
+                //dd('ไน้อย');
+                return redirect('leave2')->with('success', "วัน $save_data0 ของคุณไม่พอ");
+                // $member->save();
+                }
+
+                }
+                }
+
+                return redirect('leave3');
 
       
            
